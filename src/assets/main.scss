@@ -1,0 +1,34 @@
+@import 'mixins', 'variables';
+
+:root {
+  @include font-style;
+}
+
+* {
+  box-sizing: border-box;
+  overflow-x: hidden;
+  color: map-get($map: $colors, $key: c-font);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: map-get($map: $colors, $key: c-main-bg);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+ul {
+  background: none repeat scroll 0 0 transparent;
+  border: 0 none;
+  font-size: 100%;
+  margin: 0;
+  outline: 0 none;
+  padding: 0;
+  vertical-align: baseline;
+}
