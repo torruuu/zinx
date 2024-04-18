@@ -1,0 +1,30 @@
+---
+import LogoZinx from "@components/LogoZinx.astro"
+---
+
+<nav class="nav-container">
+  <div class="nav-container__logo">
+    <LogoZinx />
+  </div>
+  <div class="nav-container__links">
+
+  </div>
+  <div class="nav-container__searcher">
+
+  </div>
+</nav>
+
+<style lang="scss">
+  .nav-container {
+    &__logo {
+      width: 5rem;
+      height: max-content;
+
+      @include flex();
+
+      svg {
+        height: 100%;
+      }
+    }
+  }
+</style>
