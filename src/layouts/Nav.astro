@@ -1,30 +1,54 @@
 ---
-import LogoZinx from "@components/LogoZinx.astro"
+import LogoNav from '@components/logos/LogoNav.astro'
 ---
 
 <nav class="nav-container">
-  <div class="nav-container__logo">
-    <LogoZinx />
-  </div>
+  <LogoNav />
   <div class="nav-container__links">
-
-  </div>
-  <div class="nav-container__searcher">
-
+    <a href="/" class="nav-container__link">Home</a>
+    <a href="/movies" class="nav-container__link">Películas</a>
+    <a href="/series" class="nav-container__link">Series</a>
+    <a href="/explore" class="nav-container__link">Explora</a>
   </div>
 </nav>
 
+<div class="test"></div>
+
 <style lang="scss">
   .nav-container {
-    &__logo {
-      width: 5rem;
-      height: max-content;
+    height: 6.5vh;
+    width: 100%;
+    padding: map-get($map: $sizes, $key: s-general-padding);
+    @include flex($justify-content: flex-start);
+    gap: 2rem;
 
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    animation: scroll-header linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 10rem;
+    &__links {
       @include flex();
-
-      svg {
-        height: 100%;
+      gap: 0.8rem;
+    }
+    &__link {
+      font-size: map-get($map: $font-size, $key: fs-nav-link);
+      &:hover {
       }
+    }
+  }
+
+  .test {
+    background-color: wheat;
+    height: 100rem;
+  }
+
+  @keyframes scroll-header {
+    to {
+      background-color: map-get($map: $colors, $key: c-nav-bg);
+      background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 10%, transparent);
     }
   }
 </style>

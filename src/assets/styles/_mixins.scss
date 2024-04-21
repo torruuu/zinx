@@ -1,25 +1,36 @@
 // --------- MIXINS ----------
 
-@mixin flex($direction: row, $align-items: center, $justify-content: center) {
+@mixin flex($direction: row, $justify-content: center, $align-items: center) {
   display: flex;
   flex-direction: $direction;
   align-items: $align-items;
   justify-content: $justify-content;
 }
 
-@mixin font-style($size: 16px, $family: Verdana, $weight: normal, $style: normal) {
+@mixin font-style(
+  $size: 16px,
+  $family: Verdana,
+  $weight: normal,
+  $style: normal
+) {
   font-size: $size;
   font-family: $family, sans-serif;
   font-weight: $weight;
   font-style: $style;
 }
 
-@mixin background-image($image-url, $position: 0% 0%, $size: auto auto, $repeat: repeat, $attachment: scroll) {
+@mixin background-image(
+  $image-url,
+  $position: 0% 0%,
+  $size: auto auto,
+  $repeat: repeat,
+  $attachment: scroll
+) {
   background: {
-      image: $image-url;
-      position: $position;
-      size: $size;
-      repeat: $repeat;
-      attachment: $attachment;
+    image: $image-url;
+    position: $position;
+    size: $size;
+    repeat: $repeat;
+    attachment: $attachment;
   }
 }

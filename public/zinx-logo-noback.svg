@@ -1,1 +1,8 @@
-<svg cache-id="e4057016c4084a95b701b103a44921a0" id="ekmFl8iWawe1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 498.9 391" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"><g transform="matrix(.1 0 0-.1-.6 445)"><path d="M980,3474l974-975-972-972C447,992,10,552,10,547c0-4,743-7,1650-7c957,0,1650,4,1650,9s-168,178-372,385l-373,377-355-1h-355l495,495l495,495l5-349l5-349l528-531l528-531h539c297,0,540,3,540,7c0,5-438,446-972,980l-973,973l975,975l975,975h-1660-1660l380-380l380-380h355h355l-495-495-495-495-3,347-2,348-528,528-527,527h-544-545l974-976Z"/></g></svg>
+<svg cache-id="e4057016c4084a95b701b103a44921a0" id="ekmFl8iWawe1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  viewBox="0 0 498.9 391" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+  <g transform="matrix(.1 0 0-.1-.6 445)">
+    <path
+      d="M980,3474l974-975-972-972C447,992,10,552,10,547c0-4,743-7,1650-7c957,0,1650,4,1650,9s-168,178-372,385l-373,377-355-1h-355l495,495l495,495l5-349l5-349l528-531l528-531h539c297,0,540,3,540,7c0,5-438,446-972,980l-973,973l975,975l975,975h-1660-1660l380-380l380-380h355h355l-495-495-495-495-3,347-2,348-528,528-527,527h-544-545l974-976Z" />
+  </g>
+</svg>

@@ -16,6 +16,10 @@ body {
   background-color: map-get($map: $colors, $key: c-main-bg);
 }
 
+a {
+  text-decoration: none;
+}
+
 h1,
 h2,
 h3,
@@ -31,4 +35,8 @@ ul {
   outline: 0 none;
   padding: 0;
   vertical-align: baseline;
+}
+
+h1 {
+  font-size: map-get($map: $font-size, $key: fs-h1);
 }

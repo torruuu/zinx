@@ -1,0 +1,30 @@
+---
+import LogoZinxSvg from './LogoZinxSvg.astro'
+---
+
+<div class="logo-container">
+  <a href="/" class="logo-container__svg">
+    <LogoZinxSvg />
+  </a>
+  <div class="logo-container__title">
+    <h1>Zinx</h1>
+  </div>
+</div>
+
+<style lang="scss">
+  .logo-container {
+    height: 100%;
+    width: 2rem;
+
+    @include flex();
+
+    &__svg {
+      width: 100%;
+      @include flex();
+    }
+
+    &__title {
+      display: none;
+    }
+  }
+</style>

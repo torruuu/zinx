@@ -1,15 +1,22 @@
 // ------------- COLORES ----------------
 
 $colors: (
-    "c-font": #fff,
-    "c-main-bg": #000,
-    "c-nav-link": #908b84,
-    "c-nav-link-hover": #f4f4f3,
-    "c-searcher-bg": #111
+  'c-font': #fff,
+  'c-nav-bg': #141414,
+  'c-main-bg': #000,
+  'c-nav-link-hover': #908b84,
+  'c-searcher-bg': #111,
 );
 
 // ------------- FONT-SIZES ----------------
 
-$font-sizes: (
-    "fs-button": 1rem
+$font-size: (
+  'fs-h1': 1.5rem,
+  'fs-nav-link': 0.9rem,
+);
+
+// ------------- SIZES ----------------
+
+$sizes: (
+  's-general-padding': 0 2rem,
 );
