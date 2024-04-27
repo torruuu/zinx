@@ -1,0 +1,53 @@
+{
+  "extends": [
+    "stylelint-config-recommended-scss"
+  ],
+  "files": [
+    "*css",
+    "**/*css"
+  ],
+  "rules": {
+    "unit-allowed-list": [
+      "em",
+      "rem",
+      "vh",
+      "vw",
+      "%",
+      "s",
+      "deg",
+      "fr",
+      "pt",
+      "ch",
+      "ms",
+      "dvh",
+      "dvw"
+    ],
+    "at-rule-no-unknown": null,
+    "scss/no-global-function-names": null,
+    "scss/at-extend-no-missing-placeholder": null,
+    "rule-empty-line-before": null,
+    "font-family-no-missing-generic-family-keyword": null,
+    "declaration-no-important": true
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.astro",
+        "**/*.astro"
+      ],
+      "customSyntax": "postcss-html"
+    },
+    {
+      "files": [
+        "*scss",
+        "**/*scss"
+      ],
+      "customSyntax": "postcss-scss"
+    }
+  ],
+  "defaultSeverity": "error",
+  "ignoreFiles": [
+    "node_modules/*",
+    "dist/**/*"
+  ]
+}
