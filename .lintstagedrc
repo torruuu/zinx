@@ -1,0 +1,4 @@
+{
+  "src/**/*.{ts,js,astro}": "eslint --fix",
+  "src/**/*.{astro,css,scss}": "stylelint --fix"
+}

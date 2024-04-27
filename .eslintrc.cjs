@@ -8,7 +8,6 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    node: true,
   },
   extends: [
     'prettier',
@@ -16,6 +15,18 @@ module.exports = {
     'plugin:astro/recommended',
     'plugin:astro/jsx-a11y-recommended',
   ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
+  plugins: ['@typescript-eslint', 'prettier'],
+  rules: {
+    'prettier/prettier': RULES.ERROR,
+    'arrow-spacing': RULES.ERROR,
+    'object-curly-spacing': [RULES.ERROR, 'always'],
+    'array-callback-return': [RULES.OFF, { checkForEach: true }],
+  },
   overrides: [
     {
       env: {
@@ -36,16 +47,4 @@ module.exports = {
       rules: {},
     },
   ],
-  parserOptions: {
-    ecmaVersion: 'latest',
-    parser: '@typescript-eslint/parser',
-    sourceType: 'module',
-  },
-  plugins: ['@typescript-eslint', 'prettier'],
-  rules: {
-    'prettier/prettier': RULES.ERROR,
-    'arrow-spacing': RULES.ERROR,
-    'object-curly-spacing': [RULES.ERROR, 'always'],
-    'array-callback-return': [RULES.OFF, { checkForEach: true }],
-  },
 }

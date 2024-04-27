@@ -7,12 +7,7 @@
   justify-content: $justify-content;
 }
 
-@mixin font-style(
-  $size: 16px,
-  $family: Verdana,
-  $weight: normal,
-  $style: normal
-) {
+@mixin font-style($size: 16px, $family: Verdana, $weight: normal, $style: normal) {
   font-size: $size;
   font-family: $family, sans-serif;
   font-weight: $weight;
