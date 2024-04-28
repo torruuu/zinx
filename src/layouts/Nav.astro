@@ -1,14 +1,18 @@
 ---
-import LogoNav from '@components/logos/LogoNav.astro'
+import LogoNav from '@components/nav/LogoNav.astro'
+import { getLangFromUrl, useTranslations } from '@/i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 ---
 
 <nav class="nav-container">
   <LogoNav />
   <div class="nav-container__links">
-    <a href="/" class="nav-container__link">Home</a>
-    <a href="/movies" class="nav-container__link">Películas</a>
-    <a href="/series" class="nav-container__link">Series</a>
-    <a href="/explore" class="nav-container__link">Explora</a>
+    <a href="/" class="nav-container__link">{t('nav.home')}</a>
+    <a href="/movies" class="nav-container__link">{t('nav.movies')}</a>
+    <a href="/series" class="nav-container__link">{t('nav.series')}</a>
+    <a href="/explore" class="nav-container__link">{t('nav.explore')}</a>
   </div>
 </nav>
 
@@ -35,6 +39,10 @@ import LogoNav from '@components/logos/LogoNav.astro'
     }
     &__link {
       font-size: map-get($map: $font-size, $key: fs-nav-link);
+      color: map-get($map: $colors, $key: c-nav-link);
+      &:hover {
+        color: map-get($map: $colors, $key: c-font);
+      }
     }
   }
 
