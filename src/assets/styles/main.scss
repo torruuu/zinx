@@ -6,8 +6,7 @@
 
 * {
   box-sizing: border-box;
-  overflow-x: hidden;
-  color: map-get($map: $colors, $key: c-font);
+  color: map-get($map: $colors, $key: c-white);
 }
 
 body {
@@ -39,4 +38,15 @@ ul {
 
 h1 {
   font-size: map-get($map: $font-size, $key: fs-h1);
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+a,
+span {
+  font-size: map-get($map: $font-size, $key: fs-nav-link);
 }

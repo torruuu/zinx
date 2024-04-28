@@ -10,24 +10,13 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    'prettier',
     'plugin:@typescript-eslint/recommended',
     'plugin:astro/recommended',
     'plugin:astro/jsx-a11y-recommended',
-    'plugin:vue/vue3-recommended',
+    '@vue/eslint-config-typescript',
+    'prettier',
   ],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-  },
-  plugins: ['prettier'],
-  rules: {
-    'prettier/prettier': RULES.ERROR,
-    'arrow-spacing': RULES.ERROR,
-    'object-curly-spacing': [RULES.ERROR, 'always'],
-    'array-callback-return': [RULES.OFF, { checkForEach: true }],
-  },
+  plugins: ['prettier', 'vue'],
   overrides: [
     {
       env: {
@@ -51,6 +40,8 @@ module.exports = {
       files: ['*.vue'],
       parser: 'vue-eslint-parser',
       rules: {
+        'vue/html-indent': RULES.ERROR,
+        'vue/multiline-html-element-content-newline': RULES.ERROR,
         'vue/first-attribute-linebreak': RULES.OFF,
         'vue/require-default-prop': RULES.OFF,
         'vue/singleline-html-element-content-newline': 0,
@@ -69,19 +60,21 @@ module.exports = {
         'vue/multi-word-component-names': RULES.OFF,
         'vue/no-setup-props-destructure': RULES.OFF,
         'vue/no-v-text-v-html-on-component': RULES.OFF,
-        'vue/html-self-closing': [
-          'error',
-          {
-            html: {
-              void: 'always',
-              normal: 'never',
-              component: 'always',
-            },
-            svg: 'always',
-            math: 'always',
-          },
-        ],
       },
     },
   ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
+  rules: {
+    'prettier/prettier': RULES.ERROR,
+    'arrow-spacing': RULES.ERROR,
+    'no-unused-vars': RULES.ERROR,
+    'object-curly-spacing': [RULES.ERROR, 'always'],
+    'array-callback-return': [RULES.OFF, { checkForEach: true }],
+    'no-return-assign': RULES.OFF,
+    'no-mixed-operators': RULES.OFF,
+  },
 }
