@@ -1,11 +1,14 @@
 {
   "extends": [
     "stylelint-config-recommended-scss",
+    "stylelint-config-recommended-vue/scss",
     "stylelint-prettier/recommended"
   ],
   "files": [
-    "*css",
-    "**/*css"
+    "*.css",
+    "**/*css",
+    "*.vue",
+    "**/*.vue"
   ],
   "rules": {
     "unit-allowed-list": [
@@ -26,12 +29,22 @@
     "at-rule-no-unknown": null,
     "scss/no-global-function-names": null,
     "scss/at-extend-no-missing-placeholder": null,
-    "rule-empty-line-before": ["always-multi-line", {
-      "except": ["inside-block"]
-    }],
-    "at-rule-empty-line-before": ["always", {
-      "except": ["inside-block"]
-    }],
+    "rule-empty-line-before": [
+      "always-multi-line",
+      {
+        "except": [
+          "inside-block"
+        ]
+      }
+    ],
+    "at-rule-empty-line-before": [
+      "always",
+      {
+        "except": [
+          "inside-block"
+        ]
+      }
+    ],
     "font-family-no-missing-generic-family-keyword": null,
     "declaration-no-important": true
   },
@@ -45,7 +58,7 @@
     },
     {
       "files": [
-        "*scss",
+        "*.scss",
         "**/*scss"
       ],
       "customSyntax": "postcss-scss"

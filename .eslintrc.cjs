@@ -14,13 +14,14 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:astro/recommended',
     'plugin:astro/jsx-a11y-recommended',
+    'plugin:vue/vue3-recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint', 'prettier'],
+  plugins: ['prettier'],
   rules: {
     'prettier/prettier': RULES.ERROR,
     'arrow-spacing': RULES.ERROR,
@@ -45,6 +46,42 @@ module.exports = {
         extraFileExtensions: ['.astro'],
       },
       rules: {},
+    },
+    {
+      files: ['*.vue'],
+      parser: 'vue-eslint-parser',
+      rules: {
+        'vue/first-attribute-linebreak': RULES.OFF,
+        'vue/require-default-prop': RULES.OFF,
+        'vue/singleline-html-element-content-newline': 0,
+        'vue/component-name-in-template-casing': [RULES.ERROR, 'PascalCase'],
+        'vue/html-quotes': [RULES.ERROR, 'double', { avoidEscape: true }],
+        'vue/mustache-interpolation-spacing': [RULES.ERROR, 'always'],
+        'vue/no-multi-spaces': [
+          RULES.ERROR,
+          {
+            ignoreProperties: false,
+          },
+        ],
+        'vue/no-spaces-around-equal-signs-in-attribute': [RULES.ERROR],
+        'vue/v-on-style': [RULES.ERROR, 'shorthand'],
+        'vue/v-bind-style': [RULES.ERROR, 'shorthand'],
+        'vue/multi-word-component-names': RULES.OFF,
+        'vue/no-setup-props-destructure': RULES.OFF,
+        'vue/no-v-text-v-html-on-component': RULES.OFF,
+        'vue/html-self-closing': [
+          'error',
+          {
+            html: {
+              void: 'always',
+              normal: 'never',
+              component: 'always',
+            },
+            svg: 'always',
+            math: 'always',
+          },
+        ],
+      },
     },
   ],
 }

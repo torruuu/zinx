@@ -8,15 +8,17 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier -w \"src/**/*.{js,json,astro}\"",
-    "lint": "eslint src/**/*.{ts,js,astro} --fix",
-    "styles": "stylelint \"src/**/*.{astro,css,scss}\" --fix",
+    "format": "prettier -w \"src/**/*.{ts,js,json,astro,vue}\"",
+    "lint": "eslint src/**/*.{ts,js,astro,vue} --fix",
+    "styles": "stylelint \"src/**/*.{astro,vue,css,scss}\" --fix",
     "prepare": "node .husky/install.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
+    "@astrojs/vue": "^4.1.0",
     "astro": "^4.6.1",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vue": "^3.4.25"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
@@ -28,6 +30,7 @@
     "eslint-plugin-astro": "^1.0.3",
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-vue": "^9.25.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "postcss-html": "^1.6.0",
@@ -36,6 +39,7 @@
     "sass": "^1.75.0",
     "stylelint": "^16.4.0",
     "stylelint-config-recommended-scss": "^14.0.0",
+    "stylelint-config-recommended-vue": "^1.5.0",
     "stylelint-prettier": "^5.0.0"
   }
 }

@@ -1,4 +1,4 @@
 {
-  "src/**/*.{ts,js,astro}": "eslint --fix",
-  "src/**/*.{astro,css,scss}": "stylelint --fix"
+  "src/**/*.{ts,js,astro,vue}": "eslint --fix",
+  "src/**/*.{astro,vue,css,scss}": "stylelint --fix"
 }
