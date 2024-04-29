@@ -1,26 +1,36 @@
 ---
-import LogoNav from '@components/nav/LogoNav.astro'
+import LogoNav from '@/components/nav/LogoNav.astro'
 import LanguagePicker from '@/components/nav/LanguagePicker.vue'
-import { getLangFromUrl, useTranslations } from '@/i18n/utils'
+import { getLangFromUrl } from '@/i18n/utils'
+import { getSections } from '@/composables/sections'
 
 const lang = getLangFromUrl(Astro.url)
-const t = useTranslations(lang)
+const sections = getSections(lang)
+
+const isCurrentSection = (section: string) => section === Astro.url.pathname
 ---
 
 <nav class="nav-container">
   <LogoNav />
   <div class="nav-container__links">
-    <a href="/" class="nav-container__link">{t('nav.home')}</a>
-    <a href="/movies" class="nav-container__link">{t('nav.movies')}</a>
-    <a href="/series" class="nav-container__link">{t('nav.series')}</a>
-    <a href="/explore" class="nav-container__link">{t('nav.explore')}</a>
+    {
+      sections.map((section) => (
+        <a
+          href={section.route}
+          class:list={[
+            'nav-container__link',
+            { 'nav-container__current': isCurrentSection(section.route) },
+          ]}
+        >
+          {section.title}
+        </a>
+      ))
+    }
   </div>
   <div class="nav-container__picker">
     <LanguagePicker lang={lang} client:load />
   </div>
 </nav>
-
-<div class="test"></div>
 
 <style lang="scss">
   .nav-container {
@@ -28,7 +38,7 @@ const t = useTranslations(lang)
     width: 100%;
     padding: map-get($map: $sizes, $key: s-general-padding);
     @include flex($justify-content: flex-start);
-    gap: 2rem;
+    gap: 2.5rem;
 
     position: fixed;
     top: 0;
@@ -39,7 +49,7 @@ const t = useTranslations(lang)
     animation-range: 0 10rem;
     &__links {
       @include flex();
-      gap: 0.8rem;
+      gap: 1.2rem;
     }
     &__link {
       color: map-get($map: $colors, $key: c-gray);
@@ -47,15 +57,17 @@ const t = useTranslations(lang)
         color: map-get($map: $colors, $key: c-white);
       }
     }
-    &__picker {
-      height: 100%;
-      @include flex();
+    &__current {
+      color: map-get($map: $colors, $key: c-white);
+      font-size: map-get($map: $font-size, $key: fs-small);
+      font-family: map-get($map: $fonts, $key: f-font-semiBold);
+      cursor: default;
     }
-  }
-
-  .test {
-    background-color: wheat;
-    height: 100rem;
+    &__picker {
+      flex-grow: 1;
+      height: 100%;
+      @include flex($justify-content: flex-end);
+    }
   }
 
   @keyframes scroll-header {

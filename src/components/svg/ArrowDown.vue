@@ -11,9 +11,3 @@
     ></path>
   </svg>
 </template>
-
-<style lang="scss" scoped>
-.icon-svg {
-  fill: white;
-}
-</style>

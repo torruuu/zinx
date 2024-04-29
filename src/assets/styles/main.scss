@@ -1,43 +1,65 @@
 @import 'mixins', 'variables';
 
-:root {
-  @include font-style;
-}
-
 * {
+  margin: 0;
+  padding: 0;
+  border: 0;
   box-sizing: border-box;
+  vertical-align: baseline;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   color: map-get($map: $colors, $key: c-white);
 }
 
 body {
-  margin: 0;
+  overflow-x: hidden;
+  margin: auto;
   padding: 0;
+  font-family: map-get($map: $fonts, $key: f-font-book);
   background-color: map-get($map: $colors, $key: c-main-bg);
-}
-
-a {
-  text-decoration: none;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-li,
-ul {
-  background: none repeat scroll 0 0 transparent;
-  border: 0 none;
+  min-height: 100vh;
   font-size: 100%;
-  margin: 0;
-  outline: 0 none;
-  padding: 0;
-  vertical-align: baseline;
 }
 
 h1 {
-  font-size: map-get($map: $font-size, $key: fs-h1);
+  font-size: map-get($map: $font-size, $key: fs-extra-big);
+  font-family: map-get($map: $fonts, $key: f-font-light);
+  text-wrap: balance;
+  @include responsive() {
+    font-size: map-get($map: $font-size, $key: fs-medium);
+  }
+}
+
+h2 {
+  font-size: map-get($map: $font-size, $key: fs-big);
+  font-family: map-get($map: $fonts, $key: f-font-thin);
+  text-wrap: balance;
+  @include responsive() {
+    font-size: map-get($map: $font-size, $key: fs-medium);
+  }
+}
+
+h3 {
+  font-size: map-get($map: $font-size, $key: fs-small);
+  font-family: map-get($map: $fonts, $key: f-font-bold);
+  text-wrap: balance;
+}
+
+h4,
+h5,
+h6,
+p,
+span,
+a,
+blockquote,
+i,
+b,
+u,
+em {
+  font-weight: inherit;
+  font-style: inherit;
+  text-decoration: none;
+  hyphens: none;
 }
 
 button {
@@ -48,5 +70,32 @@ button {
 
 a,
 span {
-  font-size: map-get($map: $font-size, $key: fs-nav-link);
+  font-size: map-get($map: $font-size, $key: fs-extra-small);
+  font-family: map-get($map: $fonts, $key: f-font-book);
+}
+
+/* Nivelamos problemas de tipografías y colocación de formularios */
+
+form,
+input,
+textarea,
+select,
+button,
+label {
+  font-family: inherit;
+  font-size: inherit;
+  hyphens: auto;
+  background-color: transparent;
+  color: inherit;
+  display: block;
+  /* opcional */
+  appearance: none;
+}
+
+/* Evitamos problemas con los SVG */
+
+svg {
+  width: 100%;
+  display: block;
+  fill: currentColor;
 }

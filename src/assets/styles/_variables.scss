@@ -1,4 +1,4 @@
-// ------------- COLORES ----------------
+/*********** VARIABLES GLOBALES *************/
 
 $colors: (
   'c-white': #fff,
@@ -8,15 +8,95 @@ $colors: (
   'c-searcher-bg': #111,
 );
 
-// ------------- FONT-SIZES ----------------
+$fonts: (
+  'f-font-thin': 'Campton-Thin',
+  'f-font-extraLight': 'Campton-ExtraLight',
+  'f-font-light': 'Campton-light',
+  'f-font-book': 'Campton-book',
+  'f-font-medium': 'Campton-medium',
+  'f-font-semiBold': 'Campton-semibold',
+  'f-font-bold': 'Campton-bold',
+  'f-font-extraBold': 'Campton-ExtraBold',
+  'f-font-black': 'Campton-Black',
+  'f-material-icons': 'Material Icons',
+);
 
 $font-size: (
-  'fs-h1': 1.5rem,
-  'fs-nav-link': 0.9rem,
+  'fs-detail-paragraph': 0.7rem,
+  'fs-extra-small-button': 0.8rem,
+  'fs-extra-small': 0.9rem,
+  'fs-small': 1rem,
+  'fs-medium': 1.5rem,
+  'fs-big': 2rem,
+  'fs-extra-big': 3rem,
+  'fs-titular-big': 4rem,
 );
-
-// ------------- SIZES ----------------
 
 $sizes: (
-  's-general-padding': 0 2rem,
+  's-general-padding': 0 4.5rem,
 );
+
+$icons: (
+  'error': '\e000',
+  'warning': '⚠',
+  'info': 'ⓘ',
+  'close': '\e5cd',
+);
+
+/*********** FIN VARIABLES GLOBALES *************/
+
+/******** FUENTES ********/
+
+@font-face {
+  font-family: 'Campton-Thin';
+  src: url('https://d1zjrnsze32g3g.cloudfront.net/fonts-globales/Campton-Thin.ttf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Campton-ExtraLight';
+  src: url('https://d1zjrnsze32g3g.cloudfront.net/fonts-globales/Campton-ExtraLight.ttf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Campton-light';
+  src: url('https://d1zjrnsze32g3g.cloudfront.net/fonts-globales/Campton-Light.ttf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Campton-book';
+  src: url('https://d1zjrnsze32g3g.cloudfront.net/fonts-globales/Campton-Book.ttf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Campton-medium';
+  src: url('https://d1zjrnsze32g3g.cloudfront.net/fonts-globales/Campton-Medium.ttf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Campton-semibold';
+  src: url('https://d1zjrnsze32g3g.cloudfront.net/fonts-globales/Campton-SemiBold.ttf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Campton-bold';
+  src: url('https://d1zjrnsze32g3g.cloudfront.net/fonts-globales/Campton-Bold.ttf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Campton-ExtraBold';
+  src: url('https://d1zjrnsze32g3g.cloudfront.net/fonts-globales/Campton-ExtraBold.ttf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Campton-Black';
+  src: url('https://d1zjrnsze32g3g.cloudfront.net/fonts-globales/Campton-Black.ttf');
+  font-display: swap;
+}

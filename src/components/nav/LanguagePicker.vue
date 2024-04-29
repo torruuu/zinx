@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import LangIcon from '@components/svg/LangIcon.vue'
-import ArrowDown from '@components/svg/ArrowDown.vue'
+import LangIcon from '@/components/svg/LangIcon.vue'
+import ArrowDown from '@/components/svg/ArrowDown.vue'
 import { ref } from 'vue'
 import { languages } from '@/i18n/ui'
 
@@ -44,13 +44,15 @@ defineProps<{
       @include flex();
       width: 1rem;
     }
+    &__title {
+      font-size: map-get($map: $font-size, $key: fs-small);
+    }
     &__arrow {
       @include flex();
       width: 1rem;
     }
   }
   .languages-list {
-    background-color: map-get($map: $colors, $key: c-main-bg);
     position: absolute;
     top: 90%;
     width: 6rem;
@@ -65,5 +67,20 @@ defineProps<{
       }
     }
   }
+  &:hover {
+    .languages-picker__title {
+      color: map-get($map: $colors, $key: c-gray);
+    }
+  }
+}
+</style>
+
+<style lang="scss">
+.icon-svg {
+  fill: map-get($map: $colors, $key: c-white);
+}
+
+.picker-container:hover .icon-svg {
+  fill: map-get($map: $colors, $key: c-gray);
 }
 </style>
