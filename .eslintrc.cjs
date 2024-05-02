@@ -14,6 +14,7 @@ module.exports = {
     'plugin:astro/recommended',
     'plugin:astro/jsx-a11y-recommended',
     '@vue/eslint-config-typescript',
+    'standard',
     'prettier',
   ],
   plugins: ['prettier', 'vue'],

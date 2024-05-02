@@ -4,11 +4,15 @@ import ArrowDown from '@/components/svg/ArrowDown.vue'
 import { ref } from 'vue'
 import { languages } from '@/i18n/ui'
 
-const showLanguages = ref(false)
-
-defineProps<{
+const props = defineProps<{
   lang: string
 }>()
+
+const showLanguages = ref(false)
+
+const checkSameLang = (e: Event, key: string) => {
+  if (props.lang === key) e.preventDefault()
+}
 </script>
 
 <template>
@@ -25,7 +29,13 @@ defineProps<{
     </button>
     <div class="picker-container__languages-list languages-list" v-if="showLanguages">
       <template v-for="(value, key) in languages" :key="key">
-        <a class="languages-list__link" :href="`/${key}`">{{ value }}</a>
+        <a
+          class="languages-list__link"
+          :href="`/${key}`"
+          @click="checkSameLang($event, key)"
+        >
+          {{ value }}
+        </a>
       </template>
     </div>
   </div>

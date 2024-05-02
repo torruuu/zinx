@@ -1,5 +1,11 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import MainBanner from '@/components/home/MainBanner.vue'
+import { getLangCodeFromUrl } from '@/i18n/utils'
+
+const langCode = getLangCodeFromUrl(Astro.url)
 ---
 
-<Layout />
+<Layout>
+  <MainBanner langCode={langCode} />
+</Layout>
