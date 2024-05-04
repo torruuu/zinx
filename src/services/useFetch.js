@@ -6,7 +6,7 @@ class HttpClient {
   }
 
   getToken() {
-    return import.meta.env.API_AUTH
+    return import.meta.env.API_TOKEN
   }
 
   async get(resource, params = [], lang) {
