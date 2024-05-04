@@ -73,6 +73,7 @@ module.exports = {
     'prettier/prettier': RULES.ERROR,
     'arrow-spacing': RULES.ERROR,
     'no-unused-vars': RULES.ERROR,
+    '@typescript-eslint/no-unused-vars': RULES.OFF,
     'object-curly-spacing': [RULES.ERROR, 'always'],
     'array-callback-return': [RULES.OFF, { checkForEach: true }],
     'no-return-assign': RULES.OFF,

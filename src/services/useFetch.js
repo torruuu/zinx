@@ -1,27 +1,18 @@
 import { ref } from 'vue'
 
 class HttpClient {
-  constructor() {
-    this.STATUS = {
-      error: 'error',
-      success: 'success',
-      idle: 'idle',
-      pending: 'pending',
-    }
-  }
-
   getUrl() {
-    return import.meta.env.PUBLIC_API
+    return import.meta.env.PUBLIC_API_MOVIES
   }
 
   getToken() {
     return import.meta.env.API_AUTH
   }
 
-  async get(resource, params = [], langCode) {
+  async get(resource, params = [], lang) {
     try {
       if (!resource) throw new Error('Resource is not provided')
-      if (!langCode) throw new Error('Lang code is not provided')
+      if (!lang) throw new Error('Lang is not provided')
 
       const formatParams = ref('')
       params.forEach((param) => {
@@ -30,8 +21,9 @@ class HttpClient {
 
       if (formatParams.value === '') formatParams.value = 'populate=*'
       const response = await fetch(
-        `${this.getUrl()}${resource}?language=${langCode}&${formatParams.value}`,
+        `${this.getUrl()}${resource}?language=${lang}&${formatParams.value}`,
         {
+          accept: 'application/json',
           headers: { Authorization: `Bearer ${this.getToken()}` },
         },
       )

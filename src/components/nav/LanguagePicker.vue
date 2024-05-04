@@ -2,7 +2,7 @@
 import LangIcon from '@/components/svg/LangIcon.vue'
 import ArrowDown from '@/components/svg/ArrowDown.vue'
 import { ref } from 'vue'
-import { languages } from '@/i18n/ui'
+import { languages, ui } from '@/i18n/ui'
 
 const props = defineProps<{
   lang: string
@@ -10,8 +10,8 @@ const props = defineProps<{
 
 const showLanguages = ref(false)
 
-const checkSameLang = (e: Event, key: string) => {
-  if (props.lang === key) e.preventDefault()
+const checkSameLang = async (e: Event, key: keyof typeof ui) => {
+  if (props.lang === key) return e.preventDefault()
 }
 </script>
 

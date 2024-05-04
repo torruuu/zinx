@@ -6,12 +6,6 @@ export function getLangFromUrl(url: URL) {
   return defaultLang
 }
 
-export function getLangCodeFromUrl(url: URL) {
-  const [, lang] = url.pathname.split('/')
-  if (lang in ui) return ui[lang as keyof typeof ui]['lang.code']
-  return ui[defaultLang as keyof typeof ui]['lang.code']
-}
-
 export function useTranslations(lang: keyof typeof ui) {
   return function t(key: keyof (typeof ui)[typeof defaultLang]) {
     const langTranslations = ui[lang] as { [key: string]: string }
