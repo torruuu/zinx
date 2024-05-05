@@ -13,5 +13,5 @@ export const getSections = (lang: keyof typeof ui) => {
 
 export const getSectionByRoute = (routeToFind: string, lang: keyof typeof ui) => {
   const sections = getSections(lang)
-  return sections.find((section) => section.route === routeToFind)
+  return sections.find((section) => section.route === routeToFind.replace(/\/$/, ''))
 }

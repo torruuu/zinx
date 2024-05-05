@@ -44,6 +44,7 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 10;
 
     animation: scroll-header linear both;
     animation-timeline: scroll(root);
