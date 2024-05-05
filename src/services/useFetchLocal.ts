@@ -1,31 +1,27 @@
 import { ref } from 'vue'
 
-class HttpClient {
-  getUrl() {
-    return import.meta.env.PUBLIC_API_MOVIES
+class HttpClientLocal {
+  getUrl(): string {
+    return import.meta.env.PUBLIC_API_LOCAL
   }
 
-  getToken() {
-    return import.meta.env.API_TOKEN
-  }
-
-  async get(resource, params = [], lang) {
+  async get(
+    resource: string,
+    params: { name: string; value: string }[] = [],
+    lang: string,
+  ) {
     try {
       if (!resource) throw new Error('Resource is not provided')
       if (!lang) throw new Error('Lang is not provided')
 
-      const formatParams = ref('')
+      const formatParams = ref<string>('')
       params.forEach((param) => {
         formatParams.value += `${param.name}=${param.value}&`
       })
 
       if (formatParams.value === '') formatParams.value = 'populate=*'
       const response = await fetch(
-        `${this.getUrl()}${resource}?language=${lang}&${formatParams.value}`,
-        {
-          accept: 'application/json',
-          headers: { Authorization: `Bearer ${this.getToken()}` },
-        },
+        `${this.getUrl()}${lang}/${resource}?${formatParams.value}`,
       )
       if (!response.ok) throw new Error(response.statusText)
       const data = await response.json()
@@ -37,4 +33,4 @@ class HttpClient {
   }
 }
 
-export const httpClient = new HttpClient()
+export const httpClientLocal = new HttpClientLocal()

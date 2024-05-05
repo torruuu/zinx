@@ -1,21 +1,19 @@
-import { httpClient } from './useFetch'
+import { httpClientLocal } from '@/services/useFetchLocal'
 import { needsUpdate } from '@/composables/checkStoreUpdate'
 import type { RegularMovie } from '@/types/RegularMovie'
 
 export const getTrendingMedia = async (language: string): Promise<RegularMovie[]> => {
   const storedTrendingMedia = window.sessionStorage.getItem('trendingMedia')
   if (storedTrendingMedia) {
-    const { results, lang: storedLang, date } = JSON.parse(storedTrendingMedia)
+    const { data: storedData, lang: storedLang, date } = JSON.parse(storedTrendingMedia)
     const updateStore = needsUpdate(date)
-    console.log(JSON.parse(storedTrendingMedia))
-    if (language === storedLang && !updateStore) return results
+    if (language === storedLang && !updateStore) return storedData
   }
-  console.log('fetch')
-  const { results } = await httpClient.get('trending/all/day', [], language)
+  const data = await httpClientLocal.get('trending', [], language)
   const now = new Date()
   sessionStorage.setItem(
     'trendingMedia',
-    JSON.stringify({ results, lang: language, date: now }),
+    JSON.stringify({ data, lang: language, date: now }),
   )
-  return results
+  return data
 }
