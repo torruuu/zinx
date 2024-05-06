@@ -3,9 +3,10 @@ import { onMounted, ref } from 'vue'
 import BannerSlider from '@/components/home/BannerSlider.vue'
 import { getTrendingMedia } from '@/services/trendingMediaApi'
 import type { RegularMovie } from '@/types/RegularMovie'
+import type { ui } from '@/i18n/ui'
 
 const props = defineProps<{
-  lang: string
+  lang: keyof typeof ui
 }>()
 
 const imageApi = import.meta.env.PUBLIC_API_IMAGES
@@ -24,7 +25,12 @@ onMounted(async () => {
   />
   <h1 v-if="trendingMedia">{{ trendingMedia[0]?.overview }}</h1> -->
   <article class="main-banner">
-    <BannerSlider :movies="trendingMedia" :image-api="imageApi" v-if="trendingMedia" />
+    <BannerSlider
+      :lang="lang"
+      :movies="trendingMedia"
+      :image-api="imageApi"
+      v-if="trendingMedia"
+    />
   </article>
 </template>
 
@@ -32,7 +38,7 @@ onMounted(async () => {
 .main-banner {
   width: 100%;
   height: 100vh;
-  padding-bottom: 2rem;
+  padding: 0 0 3rem;
   @include flex($align-items: flex-end);
 }
 </style>
