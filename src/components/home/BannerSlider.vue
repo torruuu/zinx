@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { register } from 'swiper/element/bundle'
 import NextArrow from '@/components/svg/NextArrow.vue'
 import PrevArrow from '@/components/svg/PrevArrow.vue'
@@ -14,6 +15,8 @@ const props = defineProps<{
   movies: RegularMovie[]
 }>()
 
+const isBegin = ref(false)
+const isEnd = ref(false)
 const t = useTranslations(props.lang)
 
 const breakpoints = {
@@ -25,11 +28,16 @@ const breakpoints = {
   1500: { slidesPerView: 7, spaceBetween: 40 },
   1800: { slidesPerView: 8, spaceBetween: 40 },
 }
+
+const checkButtons = (swiper: CustomEvent) => {
+  isBegin.value = swiper.detail[0].isBeginning
+  isEnd.value = swiper.detail[0].isEnd
+}
 </script>
 <template>
   <section class="swiper-container">
     <div class="swiper-container__arrow-box swiper-container__arrow-box--prev">
-      <button class="swiper-container__prev-button">
+      <button class="swiper-container__prev-button" :class="{ 'hide-button': isBegin }">
         <PrevArrow />
       </button>
     </div>
@@ -37,9 +45,9 @@ const breakpoints = {
       class="swiper-container__swiper"
       navigation-next-el=".swiper-container__next-button"
       navigation-prev-el=".swiper-container__prev-button"
+      @swiperbeforeinit="checkButtons"
+      @swiperslidechange="checkButtons"
       :autoplay-delay="5000"
-      :loop="true"
-      :slides-per-view="2"
       :space-between="30"
       :speed="200"
       :breakpoints="breakpoints"
@@ -59,7 +67,7 @@ const breakpoints = {
       </swiper-slide>
     </swiper-container>
     <div class="swiper-container__arrow-box">
-      <button class="swiper-container__next-button">
+      <button class="swiper-container__next-button" :class="{ 'hide-button': isEnd }">
         <NextArrow />
       </button>
     </div>
@@ -104,6 +112,9 @@ const breakpoints = {
       width: 2.3rem;
       height: 2.3rem;
     }
+  }
+  .hide-button {
+    display: none;
   }
 }
 </style>

@@ -3,7 +3,7 @@ import { needsUpdate } from '@/composables/checkStoreUpdate'
 import type { RegularMovie } from '@/types/RegularMovie'
 
 export const getTrendingMedia = async (language: string): Promise<RegularMovie[]> => {
-  const storedTrendingMedia = window.sessionStorage.getItem('trendingMedia')
+  const storedTrendingMedia = window.sessionStorage.getItem(`trending_media_${language}`)
   if (storedTrendingMedia) {
     const { data: storedData, lang: storedLang, date } = JSON.parse(storedTrendingMedia)
     const updateStore = needsUpdate(date)
@@ -12,7 +12,7 @@ export const getTrendingMedia = async (language: string): Promise<RegularMovie[]
   const data = await httpClientLocal.get('trending', [], language)
   const now = new Date()
   sessionStorage.setItem(
-    'trendingMedia',
+    `trending_media_${language}`,
     JSON.stringify({ data, lang: language, date: now }),
   )
   return data
