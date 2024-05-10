@@ -1,14 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { register } from 'swiper/element/bundle'
 import NextArrow from '@/components/svg/NextArrow.vue'
 import PrevArrow from '@/components/svg/PrevArrow.vue'
 import { useTranslations } from '@/i18n/utils'
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Navigation, A11y, Autoplay } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/pagination'
 import type { RegularMovie } from '@/types/RegularMovie'
 import type { ui } from '@/i18n/ui'
+
+register()
 
 const props = defineProps<{
   lang: keyof typeof ui
@@ -16,9 +14,7 @@ const props = defineProps<{
   movies: RegularMovie[]
 }>()
 
-const modules = ref([Navigation, A11y, Autoplay])
 const t = useTranslations(props.lang)
-const swiper = ref()
 
 const breakpoints = {
   300: { slidesPerView: 2, spaceBetween: 20 },
@@ -33,23 +29,26 @@ const breakpoints = {
 <template>
   <section class="swiper-container">
     <div class="swiper-container__arrow-box swiper-container__arrow-box--prev">
-      <button class="swiper-container__button" @click="() => swiper.slidePrev()">
+      <button class="swiper-container__prev-button">
         <PrevArrow />
       </button>
     </div>
-    <Swiper
+    <swiper-container
       class="swiper-container__swiper"
-      @swiper="(it) => (swiper = it)"
-      :a11y="{ prevSlideMessage: t('slider.prev'), nextSlideMessage: t('slider.next') }"
-      :slidesPerView="2"
-      :spaceBetween="30"
-      :speed="200"
+      navigation-next-el=".swiper-container__next-button"
+      navigation-prev-el=".swiper-container__prev-button"
+      :autoplay-delay="5000"
       :loop="true"
-      :autoplay="{ delay: 5000 }"
-      :modules="modules"
+      :slides-per-view="2"
+      :space-between="30"
+      :speed="200"
       :breakpoints="breakpoints"
+      :a11y="{
+        prevSlideMessage: t('slider.prev'),
+        nextSlideMessage: t('slider.next'),
+      }"
     >
-      <SwiperSlide v-for="movie in movies" class="swiper-container__slider">
+      <swiper-slide v-for="movie in movies" class="swiper-container__slide">
         <a class="swiper-container__link" href="#">
           <img
             class="swiper-container__image"
@@ -57,10 +56,10 @@ const breakpoints = {
             :alt="movie.title"
           />
         </a>
-      </SwiperSlide>
-    </Swiper>
+      </swiper-slide>
+    </swiper-container>
     <div class="swiper-container__arrow-box">
-      <button class="swiper-container__button" @click="() => swiper.slideNext()">
+      <button class="swiper-container__next-button">
         <NextArrow />
       </button>
     </div>
@@ -72,9 +71,9 @@ const breakpoints = {
   width: 100%;
   @include flex();
   &__swiper {
-    width: 100%;
+    min-width: 0;
   }
-  &__slider {
+  &__slide {
     width: max-content;
     object-fit: cover;
   }
@@ -88,20 +87,22 @@ const breakpoints = {
     width: 100%;
   }
   &__arrow-box {
-    width: map-get($map: $sizes, $key: s-width-arrows);
+    min-width: map-get($map: $sizes, $key: s-width-arrows);
+    max-width: map-get($map: $sizes, $key: s-width-arrows);
     padding: 0 0.5rem;
     @include flex($justify-content: flex-start);
     &--prev {
       @include flex($justify-content: flex-end);
     }
   }
-  &__button {
+  &__next-button,
+  &__prev-button {
     width: 2rem;
     height: 2rem;
     transition: all 50ms linear;
     &:hover {
-      width: 2.4rem;
-      height: 2.4rem;
+      width: 2.3rem;
+      height: 2.3rem;
     }
   }
 }

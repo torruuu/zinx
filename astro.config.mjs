@@ -16,5 +16,13 @@ export default defineConfig({
       },
     },
   },
-  integrations: [vue()],
+  integrations: [
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag) => ['swiper-container', 'swiper-slide'].includes(tag),
+        },
+      },
+    }),
+  ],
 })
