@@ -1,6 +1,6 @@
 import { httpClientLocal } from '@/services/useFetchLocal'
 import { needsUpdate } from '@/composables/checkStoreUpdate'
-import type { RegularMovie } from '@/types/RegularMovie'
+import type { RegularMovie } from '@/types/index'
 
 export const getTrendingMedia = async (language: string): Promise<RegularMovie[]> => {
   const storedTrendingMedia = window.sessionStorage.getItem(`trending_media_${language}`)

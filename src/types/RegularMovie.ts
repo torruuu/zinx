@@ -1,4 +1,4 @@
-export interface RegularMovie {
+export type RegularMovie = {
   backdrop_path: string | null
   id: number
   original_title: string

@@ -4,8 +4,7 @@ import { register } from 'swiper/element/bundle'
 import NextArrow from '@/components/svg/NextArrow.vue'
 import PrevArrow from '@/components/svg/PrevArrow.vue'
 import { useTranslations } from '@/i18n/utils'
-import type { RegularMovie } from '@/types/RegularMovie'
-import type { ui } from '@/i18n/ui'
+import type { RegularMovie, ui } from '@/types/index'
 
 register()
 

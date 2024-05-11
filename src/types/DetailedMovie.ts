@@ -1,4 +1,4 @@
-export interface DetailedMovie {
+export type DetailedMovie = {
   adult: boolean
   backdrop_path: string | null
   belongs_to_collection: {

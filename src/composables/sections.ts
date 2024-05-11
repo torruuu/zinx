@@ -1,5 +1,5 @@
 import { useTranslations } from '@/i18n/utils'
-import { ui } from '@/i18n/ui'
+import type { ui } from '@/types/index'
 
 export const getSections = (lang: keyof typeof ui) => {
   const t = useTranslations(lang)

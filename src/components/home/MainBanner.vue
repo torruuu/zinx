@@ -2,8 +2,7 @@
 import { onMounted, ref } from 'vue'
 import BannerSlider from '@/components/home/BannerSlider.vue'
 import { getTrendingMedia } from '@/services/trendingMediaApi'
-import type { RegularMovie } from '@/types/RegularMovie'
-import type { ui } from '@/i18n/ui'
+import type { RegularMovie, ui } from '@/types/index'
 
 const props = defineProps<{
   lang: keyof typeof ui
