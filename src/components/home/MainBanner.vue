@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import BannerSlider from '@/components/home/BannerSlider.vue'
+import BannerDescription from '@/components/home/BannerDescription.vue'
 import { getTrendingMedia } from '@/services/trendingMediaApi'
 import type { RegularMovie, ui } from '@/types/index'
 
@@ -10,6 +11,7 @@ const props = defineProps<{
 
 const imageApi = import.meta.env.PUBLIC_API_IMAGES
 const trendingMedia = ref<RegularMovie[] | null>(null)
+const currentMovie = ref<RegularMovie | null>(null)
 
 onMounted(async () => {
   trendingMedia.value = await getTrendingMedia(props.lang)
@@ -17,18 +19,14 @@ onMounted(async () => {
 </script>
 
 <template>
-  <!-- <img
-    :src="`${imageApi}original${trendingMedia[4]?.backdrop_path}`"
-    alt="a"
-    v-if="trendingMedia"
-  />
-  <h1 v-if="trendingMedia">{{ trendingMedia[0]?.overview }}</h1> -->
   <article class="main-banner">
+    <BannerDescription v-if="currentMovie" :lang="lang" :currentMovie="currentMovie" />
     <BannerSlider
+      v-if="trendingMedia"
+      @current-movie="(movie) => (currentMovie = movie)"
       :lang="lang"
       :movies="trendingMedia"
       :image-api="imageApi"
-      v-if="trendingMedia"
     />
   </article>
 </template>
@@ -38,6 +36,6 @@ onMounted(async () => {
   width: 100%;
   height: 100vh;
   padding: 0 0 3rem;
-  @include flex($align-items: flex-end);
+  @include flex($direction: column, $justify-content: flex-end, $align-items: flex-start);
 }
 </style>

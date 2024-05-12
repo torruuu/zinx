@@ -23,10 +23,11 @@ $fonts: (
 
 $font-size: (
   'fs-detail-paragraph': 0.7rem,
-  'fs-extra-small-button': 0.8rem,
+  'fs-super-small': 0.8rem,
   'fs-extra-small': 0.9rem,
   'fs-small': 1rem,
-  'fs-medium': 1.5rem,
+  'fs-medium': 1.3rem,
+  'fs-medium-big': 1.6rem,
   'fs-big': 2rem,
   'fs-extra-big': 3rem,
   'fs-titular-big': 4rem,
@@ -34,7 +35,10 @@ $font-size: (
 
 $sizes: (
   's-general-padding': 0 4.5rem,
+  's-general-padding-mobile': 0 1rem,
   's-width-arrows': 4.5rem,
+  's-width-arrows-mobile': 1rem,
+  's-slider-margin': 0.7rem 0 0,
 );
 
 $icons: (

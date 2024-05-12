@@ -31,11 +31,11 @@ h1 {
 }
 
 h2 {
-  font-size: map-get($map: $font-size, $key: fs-big);
+  font-size: map-get($map: $font-size, $key: fs-medium);
   font-family: map-get($map: $fonts, $key: f-font-thin);
   text-wrap: balance;
   @include responsive() {
-    font-size: map-get($map: $font-size, $key: fs-medium);
+    font-size: map-get($map: $font-size, $key: fs-small);
   }
 }
 

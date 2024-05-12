@@ -1,4 +1,4 @@
-import { ui, defaultLang } from '@/i18n/ui'
+import { ui, genres, defaultLang } from '@/i18n/ui'
 
 export function getLangFromUrl(url: URL) {
   const [, lang] = url.pathname.split('/')
@@ -12,5 +12,18 @@ export function useTranslations(lang: keyof typeof ui) {
     const defaultTranslations = ui[defaultLang] as { [key: string]: string }
 
     return langTranslations[key] || defaultTranslations[key]
+  }
+}
+
+export function useGenres(lang: keyof typeof genres) {
+  return function g(key: keyof (typeof genres)[typeof defaultLang]) {
+    const langGenres = genres[lang] as {
+      [key: string]: { id: number; name: string }[]
+    }
+    const defaultGenres = genres[defaultLang] as {
+      [key: string]: { id: number; name: string }[]
+    }
+
+    return langGenres[key] || defaultGenres[key]
   }
 }

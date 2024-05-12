@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { register } from 'swiper/element/bundle'
 import NextArrow from '@/components/svg/NextArrow.vue'
 import PrevArrow from '@/components/svg/PrevArrow.vue'
@@ -14,8 +13,10 @@ const props = defineProps<{
   movies: RegularMovie[]
 }>()
 
-const isBegin = ref(false)
-const isEnd = ref(false)
+const emit = defineEmits<{
+  currentMovie: [movie: RegularMovie]
+}>()
+
 const t = useTranslations(props.lang)
 
 const breakpoints = {
@@ -29,46 +30,50 @@ const breakpoints = {
 }
 
 const checkButtons = (swiper: CustomEvent) => {
-  isBegin.value = swiper.detail[0].isBeginning
-  isEnd.value = swiper.detail[0].isEnd
+  const eventDetail = swiper.detail[0]
+  const currentIndex = eventDetail.realIndex
+  emit('currentMovie', props.movies[currentIndex])
 }
 </script>
 <template>
   <section class="swiper-container">
-    <div class="swiper-container__arrow-box swiper-container__arrow-box--prev">
-      <button class="swiper-container__prev-button" :class="{ 'hide-button': isBegin }">
-        <PrevArrow />
-      </button>
-    </div>
-    <swiper-container
-      class="swiper-container__swiper"
-      navigation-next-el=".swiper-container__next-button"
-      navigation-prev-el=".swiper-container__prev-button"
-      @swiperbeforeinit="checkButtons"
-      @swiperslidechange="checkButtons"
-      :autoplay-delay="5000"
-      :space-between="30"
-      :speed="200"
-      :breakpoints="breakpoints"
-      :a11y="{
-        prevSlideMessage: t('slider.prev'),
-        nextSlideMessage: t('slider.next'),
-      }"
-    >
-      <swiper-slide v-for="movie in movies" class="swiper-container__slide">
-        <a class="swiper-container__link" href="#">
-          <img
-            class="swiper-container__image"
-            :src="`${imageApi}original${movie.poster_path}`"
-            :alt="movie.title"
-          />
-        </a>
-      </swiper-slide>
-    </swiper-container>
-    <div class="swiper-container__arrow-box">
-      <button class="swiper-container__next-button" :class="{ 'hide-button': isEnd }">
-        <NextArrow />
-      </button>
+    <h2 class="swiper-container__title">{{ t('trend.title') }}</h2>
+    <div class="swiper-container__slider">
+      <div class="swiper-container__arrow-box swiper-container__arrow-box--prev">
+        <button class="swiper-container__prev-button">
+          <PrevArrow />
+        </button>
+      </div>
+      <swiper-container
+        class="swiper-container__swiper"
+        navigation-next-el=".swiper-container__next-button"
+        navigation-prev-el=".swiper-container__prev-button"
+        @swiperbeforeinit="checkButtons"
+        @swiperslidechange="checkButtons"
+        :space-between="30"
+        :speed="200"
+        :breakpoints="breakpoints"
+        :loop="true"
+        :a11y="{
+          prevSlideMessage: t('slider.prev'),
+          nextSlideMessage: t('slider.next'),
+        }"
+      >
+        <swiper-slide v-for="movie in movies" class="swiper-container__slide">
+          <a class="swiper-container__link" href="#">
+            <img
+              class="swiper-container__image"
+              :src="`${imageApi}original${movie.poster_path}`"
+              :alt="movie.title"
+            />
+          </a>
+        </swiper-slide>
+      </swiper-container>
+      <div class="swiper-container__arrow-box">
+        <button class="swiper-container__next-button">
+          <NextArrow />
+        </button>
+      </div>
     </div>
   </section>
 </template>
@@ -76,7 +81,20 @@ const checkButtons = (swiper: CustomEvent) => {
 <style lang="scss" scoped>
 .swiper-container {
   width: 100%;
-  @include flex();
+  @include responsive() {
+    padding: map-get($map: $sizes, $key: s-general-padding-mobile);
+  }
+  &__title {
+    padding: map-get($map: $sizes, $key: s-general-padding);
+    @include responsive() {
+      padding: 0;
+    }
+  }
+  &__slider {
+    width: 100%;
+    margin: map-get($map: $sizes, $key: s-slider-margin);
+    @include flex();
+  }
   &__swiper {
     min-width: 0;
   }
@@ -101,6 +119,9 @@ const checkButtons = (swiper: CustomEvent) => {
     &--prev {
       @include flex($justify-content: flex-end);
     }
+    @include responsive() {
+      display: none;
+    }
   }
   &__next-button,
   &__prev-button {
@@ -111,9 +132,6 @@ const checkButtons = (swiper: CustomEvent) => {
       width: 2.3rem;
       height: 2.3rem;
     }
-  }
-  .hide-button {
-    display: none;
   }
 }
 </style>
