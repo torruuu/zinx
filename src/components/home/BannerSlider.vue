@@ -64,7 +64,7 @@ const checkButtons = (swiper: CustomEvent) => {
             <img
               class="swiper-container__image"
               :src="`${imageApi}original${movie.poster_path}`"
-              :alt="movie.title"
+              :alt="movie.title || movie.name"
             />
           </a>
         </swiper-slide>

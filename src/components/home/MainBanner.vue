@@ -20,7 +20,12 @@ onMounted(async () => {
 
 <template>
   <article class="main-banner">
-    <BannerDescription v-if="currentMovie" :lang="lang" :currentMovie="currentMovie" />
+    <BannerDescription
+      v-if="currentMovie"
+      :lang="lang"
+      :currentMovie="currentMovie"
+      :image-api="imageApi"
+    />
     <BannerSlider
       v-if="trendingMedia"
       @current-movie="(movie) => (currentMovie = movie)"
@@ -33,6 +38,7 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .main-banner {
+  position: relative;
   width: 100%;
   height: 100vh;
   padding: 0 0 3rem;

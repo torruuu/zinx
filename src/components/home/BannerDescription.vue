@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useGenres } from '@/i18n/utils'
+import BannerBg from '@/components/home/BannerBg.vue'
 import type { RegularMovie, ui } from '@/types/index'
 
 const props = defineProps<{
   lang: keyof typeof ui
+  imageApi: string
   currentMovie: RegularMovie
 }>()
 
@@ -27,6 +29,12 @@ const genreNames = computed(() => {
 
 <template>
   <section class="banner-description">
+    <BannerBg
+      :image-api="imageApi"
+      :movie-bg="currentMovie.backdrop_path"
+      :movie-poster="currentMovie.poster_path"
+      :alt-txt="currentMovie.title || currentMovie.name"
+    />
     <span class="banner-description__title">
       {{ currentMovie.title || currentMovie.name }}
     </span>
