@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps<{
   imageApi: string
@@ -7,9 +7,25 @@ const props = defineProps<{
   moviePoster: string
 }>()
 
+const screenWidth = ref(window.innerWidth)
+
+const updateScreenWidth = () => (screenWidth.value = window.innerWidth)
+
+const bgImage = computed(() => {
+  return screenWidth.value > 1024 ? props.movieBg : props.moviePoster
+})
+
 const bgStyle = computed(() => ({
-  '--bg-image': `url('${props.imageApi}original/${props.movieBg}')`,
+  '--bg-image': `url('${props.imageApi}original/${bgImage.value}')`,
 }))
+
+onMounted(() => {
+  window.addEventListener('resize', updateScreenWidth)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateScreenWidth)
+})
 </script>
 
 <template>
