@@ -2,6 +2,7 @@
 import LangIcon from '@/components/svg/LangIcon.vue'
 import ArrowDown from '@/components/svg/ArrowDown.vue'
 import { ref } from 'vue'
+import { isTouchDevice } from '@/composables/checkTouchDevice'
 import { languages, ui } from '@/i18n/ui'
 
 const props = defineProps<{
@@ -9,6 +10,11 @@ const props = defineProps<{
 }>()
 
 const showLanguages = ref(false)
+
+const mouseEnter = () => {
+  if (isTouchDevice()) return
+  showLanguages.value = true
+}
 
 const checkSameLang = async (e: Event, key: keyof typeof ui) => {
   if (props.lang === key) return e.preventDefault()
@@ -19,7 +25,7 @@ const checkSameLang = async (e: Event, key: keyof typeof ui) => {
   <div class="picker-container" @mouseleave="showLanguages = false">
     <button
       class="picker-container__languages-picker languages-picker"
-      @mouseenter="showLanguages = true"
+      @mouseenter="mouseEnter"
       @click="showLanguages = !showLanguages"
     >
       <span class="languages-picker__icon"><LangIcon /></span>
