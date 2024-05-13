@@ -22,7 +22,11 @@ const checkSameLang = async (e: Event, key: keyof typeof ui) => {
 </script>
 
 <template>
-  <div class="picker-container" @mouseleave="showLanguages = false">
+  <div
+    class="picker-container"
+    :class="{ 'picker-container__hover': showLanguages }"
+    @mouseleave="showLanguages = false"
+  >
     <button
       class="picker-container__languages-picker languages-picker"
       @mouseenter="mouseEnter"
@@ -85,7 +89,7 @@ const checkSameLang = async (e: Event, key: keyof typeof ui) => {
       }
     }
   }
-  &:hover {
+  &__hover {
     .languages-picker__title {
       color: map-get($map: $colors, $key: c-gray);
     }
@@ -98,7 +102,7 @@ const checkSameLang = async (e: Event, key: keyof typeof ui) => {
   fill: map-get($map: $colors, $key: c-white);
 }
 
-.picker-container:hover .icon-svg {
+.picker-container__hover .icon-svg {
   fill: map-get($map: $colors, $key: c-gray);
 }
 </style>
