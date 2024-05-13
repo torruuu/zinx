@@ -20,6 +20,7 @@ const checkSameLang = async (e: Event, key: keyof typeof ui) => {
     <button
       class="picker-container__languages-picker languages-picker"
       @mouseenter="showLanguages = true"
+      @click="showLanguages = !showLanguages"
     >
       <span class="languages-picker__icon"><LangIcon /></span>
       <span class="languages-picker__title">{{
@@ -63,6 +64,7 @@ const checkSameLang = async (e: Event, key: keyof typeof ui) => {
     }
   }
   .languages-list {
+    background-color: map-get($map: $colors, $key: c-black-rgba);
     position: absolute;
     top: 90%;
     width: 6rem;

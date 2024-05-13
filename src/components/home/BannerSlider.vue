@@ -86,7 +86,9 @@ const checkButtons = (swiper: CustomEvent) => {
   }
   &__title {
     padding: map-get($map: $sizes, $key: s-general-padding);
+    font-family: map-get($map: $fonts, $key: f-font-light);
     @include responsive() {
+      font-family: map-get($map: $fonts, $key: f-font-extraLight);
       padding: 0;
     }
   }

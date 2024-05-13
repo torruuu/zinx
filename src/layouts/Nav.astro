@@ -34,7 +34,11 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
 
 <style lang="scss">
   .nav-container {
-    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 10%, transparent);
+    background-image: linear-gradient(
+      180deg,
+      map-get($map: $colors, $key: c-black-rgba) 10%,
+      transparent
+    );
     height: 6.5vh;
     width: 100%;
     padding: map-get($map: $sizes, $key: s-general-padding);
