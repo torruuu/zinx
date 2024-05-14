@@ -50,7 +50,6 @@ const checkButtons = (swiper: CustomEvent) => {
         navigation-prev-el=".swiper-container__prev-button"
         @swiperbeforeinit="checkButtons"
         @swiperslidechange="checkButtons"
-        :space-between="30"
         :speed="200"
         :breakpoints="breakpoints"
         :loop="true"
@@ -95,7 +94,11 @@ const checkButtons = (swiper: CustomEvent) => {
   &__slider {
     width: 100%;
     margin: map-get($map: $sizes, $key: s-slider-margin);
-    @include flex();
+    display: grid;
+    grid-template-columns: max-content auto max-content;
+    @include responsive() {
+      grid-template-columns: 1fr;
+    }
   }
   &__swiper {
     min-width: 0;
@@ -110,7 +113,6 @@ const checkButtons = (swiper: CustomEvent) => {
   &__image {
     aspect-ratio: 9 / 14;
     border-radius: 0.25rem;
-    height: 100%;
     width: 100%;
   }
   &__arrow-box {
