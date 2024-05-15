@@ -14,6 +14,10 @@ export const ui = {
     'trend.title': 'En tendencia',
     'slider.next': 'Siguiente diapositiva',
     'slider.prev': 'Diapositiva anterior',
+    'loaderror.title': 'Error al cargar datos',
+    'loaderror.description':
+      'Hubo un error al cargar los datos. Por favor, inténtalo de nuevo.',
+    'button.retry': 'Reintentar',
   },
   en: {
     'nav.home': 'Home',
@@ -22,6 +26,9 @@ export const ui = {
     'trend.title': 'Trending',
     'slider.next': 'Next slide',
     'slider.prev': 'Previous slide',
+    'loaderror.title': 'Error loading data',
+    'loaderror.description': 'There was an error loading the data. Please try again.',
+    'button.retry': 'Retry',
   },
 } as const
 

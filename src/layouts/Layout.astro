@@ -3,6 +3,7 @@ import Nav from '@/components/nav/Nav.astro'
 import { ViewTransitions } from 'astro:transitions'
 import { getLangFromUrl } from '@/i18n/utils'
 import { getSectionByRoute } from '@/composables/sections'
+import LoadError from '@/components/common/LoadError.vue'
 
 const lang = getLangFromUrl(Astro.url)
 const title = getSectionByRoute(Astro.url.pathname, lang)?.title
@@ -22,6 +23,7 @@ const title = getSectionByRoute(Astro.url.pathname, lang)?.title
     <header>
       <Nav />
     </header>
+    <LoadError lang={lang} client:load />
     <slot />
   </body>
 </html>
