@@ -3,6 +3,8 @@ import { register } from 'swiper/element/bundle'
 import NextArrow from '@/components/svg/NextArrow.vue'
 import PrevArrow from '@/components/svg/PrevArrow.vue'
 import { useTranslations } from '@/i18n/utils'
+import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { breakpointsBig, breakpointsSmall } from '@/data/sliderBreakpoints'
 import type { RegularMovie, ui } from '@/types/index'
 
 register()
@@ -18,22 +20,27 @@ const emit = defineEmits<{
 }>()
 
 const t = useTranslations(props.lang)
+const screenHeight = ref(window.innerHeight)
+const breakpoints = ref()
 
-const breakpoints = {
-  300: { slidesPerView: 2, spaceBetween: 20 },
-  600: { slidesPerView: 3, spaceBetween: 30 },
-  800: { slidesPerView: 4, spaceBetween: 30 },
-  1024: { slidesPerView: 5, spaceBetween: 30 },
-  1200: { slidesPerView: 6, spaceBetween: 30 },
-  1500: { slidesPerView: 7, spaceBetween: 40 },
-  1800: { slidesPerView: 8, spaceBetween: 40 },
-}
+const updateScreenHeight = () => (screenHeight.value = window.innerHeight)
+
+watch(
+  screenHeight,
+  (newValue) => {
+    breakpoints.value = newValue < 660 ? breakpointsSmall : breakpointsBig
+  },
+  { immediate: true },
+)
 
 const checkButtons = (swiper: CustomEvent) => {
   const eventDetail = swiper.detail[0]
   const currentIndex = eventDetail.realIndex
   emit('currentMovie', props.movies[currentIndex])
 }
+
+onMounted(() => window.addEventListener('resize', updateScreenHeight))
+onUnmounted(() => window.removeEventListener('resize', updateScreenHeight))
 </script>
 <template>
   <section class="swiper-container">
@@ -50,6 +57,7 @@ const checkButtons = (swiper: CustomEvent) => {
         navigation-prev-el=".swiper-container__prev-button"
         @swiperbeforeinit="checkButtons"
         @swiperslidechange="checkButtons"
+        :key="breakpoints"
         :speed="200"
         :breakpoints="breakpoints"
         :loop="true"

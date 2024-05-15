@@ -19,13 +19,8 @@ const bgStyle = computed(() => ({
   '--bg-image': `url('${props.imageApi}original/${bgImage.value}')`,
 }))
 
-onMounted(() => {
-  window.addEventListener('resize', updateScreenWidth)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('resize', updateScreenWidth)
-})
+onMounted(() => window.addEventListener('resize', updateScreenWidth))
+onUnmounted(() => window.removeEventListener('resize', updateScreenWidth))
 </script>
 
 <template>
