@@ -56,6 +56,14 @@ const checkSameLang = async (e: Event, key: keyof typeof ui) => {
 .picker-container {
   height: 100%;
   @include flex();
+  @include responsive(40em) {
+    @include flex(
+      $direction: column,
+      $justify-content: flex-start,
+      $align-items: flex-end
+    );
+    gap: 1rem;
+  }
   .languages-picker {
     position: relative;
     height: 80%;
@@ -67,10 +75,16 @@ const checkSameLang = async (e: Event, key: keyof typeof ui) => {
     }
     &__title {
       font-size: map-get($map: $font-size, $key: fs-small);
+      @include responsive() {
+        font-size: map-get($map: $font-size, $key: fs-extra-small);
+      }
     }
     &__arrow {
       @include flex();
       width: 1rem;
+    }
+    @include responsive(40em) {
+      height: max-content;
     }
   }
   .languages-list {
@@ -87,6 +101,9 @@ const checkSameLang = async (e: Event, key: keyof typeof ui) => {
       &:hover {
         color: map-get($map: $colors, $key: c-gray);
       }
+    }
+    @include responsive(40em) {
+      position: static;
     }
   }
   &__hover {

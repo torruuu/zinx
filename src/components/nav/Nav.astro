@@ -1,0 +1,175 @@
+---
+import LogoNav from '@/components/nav/LogoNav.astro'
+import LanguagePicker from '@/components/nav/LanguagePicker.vue'
+import { getLangFromUrl } from '@/i18n/utils'
+import { getSections } from '@/composables/sections'
+
+const lang = getLangFromUrl(Astro.url)
+const sections = getSections(lang)
+
+const isCurrentSection = (section: string) => section === Astro.url.pathname
+---
+
+<nav class="nav-container">
+  <LogoNav />
+  <div class="nav-container__hamburger">
+    <label class="nav-container__hamburger-menu">
+      <input type="checkbox" />
+    </label>
+  </div>
+  <div class="nav-container__clickables">
+    <div class="nav-container__links">
+      {
+        sections.map((section) => (
+          <a
+            href={section.route}
+            class:list={[
+              'nav-container__link',
+              { 'nav-container__current': isCurrentSection(section.route) },
+            ]}
+          >
+            {section.title}
+          </a>
+        ))
+      }
+    </div>
+    <div class="nav-container__picker">
+      <LanguagePicker lang={lang} client:load />
+    </div>
+  </div>
+</nav>
+
+<style lang="scss">
+  .nav-container {
+    background-image: linear-gradient(
+      180deg,
+      map-get($map: $colors, $key: c-black-rgba) 10%,
+      transparent
+    );
+    height: 6.5vh;
+    width: 100%;
+    padding: map-get($map: $sizes, $key: s-general-padding);
+    @include flex($justify-content: flex-start);
+    gap: 2.5rem;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    animation: scroll-header linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 10rem;
+    @include responsive() {
+      padding: map-get($map: $sizes, $key: s-general-padding-mobile);
+    }
+    @include responsive(40em) {
+      justify-content: space-between;
+    }
+    &__clickables {
+      width: 100%;
+      height: 100%;
+      @include flex();
+      @include responsive(40em) {
+        translate: 100%;
+        padding: map-get($map: $sizes, $key: s-general-padding-mobile);
+        width: 12.5rem;
+        height: 100vh;
+        background-color: map-get($map: $colors, $key: c-black);
+        @include flex($direction: column, $align-items: flex-end);
+        gap: 2rem;
+        transition: translate map-get($map: $times, $key: t-hamburger);
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+    &__links {
+      @include flex();
+      gap: 1.2rem;
+      @include responsive(40em) {
+        @include flex($direction: column);
+      }
+    }
+    &__link {
+      color: map-get($map: $colors, $key: c-gray);
+      &:hover {
+        color: map-get($map: $colors, $key: c-white);
+      }
+    }
+    &__current {
+      color: map-get($map: $colors, $key: c-white);
+      font-size: map-get($map: $font-size, $key: fs-small);
+      font-family: map-get($map: $fonts, $key: f-font-semiBold);
+      cursor: default;
+    }
+    &__picker {
+      flex-grow: 1;
+      height: 100%;
+      @include flex($justify-content: flex-end);
+      @include responsive(40em) {
+        flex-grow: 0;
+        height: 60%;
+      }
+    }
+    &__hamburger {
+      display: none;
+      z-index: 10;
+      &:has(input:checked) ~ .nav-container__clickables {
+        translate: 0;
+      }
+      @include responsive(40em) {
+        display: block;
+      }
+    }
+    &__hamburger-menu {
+      --x-width: calc((0.15rem * 3 + 0.3rem * 2) * sqrt(2));
+      width: max-content;
+      cursor: pointer;
+      @include flex($direction: column, $align-items: flex-end);
+      gap: 0.3rem;
+      &::before,
+      &::after,
+      & > input {
+        content: '';
+        width: 1.5rem;
+        height: 0.15rem;
+        background-color: map-get($map: $colors, $key: c-white);
+        border-radius: 2rem;
+        transform-origin: right center;
+        transition:
+          opacity map-get($map: $times, $key: t-hamburger),
+          width map-get($map: $times, $key: t-hamburger),
+          rotate map-get($map: $times, $key: t-hamburger),
+          translate map-get($map: $times, $key: t-hamburger);
+      }
+      & > input {
+        appearance: none;
+        padding: 0;
+        margin: 0;
+        outline: none;
+        pointer-events: none;
+      }
+      &:has(input:checked)::before {
+        rotate: -45deg;
+        width: var(--x-width);
+        translate: 0 calc(0.15rem / -2);
+      }
+      &:has(input:checked)::after {
+        rotate: 45deg;
+        width: var(--x-width);
+        translate: 0 calc(0.15rem / 2);
+      }
+      & > input:checked {
+        opacity: 0;
+        width: 0;
+      }
+    }
+  }
+
+  @keyframes scroll-header {
+    to {
+      background-color: map-get($map: $colors, $key: c-black-sec);
+    }
+  }
+</style>

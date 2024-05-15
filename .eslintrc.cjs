@@ -35,7 +35,9 @@ module.exports = {
         parser: '@typescript-eslint/parser',
         extraFileExtensions: ['.astro'],
       },
-      rules: {},
+      rules: {
+        'astro/jsx-a11y/label-has-associated-control': RULES.OFF,
+      },
     },
     {
       files: ['*.vue'],

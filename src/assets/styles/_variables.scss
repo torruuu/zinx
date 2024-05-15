@@ -2,7 +2,7 @@
 
 $colors: (
   'c-white': #fff,
-  'c-main-bg': #000,
+  'c-black': #000,
   'c-black-sec': #141414,
   'c-gray': #c5c5c5,
   'c-searcher-bg': #111,
@@ -40,6 +40,10 @@ $sizes: (
   's-width-arrows': 4.5rem,
   's-width-arrows-mobile': 1rem,
   's-slider-margin': 0.7rem 0 0,
+);
+
+$times: (
+  't-hamburger': 200ms ease-in-out,
 );
 
 $icons: (

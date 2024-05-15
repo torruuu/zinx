@@ -1,2 +1,15 @@
 {
+  "editor.tabSize": 2,
+  "eslint.enable": true,
+  "stylelint.enable": true,
+  "eslint.validate": ["js","ts","json","vue","astro"],
+  "stylelint.validate": [
+    "css",
+    "postcss",
+    "astro",
+    "vue"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "never"
+  }
 }
