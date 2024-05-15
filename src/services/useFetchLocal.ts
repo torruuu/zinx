@@ -2,7 +2,7 @@ import { ref } from 'vue'
 
 class HttpClientLocal {
   getUrl(): string {
-    return import.meta.env.PUBLIC_API_LOCAL
+    return window.location.origin
   }
 
   async get(
@@ -21,7 +21,7 @@ class HttpClientLocal {
 
       if (formatParams.value === '') formatParams.value = 'populate=*'
       const response = await fetch(
-        `${this.getUrl()}${lang}/${resource}?${formatParams.value}`,
+        `${this.getUrl()}/api/${lang}/${resource}?${formatParams.value}`,
       )
       if (!response.ok) throw new Error(response.statusText)
       const data = await response.json()
