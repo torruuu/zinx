@@ -46,7 +46,7 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
       map-get($map: $colors, $key: c-black-rgba) 10%,
       transparent
     );
-    height: 6.5vh;
+    height: 4.5rem;
     width: 100%;
     padding: map-get($map: $sizes, $key: s-general-padding);
     @include flex($justify-content: flex-start);
@@ -73,6 +73,8 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
       @include responsive(40em) {
         translate: 100%;
         padding: map-get($map: $sizes, $key: s-general-padding-mobile);
+        padding-top: 5rem;
+        padding-bottom: 5rem;
         width: 12.5rem;
         height: 100vh;
         background-color: map-get($map: $colors, $key: c-black);
@@ -88,7 +90,7 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
       @include flex();
       gap: 1.2rem;
       @include responsive(40em) {
-        @include flex($direction: column);
+        @include flex($direction: column, $align-items: flex-end);
       }
     }
     &__link {
@@ -107,10 +109,6 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
       flex-grow: 1;
       height: 100%;
       @include flex($justify-content: flex-end);
-      @include responsive(40em) {
-        flex-grow: 0;
-        height: 60%;
-      }
     }
     &__hamburger {
       display: none;
