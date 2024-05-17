@@ -48,13 +48,13 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
     );
     height: 4.5rem;
     width: 100%;
+    max-width: map-get($map: $sizes, $key: s-body);
     padding: map-get($map: $sizes, $key: s-general-padding);
     @include flex($justify-content: flex-start);
     gap: 2.5rem;
 
     position: fixed;
     top: 0;
-    left: 0;
     z-index: 10;
 
     animation: scroll-header linear both;
