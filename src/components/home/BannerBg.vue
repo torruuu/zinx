@@ -24,7 +24,9 @@ onUnmounted(() => window.removeEventListener('resize', updateScreenWidth))
 </script>
 
 <template>
-  <div class="movie-background" :style="bgStyle"></div>
+  <Transition>
+    <div class="movie-background" :style="bgStyle" :key="movieBg"></div>
+  </Transition>
 </template>
 
 <style scoped lang="scss">
@@ -58,5 +60,15 @@ onUnmounted(() => window.removeEventListener('resize', updateScreenWidth))
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
     z-index: -1;
   }
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 200ms ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>
