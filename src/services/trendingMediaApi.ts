@@ -1,11 +1,7 @@
 import { httpClientLocal } from '@/services/useFetchLocal'
 import { needsUpdate } from '@/composables/checkStoreUpdate'
-import { $globalStatus } from '@/stores/data'
+import { $loadError } from '@/stores/data'
 import type { RegularMovie } from '@/types/index'
-
-const STATUS = {
-  error: 'error',
-}
 
 export const getTrendingMedia = async (language: string): Promise<RegularMovie[]> => {
   if (!language) throw new Error('Language is not provided')
@@ -25,7 +21,7 @@ export const getTrendingMedia = async (language: string): Promise<RegularMovie[]
       return data
     })
     .catch(() => {
-      $globalStatus.set(STATUS.error)
+      $loadError.set(true)
       return null
     })
 }

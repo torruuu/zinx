@@ -13,8 +13,8 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
 <nav class="nav-container">
   <LogoNav />
   <div class="nav-container__hamburger">
-    <label class="nav-container__hamburger-menu">
-      <input type="checkbox" />
+    <label for="hamburguer-button" class="nav-container__hamburger-menu">
+      <input type="checkbox" id="hamburguer-button" />
     </label>
   </div>
   <div class="nav-container__clickables">

@@ -4,6 +4,7 @@ import { ViewTransitions } from 'astro:transitions'
 import { getLangFromUrl } from '@/i18n/utils'
 import { getSectionByRoute } from '@/composables/sections'
 import LoadError from '@/components/common/LoadError.vue'
+import LoadingPage from '@/components/common/LoadingPage.vue'
 
 const lang = getLangFromUrl(Astro.url)
 const title = getSectionByRoute(Astro.url.pathname, lang)?.title
@@ -23,6 +24,7 @@ const title = getSectionByRoute(Astro.url.pathname, lang)?.title
     <header>
       <Nav />
     </header>
+    <LoadingPage client:load />
     <LoadError lang={lang} client:load />
     <slot />
   </body>

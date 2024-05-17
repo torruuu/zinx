@@ -1,11 +1,11 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-import MainBanner from '@/components/home/MainBanner.vue'
+import Home from '@/components/Home.vue'
 import { getLangFromUrl } from '@/i18n/utils'
 
 const lang = getLangFromUrl(Astro.url)
 ---
 
 <Layout>
-  <MainBanner lang={lang} client:load />
+  <Home lang={lang} client:load />
 </Layout>

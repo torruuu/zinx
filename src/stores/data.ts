@@ -1,3 +1,4 @@
 import { atom } from 'nanostores'
 
-export const $globalStatus = atom<string>('')
+export const $loadError = atom<boolean>(false)
+export const $allMounted = atom<boolean>(false)

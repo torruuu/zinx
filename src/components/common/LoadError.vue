@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useStore } from '@nanostores/vue'
-import { $globalStatus } from '@/stores/data.ts'
+import { $loadError } from '@/stores/data.ts'
 import { useTranslations } from '@/i18n/utils'
+import { onMounted, watch, ref, type Ref } from 'vue'
 import NoInternet from '@/components/svg/NoInternet.vue'
 import type { ui } from '@/types/index'
 
@@ -9,18 +10,25 @@ const props = defineProps<{
   lang: keyof typeof ui
 }>()
 
-const STATUS = {
-  error: 'error',
-}
-
 const reloadPage = () => window.location.reload()
-
 const t = useTranslations(props.lang)
-const globalStatus = useStore($globalStatus)
+const loadError: Ref<boolean> = ref(false)
+const store = useStore($loadError)
+
+onMounted(() => {
+  watch(
+    store,
+    () => {
+      if (store.value) return (loadError.value = true)
+      loadError.value = false
+    },
+    { immediate: true },
+  )
+})
 </script>
 
 <template>
-  <div v-if="globalStatus === STATUS.error" class="error-container">
+  <div v-if="loadError" class="error-container">
     <div class="error-container__svg"><NoInternet /></div>
     <span class="error-container__title">{{ t('loaderror.title') }}</span>
     <span class="error-container__description">{{ t('loaderror.description') }}</span>

@@ -1,4 +1,5 @@
 {
+  "editor.tabSize": 2,
   "eslint.enable": true,
   "stylelint.enable": true,
   "eslint.validate": ["js","ts","json","vue","astro"],
