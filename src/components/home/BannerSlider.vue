@@ -116,10 +116,10 @@ onUnmounted(() => window.removeEventListener('resize', updateScreenHeight))
     object-fit: cover;
   }
   &__link {
-    aspect-ratio: 9 / 14;
+    aspect-ratio: 2 / 3;
   }
   &__image {
-    aspect-ratio: 9 / 14;
+    aspect-ratio: 2 / 3;
     border-radius: 0.25rem;
     width: 100%;
   }

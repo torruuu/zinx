@@ -7,7 +7,7 @@
   justify-content: $justify-content;
 }
 
-@mixin responsive($medida: 64em) {
+@mixin responsive($medida: 64rem) {
   @media screen and (max-width: $medida) {
     @content;
   }
