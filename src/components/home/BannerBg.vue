@@ -46,23 +46,18 @@ onUnmounted(() => window.removeEventListener('resize', updateScreenWidth))
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.9), transparent);
-    z-index: -1;
-  }
   &::after {
     content: '';
     position: absolute;
     bottom: 0;
+    left: 0;
     width: 100%;
-    height: 25rem;
+    height: 75vh;
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
     z-index: -1;
+  }
+  @media screen and (max-height: 28rem) {
+    opacity: 0.6;
   }
 }
 
