@@ -38,17 +38,19 @@ const checkSameLang = async (e: Event, key: keyof typeof ui) => {
       }}</span>
       <span class="languages-picker__arrow"><ArrowDown /></span>
     </button>
-    <div class="picker-container__languages-list languages-list" v-if="showLanguages">
-      <template v-for="(value, key) in languages" :key="key">
-        <a
-          class="languages-list__link"
-          :href="`/${key}`"
-          @click="checkSameLang($event, key)"
-        >
-          {{ value }}
-        </a>
-      </template>
-    </div>
+    <Transition>
+      <div class="picker-container__languages-list languages-list" v-if="showLanguages">
+        <template v-for="(value, key) in languages" :key="key">
+          <a
+            class="languages-list__link"
+            :href="`/${key}`"
+            @click="checkSameLang($event, key)"
+          >
+            {{ value }}
+          </a>
+        </template>
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -66,7 +68,6 @@ const checkSameLang = async (e: Event, key: keyof typeof ui) => {
   }
   .languages-picker {
     position: relative;
-    height: 80%;
     @include flex();
     gap: 0.3rem;
     &__icon {
