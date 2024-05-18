@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { $bannerBgMounted } from '@/stores/data'
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps<{
@@ -19,7 +20,10 @@ const bgStyle = computed(() => ({
   '--bg-image': `url('${props.imageApi}original/${bgImage.value}')`,
 }))
 
-onMounted(() => window.addEventListener('resize', updateScreenWidth))
+onMounted(() => {
+  window.addEventListener('resize', updateScreenWidth)
+  $bannerBgMounted.set(true)
+})
 onUnmounted(() => window.removeEventListener('resize', updateScreenWidth))
 </script>
 

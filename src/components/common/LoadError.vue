@@ -20,7 +20,6 @@ onMounted(() => {
     store,
     () => {
       if (store.value) return (loadError.value = true)
-      loadError.value = false
     },
     { immediate: true },
   )

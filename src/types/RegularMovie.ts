@@ -1,6 +1,6 @@
 export type RegularMovie = {
   adult: boolean
-  backdrop_path: string
+  backdrop_path: string | null
   genre_ids: number[]
   id: number
   media_type: string
@@ -10,7 +10,7 @@ export type RegularMovie = {
   original_name: string
   overview: string
   popularity: number
-  poster_path: string
+  poster_path: string | null
   release_date: string
   title: string
   video: boolean

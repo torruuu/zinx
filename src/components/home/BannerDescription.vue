@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useGenres } from '@/i18n/utils'
 import BannerBg from '@/components/home/BannerBg.vue'
+import { $bannerDescriptionMounted } from '@/stores/data'
 import type { RegularMovie, ui } from '@/types/index'
 
 const props = defineProps<{
@@ -25,14 +26,16 @@ const genreNames = computed(() => {
     )
     .filter(Boolean)
 })
+
+onMounted(() => $bannerDescriptionMounted.set(true))
 </script>
 
 <template>
   <section class="banner-description">
     <BannerBg
       :image-api="imageApi"
-      :movie-bg="currentMovie.backdrop_path"
-      :movie-poster="currentMovie.poster_path"
+      :movie-bg="currentMovie.backdrop_path || ''"
+      :movie-poster="currentMovie.poster_path || ''"
       :alt-txt="currentMovie.title || currentMovie.name"
     />
     <span class="banner-description__title">

@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import { useStore } from '@nanostores/vue'
-import { $allMounted } from '@/stores/data'
+import { $homeMounted, $loadError } from '@/stores/data'
 import { onMounted, ref, watch, type Ref } from 'vue'
 
 const allLoaded: Ref<boolean> = ref(false)
-const store = useStore($allMounted)
+const loadError: Ref<boolean> = ref(false)
+const homeStore = useStore($homeMounted)
+const errorStore = useStore($loadError)
 
 onMounted(() => {
   watch(
-    store,
+    [homeStore, errorStore],
     () => {
-      if (store.value) return (allLoaded.value = true)
-      allLoaded.value = false
+      if (homeStore.value) return (allLoaded.value = true)
+      if (errorStore.value) return (loadError.value = true)
     },
     { immediate: true },
   )
@@ -19,7 +21,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="!allLoaded" class="loader-container">
+  <div v-if="!allLoaded && !loadError" class="loader-container">
     <span class="loader-container__loader"></span>
   </div>
 </template>
