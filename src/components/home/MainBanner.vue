@@ -43,7 +43,7 @@ onMounted(async () => {
   position: relative;
   width: 100%;
   height: 100vh;
-  padding: 4.5rem 0 3rem;
+  padding: 5rem 0 3rem;
   @include flex($direction: column, $justify-content: flex-end, $align-items: flex-start);
   @media screen and (max-height: 33em) {
     height: auto;
