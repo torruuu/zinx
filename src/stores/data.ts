@@ -1,7 +1,5 @@
-import { atom, computed, onMount } from 'nanostores'
+import { atom, computed } from 'nanostores'
 import type { WritableAtom } from 'nanostores'
-
-const MAX_WAIT_TIME = 5000
 
 export const $loadError = atom<boolean>(false)
 
@@ -22,9 +20,3 @@ export const $homeMounted = computed<boolean, WritableAtom<boolean>[]>(
     )
   },
 )
-
-onMount($homeMounted, () => {
-  setTimeout(async () => {
-    if (!$homeMounted.get()) $loadError.set(true)
-  }, MAX_WAIT_TIME)
-})
