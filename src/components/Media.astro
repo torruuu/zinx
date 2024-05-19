@@ -10,7 +10,7 @@ const { mediaData } = Astro.props
 ---
 
 <div>
-  <Header mediaData={mediaData} client:load />
+  <Header mediaData={mediaData} />
   <h1>Media</h1>
   <h2>{mediaData.overview}</h2>
 </div>
