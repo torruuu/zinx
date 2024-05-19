@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
 import { useGenres } from '@/i18n/utils'
-import BannerBg from '@/components/home/BannerBg.vue'
+import BannerBg from '@/components/common/MediaBg.vue'
 import { $bannerDescriptionMounted } from '@/stores/data'
 import type { RegularMovie, ui } from '@/types/index'
 
 const props = defineProps<{
   lang: keyof typeof ui
-  imageApi: string
-  currentMovie: RegularMovie
+  currentMedia: RegularMovie
 }>()
 
 const g = useGenres(props.lang)
@@ -16,7 +15,7 @@ const moviesGenre = g('movies.genres')
 const seriesGenre = g('series.genres')
 
 const genreNames = computed(() => {
-  return props.currentMovie.genre_ids
+  return props.currentMedia.genre_ids
     .map(
       (id) =>
         (
@@ -33,13 +32,11 @@ onMounted(() => $bannerDescriptionMounted.set(true))
 <template>
   <section class="banner-description">
     <BannerBg
-      :image-api="imageApi"
-      :movie-bg="currentMovie.backdrop_path || ''"
-      :movie-poster="currentMovie.poster_path || ''"
-      :alt-txt="currentMovie.title || currentMovie.name"
+      :media-bg="currentMedia.backdrop_path || ''"
+      :media-poster="currentMedia.poster_path || ''"
     />
     <span class="banner-description__title">
-      {{ currentMovie.title || currentMovie.name }}
+      {{ currentMedia.title || currentMedia.name }}
     </span>
     <div class="banner-description__genres">
       <span class="banner-description__genre" v-for="genre in genreNames">

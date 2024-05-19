@@ -1,5 +1,5 @@
 ---
-import Media from '@/components/Media.vue'
+import Media from '@/components/Media.astro'
 import Layout from '@/layouts/Layout.astro'
 import { getSpecificMedia } from '@/services/specificMediaApi'
 import { extractIdAndType } from '@/composables/getIdAndType'
@@ -12,5 +12,5 @@ const mediaData = await getSpecificMedia(lang, requestData.id, requestData.type)
 ---
 
 <Layout title={mediaData.name || mediaData.title}>
-  <Media client:load mediaData={mediaData} />
+  <Media mediaData={mediaData} />
 </Layout>

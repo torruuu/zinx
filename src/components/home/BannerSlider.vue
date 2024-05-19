@@ -9,15 +9,15 @@ import { $bannerSliderMounted } from '@/stores/data'
 import type { RegularMovie, ui } from '@/types/index'
 
 register()
+const imageApi = import.meta.env.PUBLIC_API_IMAGES
 
 const props = defineProps<{
   lang: keyof typeof ui
-  imageApi: string
-  movies: RegularMovie[]
+  media: RegularMovie[]
 }>()
 
 const emit = defineEmits<{
-  currentMovie: [movie: RegularMovie]
+  currentMedia: [movie: RegularMovie]
 }>()
 
 const t = useTranslations(props.lang)
@@ -37,7 +37,7 @@ watch(
 const checkButtons = (swiper: CustomEvent) => {
   const eventDetail = swiper.detail[0]
   const currentIndex = eventDetail.realIndex
-  emit('currentMovie', props.movies[currentIndex])
+  emit('currentMedia', props.media[currentIndex])
 }
 
 onMounted(() => {
@@ -70,7 +70,7 @@ onUnmounted(() => window.removeEventListener('resize', updateScreenHeight))
           nextSlideMessage: t('slider.next'),
         }"
       >
-        <swiper-slide v-for="movie in movies" class="swiper-container__slide">
+        <swiper-slide v-for="movie in media" class="swiper-container__slide">
           <a
             class="swiper-container__link"
             :href="`/${lang}/media=${movie.id}-${movie.media_type}`"
@@ -79,6 +79,7 @@ onUnmounted(() => window.removeEventListener('resize', updateScreenHeight))
               class="swiper-container__image"
               :src="`${imageApi}original${movie.poster_path}`"
               :alt="movie.title || movie.name"
+              :style="{ 'view-transition-name': `poster-${movie.id}` }"
             />
           </a>
         </swiper-slide>

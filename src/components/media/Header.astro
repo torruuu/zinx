@@ -1,0 +1,35 @@
+---
+import type { DetailedMovie, DetailedTv } from '@/types/index'
+import MediaBg from '../common/MediaBg.vue'
+
+interface Props {
+  mediaData: DetailedMovie & DetailedTv
+}
+
+const imageApi = import.meta.env.PUBLIC_API_IMAGES
+const { mediaData } = Astro.props
+---
+
+<MediaBg
+  mediaBg={mediaData.backdrop_path || ''}
+  mediaPoster={mediaData.poster_path || ''}
+  client:only="vue"
+/>
+
+<div transition:name={`poster-${mediaData.id}`} class="poster">
+  <img
+    src=`${imageApi}original${mediaData.poster_path}`
+    alt={mediaData.name || mediaData.title}
+  />
+</div>
+
+<style lang="scss">
+  .poster {
+    width: 11.25rem;
+    height: 16.875rem;
+    & > img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+</style>

@@ -3,21 +3,21 @@ import { $bannerBgMounted } from '@/stores/data'
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps<{
-  imageApi: string
-  movieBg: string
-  moviePoster: string
+  mediaBg: string
+  mediaPoster: string
 }>()
 
+const imageApi = import.meta.env.PUBLIC_API_IMAGES
 const screenWidth = ref(window.innerWidth)
 
 const updateScreenWidth = () => (screenWidth.value = window.innerWidth)
 
 const bgImage = computed(() => {
-  return screenWidth.value > 1024 ? props.movieBg : props.moviePoster
+  return screenWidth.value > 1024 ? props.mediaBg : props.mediaPoster
 })
 
 const bgStyle = computed(() => ({
-  '--bg-image': `url('${props.imageApi}original/${bgImage.value}')`,
+  '--bg-image': `url('${imageApi}original/${bgImage.value}')`,
 }))
 
 onMounted(() => {
@@ -29,7 +29,7 @@ onUnmounted(() => window.removeEventListener('resize', updateScreenWidth))
 
 <template>
   <Transition>
-    <div class="movie-background" :style="bgStyle" :key="movieBg"></div>
+    <div class="movie-background" :style="bgStyle" :key="mediaBg"></div>
   </Transition>
 </template>
 

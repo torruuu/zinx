@@ -10,9 +10,8 @@ const props = defineProps<{
   lang: keyof typeof ui
 }>()
 
-const imageApi = import.meta.env.PUBLIC_API_IMAGES
 const trendingMedia = ref<RegularMovie[] | null>(null)
-const currentMovie = ref<RegularMovie | null>(null)
+const currentMedia = ref<RegularMovie | null>(null)
 
 onMounted(async () => {
   trendingMedia.value = await getTrendingMedia(props.lang)
@@ -22,18 +21,12 @@ onMounted(async () => {
 
 <template>
   <article class="main-banner">
-    <BannerDescription
-      v-if="currentMovie"
-      :lang="lang"
-      :currentMovie="currentMovie"
-      :image-api="imageApi"
-    />
+    <BannerDescription v-if="currentMedia" :lang="lang" :currentMedia="currentMedia" />
     <BannerSlider
       v-if="trendingMedia"
-      @current-movie="(movie) => (currentMovie = movie)"
+      @current-media="(media) => (currentMedia = media)"
       :lang="lang"
-      :movies="trendingMedia"
-      :image-api="imageApi"
+      :media="trendingMedia"
     />
   </article>
 </template>

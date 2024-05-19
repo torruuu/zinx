@@ -4,7 +4,7 @@ import { ViewTransitions } from 'astro:transitions'
 import { getLangFromUrl } from '@/i18n/utils'
 import { getSectionByRoute } from '@/composables/sections'
 import LoadError from '@/components/common/LoadError.vue'
-import LoadingPage from '@/components/common/LoadingPage.vue'
+// import LoadingPage from '@/components/common/LoadingPage.vue'
 
 interface Props {
   title?: string
@@ -14,7 +14,7 @@ const { title: titleProp } = Astro.props
 
 const lang = getLangFromUrl(Astro.url)
 const title = getSectionByRoute(Astro.url, lang)?.title
-const sectionId = getSectionByRoute(Astro.url, lang)?.id
+// const sectionId = getSectionByRoute(Astro.url, lang)?.id
 ---
 
 <html lang={lang}>
@@ -33,7 +33,7 @@ const sectionId = getSectionByRoute(Astro.url, lang)?.id
     <header>
       <Nav />
     </header>
-    <LoadingPage sectionId={sectionId} client:load />
+    <!-- <LoadingPage sectionId={sectionId} client:load /> -->
     <LoadError lang={lang} client:load />
     <slot />
   </body>

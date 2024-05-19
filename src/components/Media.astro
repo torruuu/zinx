@@ -1,0 +1,16 @@
+---
+import type { DetailedMovie, DetailedTv } from '@/types/index'
+import Header from '@/components/media/Header.astro'
+
+interface Props {
+  mediaData: DetailedMovie & DetailedTv
+}
+
+const { mediaData } = Astro.props
+---
+
+<div>
+  <Header mediaData={mediaData} client:load />
+  <h1>Media</h1>
+  <h2>{mediaData.overview}</h2>
+</div>
