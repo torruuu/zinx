@@ -1,17 +1,25 @@
 import { useTranslations } from '@/i18n/utils'
 import type { ui } from '@/types/index'
 
+export const SECTION_IDS = {
+  HOME: 'home',
+  MOVIES: 'movies',
+  SERIES: 'series',
+  EXPLORE: 'explore',
+}
+
 export const getSections = (lang: keyof typeof ui) => {
   const t = useTranslations(lang)
   return [
-    { title: t('nav.home'), route: `/${lang}` },
-    { title: t('nav.movies'), route: `/${lang}/movies` },
-    { title: t('nav.series'), route: `/${lang}/series` },
-    { title: t('nav.explore'), route: `/${lang}/explore` },
+    { title: t('nav.home'), route: `/${lang}`, id: SECTION_IDS.HOME },
+    { title: t('nav.movies'), route: `/${lang}/movies`, id: SECTION_IDS.MOVIES },
+    { title: t('nav.series'), route: `/${lang}/series`, id: SECTION_IDS.SERIES },
+    { title: t('nav.explore'), route: `/${lang}/explore`, id: SECTION_IDS.EXPLORE },
   ]
 }
 
-export const getSectionByRoute = (routeToFind: string, lang: keyof typeof ui) => {
+export const getSectionByRoute = (url: URL, lang: keyof typeof ui) => {
+  const routeToFind = url.pathname
   const sections = getSections(lang)
   return sections.find((section) => section.route === routeToFind.replace(/\/$/, ''))
 }

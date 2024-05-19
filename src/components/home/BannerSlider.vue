@@ -71,7 +71,10 @@ onUnmounted(() => window.removeEventListener('resize', updateScreenHeight))
         }"
       >
         <swiper-slide v-for="movie in movies" class="swiper-container__slide">
-          <a class="swiper-container__link" href="#">
+          <a
+            class="swiper-container__link"
+            :href="`/${lang}/media=${movie.id}-${movie.media_type}`"
+          >
             <img
               class="swiper-container__image"
               :src="`${imageApi}original${movie.poster_path}`"

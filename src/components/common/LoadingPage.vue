@@ -1,18 +1,25 @@
 <script setup lang="ts">
 import { useStore } from '@nanostores/vue'
 import { $homeMounted, $loadError } from '@/stores/data'
+import { SECTION_IDS } from '@/composables/sections'
 import { onMounted, ref, watch, type Ref } from 'vue'
 
-const allLoaded: Ref<boolean> = ref(false)
-const loadError: Ref<boolean> = ref(false)
+const props = defineProps<{
+  sectionId: string | undefined
+}>()
+
+const homeLoaded: Ref<boolean> = ref(false)
+const isHome: Ref<boolean> = ref(props.sectionId === SECTION_IDS.HOME)
 const homeStore = useStore($homeMounted)
+
+const loadError: Ref<boolean> = ref(false)
 const errorStore = useStore($loadError)
 
 onMounted(() => {
   watch(
     [homeStore, errorStore],
     () => {
-      if (homeStore.value) return (allLoaded.value = true)
+      if (homeStore.value) return (homeLoaded.value = true)
       if (errorStore.value) return (loadError.value = true)
     },
     { immediate: true },
@@ -21,7 +28,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="!allLoaded && !loadError" class="loader-container">
+  <div v-if="!homeLoaded && isHome && !loadError" class="loader-container">
     <span class="loader-container__loader"></span>
   </div>
 </template>
