@@ -2,11 +2,13 @@
 import LangIcon from '@/components/svg/LangIcon.vue'
 import ArrowDown from '@/components/svg/ArrowDown.vue'
 import { ref } from 'vue'
+import { changeUrlLang } from '@/composables/changeUrlLang'
 import { isTouchDevice } from '@/composables/checkTouchDevice'
 import { languages, ui } from '@/i18n/ui'
 
 const props = defineProps<{
   lang: string
+  currentSection: string
 }>()
 
 const showLanguages = ref(false)
@@ -43,7 +45,7 @@ const checkSameLang = async (e: Event, key: keyof typeof ui) => {
         <template v-for="(value, key) in languages" :key="key">
           <a
             class="languages-list__link"
-            :href="`/${key}`"
+            :href="changeUrlLang(currentSection, key)"
             @click="checkSameLang($event, key)"
           >
             {{ value }}

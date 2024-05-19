@@ -7,6 +7,7 @@ import { getSections } from '@/composables/sections'
 const lang = getLangFromUrl(Astro.url)
 const sections = getSections(lang)
 
+const currentSection = Astro.url.pathname
 const isCurrentSection = (section: string) => section === Astro.url.pathname
 ---
 
@@ -34,7 +35,7 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
       }
     </div>
     <div class="nav-container__picker">
-      <LanguagePicker lang={lang} client:load />
+      <LanguagePicker lang={lang} currentSection={currentSection} client:load />
     </div>
   </div>
 </nav>
