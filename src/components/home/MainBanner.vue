@@ -2,19 +2,17 @@
 import { onMounted, ref } from 'vue'
 import BannerSlider from '@/components/home/BannerSlider.vue'
 import BannerDescription from '@/components/home/BannerDescription.vue'
-import { getTrendingMedia } from '@/services/trendingMediaApi'
 import { $mainBannerMounted } from '@/stores/data'
 import type { RegularMovie, ui } from '@/types/index'
 
-const props = defineProps<{
+defineProps<{
   lang: keyof typeof ui
+  trendingMedia: RegularMovie[]
 }>()
 
-const trendingMedia = ref<RegularMovie[] | null>(null)
 const currentMedia = ref<RegularMovie | null>(null)
 
 onMounted(async () => {
-  trendingMedia.value = await getTrendingMedia(props.lang)
   $mainBannerMounted.set(true)
 })
 </script>
@@ -23,7 +21,6 @@ onMounted(async () => {
   <article class="main-banner">
     <BannerDescription v-if="currentMedia" :lang="lang" :currentMedia="currentMedia" />
     <BannerSlider
-      v-if="trendingMedia"
       @current-media="(media) => (currentMedia = media)"
       :lang="lang"
       :media="trendingMedia"

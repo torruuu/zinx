@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import MainBanner from '@/components/home/MainBanner.vue'
-import { $homeMounted, $loadError } from '@/stores/data'
-import { onMounted } from 'vue'
+import { $homeBlock, $homeMounted, $loadError, setHomeData } from '@/stores/data'
+import { onMounted, ref } from 'vue'
 import type { ui } from '@/types/index'
 
-const MAX_WAIT_TIME = 5000
-
-defineProps<{
+const props = defineProps<{
   lang: keyof typeof ui
 }>()
 
+if (Object.keys($homeBlock.get()).length === 0) await setHomeData(props.lang)
+const trendingData = ref()
+
+const MAX_WAIT_TIME = 5000
+
 onMounted(() => {
+  trendingData.value = $homeBlock.get().trending
   setTimeout(async () => {
     if (!$homeMounted.get()) $loadError.set(true)
   }, MAX_WAIT_TIME)
@@ -18,5 +22,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <MainBanner :lang="lang" />
+  <MainBanner v-if="trendingData" :lang="lang" :trending-media="trendingData" />
 </template>

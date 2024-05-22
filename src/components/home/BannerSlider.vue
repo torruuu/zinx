@@ -21,7 +21,7 @@ const emit = defineEmits<{
 }>()
 
 const t = useTranslations(props.lang)
-const screenHeight = ref(window.innerHeight)
+const screenHeight = ref()
 const breakpoints = ref()
 
 const updateScreenHeight = () => (screenHeight.value = window.innerHeight)
@@ -41,6 +41,7 @@ const checkButtons = (swiper: CustomEvent) => {
 }
 
 onMounted(() => {
+  screenHeight.value = window.innerHeight
   window.addEventListener('resize', updateScreenHeight)
   $bannerSliderMounted.set(true)
 })
