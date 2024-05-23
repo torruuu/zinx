@@ -9,12 +9,11 @@ const props = defineProps<{
 }>()
 
 if (Object.keys($homeBlock.get()).length === 0) await setHomeData(props.lang)
-const trendingData = ref()
+const trendingData = ref($homeBlock.get().trending)
 
 const MAX_WAIT_TIME = 5000
 
 onMounted(() => {
-  trendingData.value = $homeBlock.get().trending
   setTimeout(async () => {
     if (!$homeMounted.get()) $loadError.set(true)
   }, MAX_WAIT_TIME)
