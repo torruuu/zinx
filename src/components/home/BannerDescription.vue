@@ -69,9 +69,7 @@ onMounted(() => $bannerDescriptionMounted.set(true))
     }
   }
   &__genres {
-    @include flex($justify-content: flex-start);
-    flex-wrap: wrap;
-    gap: 0.2rem 1rem;
+    @include genres();
   }
   &__genre {
     @include responsive() {

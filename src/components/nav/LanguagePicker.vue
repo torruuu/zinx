@@ -97,7 +97,7 @@ const checkSameLang = async (e: Event, key: keyof typeof ui) => {
     width: 6rem;
     padding: 0.8rem 1.3rem;
     border: 0.01rem solid map-get($map: $colors, $key: c-gray);
-    border-radius: map-get($map: $sizes, $key: s-border-radius);
+    border-radius: map-get($map: $sizes, $key: s-button-radius);
     @include flex($direction: column);
     gap: 0.8rem;
     &__link {

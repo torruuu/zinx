@@ -5,8 +5,10 @@ $colors: (
   'c-black': #000,
   'c-black-sec': #141414,
   'c-gray': #c5c5c5,
+  'c-dark-gray': #777777,
   'c-searcher-bg': #111,
   'c-black-rgba': rgba(0, 0, 0, 0.7),
+  'c-gray-rgba': rgba(255, 255, 255, 0.3),
 );
 
 $fonts: (
@@ -30,7 +32,8 @@ $font-size: (
   'fs-medium': 1.3rem,
   'fs-medium-big': 1.6rem,
   'fs-big': 2rem,
-  'fs-extra-big': 3rem,
+  'fs-extra-big': 2.5rem,
+  'fs-super-big': 3rem,
   'fs-titular-big': 4rem,
 );
 
@@ -42,7 +45,8 @@ $sizes: (
   's-width-arrows': 4.5rem,
   's-width-arrows-mobile': 1rem,
   's-slider-margin': 0.7rem 0 0,
-  's-border-radius': 0.8rem,
+  's-button-radius': 0.8rem,
+  's-slide-radius': 0.25rem,
 );
 
 $times: (

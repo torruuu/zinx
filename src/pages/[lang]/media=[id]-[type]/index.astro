@@ -6,9 +6,12 @@ import { extractIdAndType } from '@/composables/getIdAndType'
 import { getLangFromUrl } from '@/i18n/utils'
 
 const lang = getLangFromUrl(Astro.url)
+
 const requestData = extractIdAndType(Astro.url)
 if (!requestData) return Astro.redirect(`/${lang}`)
+
 const mediaData = await getSpecificMedia(lang, requestData.id, requestData.type)
+if (!mediaData) return Astro.redirect(`/${lang}`)
 ---
 
 <Layout title={mediaData.name || mediaData.title}>

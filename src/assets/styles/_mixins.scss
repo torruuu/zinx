@@ -28,3 +28,13 @@
     attachment: $attachment;
   }
 }
+
+@mixin genres() {
+  @include flex($justify-content: flex-start);
+  flex-wrap: wrap;
+  gap: 0.2rem 1rem;
+}
+
+@mixin play-button-transition() {
+  transition: 200ms all ease-out;
+}

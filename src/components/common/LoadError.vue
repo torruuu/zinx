@@ -69,7 +69,7 @@ onMounted(() => {
   &__button {
     padding: 0.6rem 0.9rem;
     border: 0.01rem solid map-get($map: $colors, $key: c-gray);
-    border-radius: map-get($map: $sizes, $key: s-border-radius);
+    border-radius: map-get($map: $sizes, $key: s-button-radius);
     &:hover {
       color: map-get($map: $colors, $key: c-black);
       background-color: map-get($map: $colors, $key: c-gray);

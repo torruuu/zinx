@@ -129,7 +129,7 @@ onUnmounted(() => window.removeEventListener('resize', updateScreenHeight))
   }
   &__image {
     aspect-ratio: 2 / 3;
-    border-radius: 0.25rem;
+    border-radius: map-get($map: $sizes, $key: s-slide-radius);
     width: 100%;
   }
   &__arrow-box {

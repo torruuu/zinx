@@ -18,6 +18,11 @@ export const ui = {
     'loaderror.description':
       'Hubo un error al cargar los datos. Por favor, inténtalo de nuevo.',
     'button.retry': 'Reintentar',
+    'button.trailer': 'Ver tráiler',
+    'media-detail.hours': 'h',
+    'media-detail.minutes': 'min',
+    'media-detail.season': 'temporada',
+    'media-detail.seasons': 'temporadas',
   },
   en: {
     'nav.home': 'Home',
@@ -29,6 +34,9 @@ export const ui = {
     'loaderror.title': 'Error loading data',
     'loaderror.description': 'There was an error loading the data. Please try again.',
     'button.retry': 'Retry',
+    'button.trailer': 'Watch trailer',
+    'media-detail.season': 'season',
+    'media-detail.seasons': 'seasons',
   },
 } as const
 

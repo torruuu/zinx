@@ -29,7 +29,7 @@ body {
 }
 
 h1 {
-  font-size: map-get($map: $font-size, $key: fs-extra-big);
+  font-size: map-get($map: $font-size, $key: fs-super-big);
   font-family: map-get($map: $fonts, $key: f-font-light);
   text-wrap: balance;
   @include responsive() {
