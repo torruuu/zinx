@@ -8,7 +8,7 @@ const props = defineProps<{
 }>()
 
 const imageApi = import.meta.env.PUBLIC_API_IMAGES
-const screenWidth = ref()
+const screenWidth = ref(window.innerWidth)
 
 const updateScreenWidth = () => (screenWidth.value = window.innerWidth)
 
@@ -21,7 +21,6 @@ const bgStyle = computed(() => ({
 }))
 
 onMounted(() => {
-  screenWidth.value = window.innerWidth
   window.addEventListener('resize', updateScreenWidth)
   $bannerBgMounted.set(true)
 })

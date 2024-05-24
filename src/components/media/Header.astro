@@ -32,7 +32,7 @@ const mediaAbout = concatStrings(
     <MediaBg
       mediaBg={mediaData.backdrop_path || ''}
       mediaPoster={mediaData.poster_path || ''}
-      client:load
+      client:only="vue"
     />
     <div class="media-header__description">
       <h2 class="media-header__title">{mediaData.name || mediaData.title}</h2>
