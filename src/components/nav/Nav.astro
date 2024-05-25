@@ -64,7 +64,8 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
     @include responsive() {
       padding: map-get($map: $sizes, $key: s-general-padding-mobile);
     }
-    @include responsive(40em) {
+    @include responsive(40rem) {
+      height: 3.5rem;
       background-color: map-get($map: $colors, $key: c-black);
       justify-content: space-between;
       gap: 0;
@@ -73,7 +74,7 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
       width: 100%;
       height: 100%;
       @include flex();
-      @include responsive(40em) {
+      @include responsive(40rem) {
         translate: 100%;
         padding: map-get($map: $sizes, $key: s-general-padding-mobile);
         padding-top: 5rem;
@@ -92,7 +93,7 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
     &__links {
       @include flex();
       gap: 1.2rem;
-      @include responsive(40em) {
+      @include responsive(40rem) {
         @include flex($direction: column, $align-items: flex-end);
       }
     }
@@ -119,7 +120,7 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
       &:has(input:checked) ~ .nav-container__clickables {
         translate: 0;
       }
-      @include responsive(40em) {
+      @include responsive(40rem) {
         display: block;
       }
     }

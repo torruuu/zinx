@@ -7,8 +7,14 @@
   justify-content: $justify-content;
 }
 
-@mixin responsive($medida: 64rem) {
-  @media screen and (max-width: $medida) {
+@mixin responsive($width: 64rem) {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin height-responsive($height: 32rem) {
+  @media screen and (max-height: $height) {
     @content;
   }
 }
@@ -36,5 +42,5 @@
 }
 
 @mixin play-button-transition() {
-  transition: 200ms all ease-out;
+  transition: 100ms all ease-out;
 }

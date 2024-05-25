@@ -14,13 +14,16 @@ import PlayIcon from '@/components/svg/PlayIcon.vue'
 <style lang="scss" scoped>
 .play-button {
   position: relative;
-  background-color: map-get($map: $colors, $key: c-white);
+  background-color: map-get($map: $colors, $key: c-gray);
   border: 0.1rem solid map-get($map: $colors, $key: c-white);
   border-radius: map-get($map: $sizes, $key: s-button-radius);
   width: 12.5rem;
   height: 3rem;
   @include play-button-transition();
   &:hover {
+    background-color: map-get($map: $colors, $key: c-white);
+  }
+  &:active {
     background-color: transparent;
   }
   &__content {
@@ -29,17 +32,20 @@ import PlayIcon from '@/components/svg/PlayIcon.vue'
     gap: 0.4rem;
     @include play-button-transition();
   }
-  &:hover > &__content {
+  &:active > &__content {
     color: inherit;
   }
   &__icon {
     width: 1rem;
   }
+  @include responsive(14.5rem) {
+    width: 100%;
+  }
 }
 </style>
 
 <style lang="scss">
-.play-button:hover .play-icon {
+.play-button:active .play-icon {
   fill: currentColor;
 }
 </style>

@@ -68,11 +68,15 @@ const mediaAbout = concatStrings(
     height: 100vh;
     padding: map-get($map: $sizes, $key: s-general-padding);
     padding-bottom: 3rem;
+    padding-top: 5rem;
     @include flex($direction: column, $justify-content: flex-end);
     &__content {
       width: 100%;
       display: grid;
       grid-template-columns: 1fr 1fr;
+      @include responsive(40rem) {
+        grid-template-columns: 1fr;
+      }
     }
     &__description {
       @include flex(
@@ -96,6 +100,9 @@ const mediaAbout = concatStrings(
         width: 11.25rem;
         height: 16.875rem;
       }
+      @include responsive(40rem) {
+        display: none;
+      }
     }
     &__genres {
       @include genres();
@@ -106,9 +113,17 @@ const mediaAbout = concatStrings(
         font-size: map-get($map: $font-size, $key: fs-super-small);
       }
     }
+    &__play {
+      width: 100%;
+    }
     @include responsive() {
       padding: map-get($map: $sizes, $key: s-general-padding-mobile);
       padding-bottom: 3rem;
+      padding-top: 5rem;
+    }
+    @include height-responsive() {
+      height: auto;
+      min-height: 100vh;
     }
   }
 </style>
