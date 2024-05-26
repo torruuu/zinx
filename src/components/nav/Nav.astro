@@ -1,6 +1,7 @@
 ---
 import LogoNav from '@/components/nav/LogoNav.astro'
 import LanguagePicker from '@/components/nav/LanguagePicker.vue'
+import NavBg from '@/components/nav/NavBg.vue'
 import { getLangFromUrl } from '@/i18n/utils'
 import { getSections } from '@/composables/sections'
 
@@ -39,6 +40,9 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
     </div>
   </div>
 </nav>
+<div class="nav-bg">
+  <NavBg client:load />
+</div>
 
 <style lang="scss">
   .nav-container {
@@ -51,23 +55,17 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
     width: 100%;
     max-width: map-get($map: $sizes, $key: s-body);
     padding: map-get($map: $sizes, $key: s-general-padding);
-    @include flex($justify-content: flex-start);
-    gap: 2.5rem;
-
     position: fixed;
     top: 0;
     z-index: 10;
-
-    animation: scroll-header linear both;
-    animation-timeline: scroll(root);
-    animation-range: 0 10rem;
+    @include flex($justify-content: flex-start);
+    gap: 2.5rem;
     @include responsive() {
       padding: map-get($map: $sizes, $key: s-general-padding-mobile);
     }
     @include responsive(40rem) {
-      animation: none;
-      height: map-get($map: $sizes, $key: s-nav-mobile);
       background-color: map-get($map: $colors, $key: c-black);
+      height: map-get($map: $sizes, $key: s-nav-mobile);
       justify-content: space-between;
       gap: 0;
     }
@@ -170,9 +168,9 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
     }
   }
 
-  @keyframes scroll-header {
-    to {
-      background-color: map-get($map: $colors, $key: c-black-sec);
+  .nav-bg {
+    @include responsive() {
+      display: none;
     }
   }
 </style>
