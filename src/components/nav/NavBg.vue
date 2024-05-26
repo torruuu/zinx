@@ -16,6 +16,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 .nav-background {
   background-color: transparent;
   position: fixed;
+  z-index: 9;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
