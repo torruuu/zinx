@@ -36,11 +36,13 @@ onUnmounted(() => window.removeEventListener('resize', updateScreenWidth))
 <style scoped lang="scss">
 .movie-background {
   z-index: -2;
+  max-width: map-get($map: $sizes, $key: s-body);
   width: 100%;
   height: 100vh;
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   opacity: 0.75;
   background-image: var(--bg-image);
   background-size: cover;
