@@ -23,6 +23,7 @@ export const ui = {
     'media-detail.minutes': 'min',
     'media-detail.season': 'temporada',
     'media-detail.seasons': 'temporadas',
+    'media-detail.synopsis': 'Sinopsis',
   },
   en: {
     'nav.home': 'Home',
@@ -37,6 +38,7 @@ export const ui = {
     'button.trailer': 'Watch trailer',
     'media-detail.season': 'season',
     'media-detail.seasons': 'seasons',
+    'media-detail.synopsis': 'Synopsis',
   },
 } as const
 

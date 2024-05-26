@@ -1,0 +1,33 @@
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/utils'
+
+interface Props {
+  mediaDescription: string
+}
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+
+const { mediaDescription } = Astro.props
+---
+
+<section class="overview">
+  <h3 class="overview__title">{t('media-detail.synopsis')}</h3>
+  <p class="overview__description">{mediaDescription}</p>
+</section>
+
+<style lang="scss">
+  .overview {
+    padding: map-get($map: $sizes, $key: s-general-padding);
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    @include responsive() {
+      padding: map-get($map: $sizes, $key: s-general-padding-mobile);
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+    &__title {
+      padding: 0 0 1rem;
+    }
+  }
+</style>

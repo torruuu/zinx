@@ -23,7 +23,7 @@ const mediaDuration = mediaData.runtime
   ? `${getHours(mediaData.runtime)} ${t('media-detail.hours')} ${getRestMinutes(mediaData.runtime)} ${t('media-detail.minutes')}`
   : `${mediaData.number_of_seasons} ${mediaData.number_of_seasons === 1 ? t('media-detail.season') : t('media-detail.seasons')}`
 const mediaAbout = concatStrings(
-  ...[mediaDuration, getYear(mediaData.release_date || '')],
+  ...[mediaDuration, getYear(mediaData.release_date || mediaData.first_air_date || '')],
 )
 ---
 

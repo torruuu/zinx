@@ -38,6 +38,9 @@ import PlayIcon from '@/components/svg/PlayIcon.vue'
   &__icon {
     width: 1rem;
   }
+  @include responsive(40rem) {
+    background-color: map-get($map: $colors, $key: c-white);
+  }
   @include responsive(14.5rem) {
     width: 100%;
   }

@@ -1,6 +1,7 @@
 ---
 import type { DetailedMovie, DetailedTv } from '@/types/index'
 import MediaHeader from '@/components/media/MediaHeader.astro'
+import MediaDescription from '@/components/media/MediaDescription.astro'
 
 interface Props {
   mediaData: DetailedMovie & DetailedTv
@@ -11,4 +12,5 @@ const { mediaData } = Astro.props
 
 <div>
   <MediaHeader mediaData={mediaData} />
+  <MediaDescription mediaDescription={mediaData.overview} />
 </div>
