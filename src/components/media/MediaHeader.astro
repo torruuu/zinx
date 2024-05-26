@@ -66,10 +66,12 @@ const mediaAbout = concatStrings(
 <style lang="scss">
   .media-header {
     height: 100vh;
-    padding: map-get($map: $sizes, $key: s-general-padding);
-    padding-bottom: 3rem;
-    padding-top: 5rem;
+    padding: 5rem 0 3rem;
     @include flex($direction: column, $justify-content: flex-end);
+    @include height-responsive() {
+      height: auto;
+      min-height: 100vh;
+    }
     &__content {
       width: 100%;
       display: grid;
@@ -115,15 +117,6 @@ const mediaAbout = concatStrings(
     }
     &__play {
       width: 100%;
-    }
-    @include responsive() {
-      padding: map-get($map: $sizes, $key: s-general-padding-mobile);
-      padding-bottom: 3rem;
-      padding-top: 5rem;
-    }
-    @include height-responsive() {
-      height: auto;
-      min-height: 100vh;
     }
   }
 </style>

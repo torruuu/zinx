@@ -1,5 +1,6 @@
 ---
 import type { DetailedMovie, DetailedTv } from '@/types/index'
+import BackButton from '@/components/common/BackButton.vue'
 import MediaHeader from '@/components/media/MediaHeader.astro'
 import MediaDescription from '@/components/media/MediaDescription.astro'
 
@@ -10,7 +11,17 @@ interface Props {
 const { mediaData } = Astro.props
 ---
 
-<div>
+<article class="media-detail">
+  <BackButton client:only="vue" />
   <MediaHeader mediaData={mediaData} />
   <MediaDescription mediaDescription={mediaData.overview} />
-</div>
+</article>
+
+<style lang="scss">
+  .media-detail {
+    padding: map-get($map: $sizes, $key: s-general-padding);
+    @include responsive() {
+      padding: map-get($map: $sizes, $key: s-general-padding-mobile);
+    }
+  }
+</style>

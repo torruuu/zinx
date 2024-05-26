@@ -18,13 +18,9 @@ const { mediaDescription } = Astro.props
 
 <style lang="scss">
   .overview {
-    padding: map-get($map: $sizes, $key: s-general-padding);
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    padding: 3rem 0 3rem;
     @include responsive() {
-      padding: map-get($map: $sizes, $key: s-general-padding-mobile);
-      padding-top: 4rem;
-      padding-bottom: 4rem;
+      padding: 2rem 0 2rem;
     }
     &__title {
       padding: 0 0 1rem;

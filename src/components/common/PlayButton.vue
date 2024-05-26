@@ -15,13 +15,14 @@ import PlayIcon from '@/components/svg/PlayIcon.vue'
 .play-button {
   position: relative;
   background-color: map-get($map: $colors, $key: c-gray);
-  border: 0.1rem solid map-get($map: $colors, $key: c-white);
+  border: 0.1rem solid map-get($map: $colors, $key: c-gray);
   border-radius: map-get($map: $sizes, $key: s-button-radius);
   width: 12.5rem;
   height: 3rem;
   @include play-button-transition();
   &:hover {
     background-color: map-get($map: $colors, $key: c-white);
+    border: 0.1rem solid map-get($map: $colors, $key: c-white);
   }
   &:active {
     background-color: transparent;
@@ -40,6 +41,7 @@ import PlayIcon from '@/components/svg/PlayIcon.vue'
   }
   @include responsive(40rem) {
     background-color: map-get($map: $colors, $key: c-white);
+    border: 0.1rem solid map-get($map: $colors, $key: c-white);
   }
   @include responsive(14.5rem) {
     width: 100%;
