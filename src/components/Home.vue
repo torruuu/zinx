@@ -8,7 +8,11 @@ const props = defineProps<{
   lang: keyof typeof ui
 }>()
 
-if (Object.keys($homeBlock.get()).length === 0) await setHomeData(props.lang)
+if (
+  Object.keys($homeBlock.get()).length === 0 ||
+  $homeBlock.get().language !== props.lang
+)
+  await setHomeData(props.lang)
 const trendingData = ref()
 
 const MAX_WAIT_TIME = 5000

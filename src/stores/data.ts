@@ -1,16 +1,17 @@
 import { atom, computed, map } from 'nanostores'
 import { getTrendingMedia } from '@/services/trendingMediaApi'
 import type { WritableAtom } from 'nanostores'
-import type { HomeBlock } from '@/types'
+import type { HomeBlock, ui } from '@/types'
 
 export const $loadError = atom<boolean>(false)
 
 // Cargar datos de la Home
 export const $homeBlock = map<HomeBlock>()
 
-export const setHomeData = async (lang: string) => {
+export const setHomeData = async (lang: keyof typeof ui) => {
   const trendingData = await getTrendingMedia(lang)
   $homeBlock.setKey('trending', trendingData)
+  $homeBlock.setKey('language', lang)
 }
 
 // Controlamos el mounted de los componentes de la Home
