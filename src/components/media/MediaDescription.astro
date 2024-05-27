@@ -1,19 +1,28 @@
 ---
 import { getLangFromUrl, useTranslations } from '@/i18n/utils'
+import type { Credits } from '@/types'
 
 interface Props {
-  mediaDescription: string
+  mediaOverview: string
+  mediaCast: Credits
 }
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 
-const { mediaDescription } = Astro.props
+const { mediaOverview, mediaCast: cast } = Astro.props
+console.log(cast)
 ---
 
-<section class="overview">
-  <h3 class="overview__title">{t('media-detail.synopsis')}</h3>
-  <p class="overview__description">{mediaDescription}</p>
+<section class="media-description">
+  {
+    mediaOverview && (
+      <article class="media-description__overview overview">
+        <h3 class="overview__title">{t('media-detail.synopsis')}</h3>
+        <p class="overview__description">{mediaOverview}</p>
+      </article>
+    )
+  }
 </section>
 
 <style lang="scss">

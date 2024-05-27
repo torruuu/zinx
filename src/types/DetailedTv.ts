@@ -1,4 +1,5 @@
 import type {
+  Credits,
   CrewMember,
   Genre,
   Episode,
@@ -41,4 +42,5 @@ export type DetailedTv = {
   type: string
   vote_average: number
   vote_count: number
+  credits: Credits
 }

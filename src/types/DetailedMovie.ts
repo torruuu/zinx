@@ -1,5 +1,6 @@
 import type {
   BelongsToCollection,
+  Credits,
   Genre,
   ProductionCompany,
   SpokenLanguage,
@@ -32,4 +33,5 @@ export type DetailedMovie = {
   video: boolean
   vote_average: number
   vote_count: number
+  credits: Credits
 }
