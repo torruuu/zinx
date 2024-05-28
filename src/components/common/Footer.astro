@@ -1,0 +1,23 @@
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+
+const footerSections = [
+  { title: t('footer-zinx-title'), description: t('footer-zinx-description') },
+  { title: t('footer-about-title'), description: t('footer-about-description') },
+  { title: t('footer-contact-title'), description: t('footer-contact-description') },
+]
+---
+
+<article class="footer">
+  {
+    footerSections.map((section) => (
+      <section class="footer__section">
+        <h4>{section.title}</h4>
+        <p>{section.description}</p>
+      </section>
+    ))
+  }
+</article>
