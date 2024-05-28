@@ -1,17 +1,18 @@
 ---
+import { getFilteredCredits } from '@/composables/getFilteredCredits'
 import { getLangFromUrl, useTranslations } from '@/i18n/utils'
 import type { Credits } from '@/types'
 
 interface Props {
   mediaOverview: string
-  mediaCast: Credits
+  mediaCredits: Credits
 }
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 
-const { mediaOverview, mediaCast: cast } = Astro.props
-console.log(cast)
+const { mediaOverview, mediaCredits } = Astro.props
+const filteredCast = getFilteredCredits(mediaCredits)
 ---
 
 <section class="media-description">
@@ -21,6 +22,14 @@ console.log(cast)
         <h3 class="overview__title">{t('media-detail.synopsis')}</h3>
         <p class="overview__description">{mediaOverview}</p>
       </article>
+    )
+  }
+  {
+    filteredCast.directing && (
+      <>
+        <h3>Dirigida por:</h3>
+        <p>{filteredCast.directing.name}</p>
+      </>
     )
   }
 </section>

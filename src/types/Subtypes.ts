@@ -22,6 +22,7 @@ export type CastMember = {
 
 export type Credits = {
   cast: CastMember[]
+  crew: CastMember[]
 }
 
 export type CrewMember = {
