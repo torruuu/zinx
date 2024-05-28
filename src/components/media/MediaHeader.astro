@@ -35,9 +35,11 @@ const mediaAbout = concatStrings(
       client:only="vue"
     />
     <div class="media-header__description">
-      <h2 class="media-header__title">{mediaData.name || mediaData.title}</h2>
+      <h2 class="media-header__title" transition:name={`title-${mediaData.id}`}>
+        {mediaData.name || mediaData.title}
+      </h2>
       <div class="media-header__details">
-        <div class="media-header__genres">
+        <div class="media-header__genres" transition:name={`description-${mediaData.id}`}>
           {
             mediaData.genres.map((genre) => (
               <span class="media-header__genre">{genre.name}</span>

@@ -35,10 +35,16 @@ onMounted(() => $bannerDescriptionMounted.set(true))
       :media-bg="currentMedia.backdrop_path || ''"
       :media-poster="currentMedia.poster_path || ''"
     />
-    <span class="banner-description__title">
+    <p
+      class="banner-description__title"
+      :style="{ 'view-transition-name': `title-${currentMedia.id}` }"
+    >
       {{ currentMedia.title || currentMedia.name }}
-    </span>
-    <div class="banner-description__genres">
+    </p>
+    <div
+      class="banner-description__genres"
+      :style="{ 'view-transition-name': `description-${currentMedia.id}` }"
+    >
       <span class="banner-description__genre" v-for="genre in genreNames">
         {{ genre }}
       </span>
