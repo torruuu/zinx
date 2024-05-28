@@ -14,7 +14,11 @@ const { mediaData } = Astro.props
 <article class="media-detail">
   <BackButton client:only="vue" />
   <MediaHeader mediaData={mediaData} />
-  <MediaDescription mediaOverview={mediaData.overview} mediaCredits={mediaData.credits} />
+  <MediaDescription
+    mediaCreatedBy={mediaData.created_by}
+    mediaOverview={mediaData.overview}
+    mediaCredits={mediaData.credits}
+  />
 </article>
 
 <style lang="scss">

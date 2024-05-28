@@ -1,4 +1,5 @@
-import type { Credits } from '@/types'
+import { useTranslations } from '@/i18n/utils'
+import type { Credits, CastMember, ui } from '@/types'
 
 const DEPARTMENTS = {
   DIRECTING: 'Directing',
@@ -6,18 +7,32 @@ const DEPARTMENTS = {
   WRITING: 'Writing',
 }
 
-export const getFilteredCredits = (credits: Credits) => {
+const findMembers = (
+  members: CastMember[],
+  department: string,
+  limit: number,
+  title: string,
+) => {
+  const filteredMembers = members
+    .filter((member) => member.known_for_department === department)
+    .slice(0, limit)
+    .map((member) => member.name)
+    .join(', ')
+
+  return { title, members: filteredMembers }
+}
+
+export const getFilteredCredits = (credits: Credits, lang: keyof typeof ui) => {
   const { cast, crew } = credits
-
-  const directing = crew.find(
-    (member) => member.known_for_department === DEPARTMENTS.DIRECTING,
+  const t = useTranslations(lang)
+  const directing = findMembers(
+    crew,
+    DEPARTMENTS.DIRECTING,
+    5,
+    t('media-detail-director'),
   )
-  const acting = cast
-    .filter((member) => member.known_for_department === DEPARTMENTS.ACTING)
-    .slice(0, 5)
-  const writing = crew
-    .filter((member) => member.known_for_department === DEPARTMENTS.WRITING)
-    .slice(0, 5)
+  const acting = findMembers(cast, DEPARTMENTS.ACTING, 5, t('media-detail-actors'))
+  const writing = findMembers(crew, DEPARTMENTS.WRITING, 5, t('media-detail-script'))
 
-  return { directing, acting, writing }
+  return [directing, acting, writing]
 }

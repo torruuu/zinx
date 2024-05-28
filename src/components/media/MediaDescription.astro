@@ -1,9 +1,10 @@
 ---
 import { getFilteredCredits } from '@/composables/getFilteredCredits'
 import { getLangFromUrl, useTranslations } from '@/i18n/utils'
-import type { Credits } from '@/types'
+import type { Credits, CrewMember } from '@/types'
 
 interface Props {
+  mediaCreatedBy: CrewMember[]
   mediaOverview: string
   mediaCredits: Credits
 }
@@ -11,37 +12,82 @@ interface Props {
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 
-const { mediaOverview, mediaCredits } = Astro.props
-const filteredCast = getFilteredCredits(mediaCredits)
+const { mediaCreatedBy, mediaOverview, mediaCredits } = Astro.props
+const filteredCast = getFilteredCredits(mediaCredits, lang)
 ---
 
 <section class="media-description">
   {
     mediaOverview && (
-      <article class="media-description__overview overview">
-        <h3 class="overview__title">{t('media-detail.synopsis')}</h3>
-        <p class="overview__description">{mediaOverview}</p>
+      <article class="media-description__overview">
+        <h3 class="media-description__overview-title">{t('media-detail.synopsis')}</h3>
+        <p class="media-description__description">{mediaOverview}</p>
       </article>
     )
   }
-  {
-    filteredCast.directing && (
-      <>
-        <h3>Dirigida por:</h3>
-        <p>{filteredCast.directing.name}</p>
-      </>
-    )
-  }
+  <div class="media-description__cast-container">
+    {
+      mediaCreatedBy?.length > 0 && (
+        <article class="media-description__cast-article">
+          <h3 class="media-description__subtitle">{t('media-detail-creator')}</h3>
+          <p class="media-description__sub-description">
+            {mediaCreatedBy.map((member) => member.name).join(', ')}
+          </p>
+        </article>
+      )
+    }
+    {
+      filteredCast.map(
+        (department) =>
+          department.members && (
+            <article class="media-description__cast-article">
+              <h3 class="media-description__subtitle">{department.title}:</h3>
+              <p class="media-description__sub-description">{department.members}</p>
+            </article>
+          ),
+      )
+    }
+  </div>
 </section>
 
 <style lang="scss">
-  .overview {
+  .media-description {
     padding: 3rem 0 3rem;
     @include responsive() {
       padding: 2rem 0 2rem;
     }
-    &__title {
+    &__overview-title {
       padding: 0 0 1rem;
+    }
+    &__cast-container {
+      padding: 1rem 0 0;
+      @include flex(
+        $direction: column,
+        $justify-content: flex-start,
+        $align-items: flex-start
+      );
+      gap: 0.5rem;
+    }
+    &__cast-article {
+      max-width: 100%;
+      width: max-content;
+      @include flex($justify-content: flex-start);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    &__subtitle {
+      color: map-get($map: $colors, $key: c-dark-gray);
+      font-size: map-get($map: $font-size, $key: fs-small);
+      font-family: map-get($map: $fonts, $key: f-font-light);
+      @include responsive() {
+        font-size: map-get($map: $font-size, $key: fs-extra-small);
+      }
+    }
+    &__sub-description {
+      font-size: map-get($map: $font-size, $key: fs-extra-small);
+      @include responsive() {
+        font-size: map-get($map: $font-size, $key: fs-super-small);
+      }
     }
   }
 </style>

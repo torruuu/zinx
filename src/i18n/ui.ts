@@ -24,6 +24,10 @@ export const ui = {
     'media-detail.season': 'temporada',
     'media-detail.seasons': 'temporadas',
     'media-detail.synopsis': 'Sinopsis',
+    'media-detail-creator': 'Creada por',
+    'media-detail-director': 'Dirigida por',
+    'media-detail-actors': 'Reparto',
+    'media-detail-script': 'Guión',
   },
   en: {
     'nav.home': 'Home',
@@ -39,6 +43,10 @@ export const ui = {
     'media-detail.season': 'season',
     'media-detail.seasons': 'seasons',
     'media-detail.synopsis': 'Synopsis',
+    'media-detail-creator': 'Created by',
+    'media-detail-director': 'Directed by',
+    'media-detail-actors': 'Cast',
+    'media-detail-script': 'Script',
   },
 } as const
 
