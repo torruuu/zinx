@@ -34,11 +34,20 @@ const sectionId = getSectionByRoute(Astro.url, lang)?.id
     <header>
       <Nav />
     </header>
-    <LoadingPage sectionId={sectionId} client:load />
-    <LoadError lang={lang} client:load />
-    <slot />
+    <main>
+      <LoadingPage sectionId={sectionId} client:load />
+      <LoadError lang={lang} client:load />
+      <slot />
+    </main>
     <footer>
       <Footer />
     </footer>
+    <style is:global lang="scss">
+      body {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+      }
+    </style>
   </body>
 </html>
