@@ -36,7 +36,10 @@ export const ui = {
       'Para cualquier consulta contáctemos a través de nuestro correo: ale.torrubiano@gmail.com.',
     'footer.about.title': 'Acerca de',
     'footer.about.description':
-      'En Zinx encontrarás las últimas novedades sobre tus películas y series favoritas.',
+      'En Zinx encontrarás las últimas novedades sobre tus películas y series favoritas gracias a nuestras frecuentes actualizaciones.',
+    'footer.updates.title': 'Actualizaciones',
+    'footer.updates.description':
+      'Siempre estamos trabajando para mejorar y añadir nuevas funcionalidades para ofrecerte la mejor experiencia posible.',
     'footer.copyright': 'Copyright 2024',
   },
   en: {
@@ -65,7 +68,10 @@ export const ui = {
       'For any inquiries, contact us via email: ale.torrubiano@gmail.com.',
     'footer.about.title': 'About',
     'footer.about.description':
-      'At Zinx, you will find the latest updates on your favorite movies and series.',
+      'At Zinx, you will find the latest updates on your favorite movies and TV shows thanks to our frequent updates.',
+    'footer.updates.title': 'Updates',
+    'footer.updates.description':
+      'We are always working to improve and add new features to provide you with the best possible experience.',
   },
 } as const
 

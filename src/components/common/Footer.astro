@@ -9,6 +9,7 @@ const footerSections = [
   { title: t('footer.zinx.title'), description: t('footer.zinx.description') },
   { title: t('footer.about.title'), description: t('footer.about.description') },
   { title: t('footer.contact.title'), description: t('footer.contact.description') },
+  { title: t('footer.updates.title'), description: t('footer.updates.description') },
 ]
 ---
 
@@ -49,11 +50,11 @@ const footerSections = [
     }
     &__grid {
       width: 100%;
-      max-width: 70rem;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       column-gap: 14rem;
-      @include responsive(80rem) {
+      @include responsive(88rem) {
+        grid-template-columns: repeat(3, 1fr);
         column-gap: 11rem;
       }
       @include responsive() {
@@ -69,6 +70,11 @@ const footerSections = [
       @include responsive(22.5rem) {
         grid-template-columns: 1fr;
         max-width: 15rem;
+      }
+    }
+    &__section:nth-child(4) {
+      @include responsive(88rem) {
+        display: none;
       }
     }
     &__section:nth-child(3) {
@@ -93,7 +99,6 @@ const footerSections = [
     &__line {
       margin: 1.5rem 0;
       background-color: map-get($map: $colors, $key: c-gray);
-      max-width: 70rem;
       width: 100%;
       height: 0.01rem;
       @include responsive(40rem) {
@@ -101,7 +106,6 @@ const footerSections = [
       }
     }
     &__bottom {
-      max-width: 70rem;
       width: 100%;
       @include flex($justify-content: space-between);
     }
