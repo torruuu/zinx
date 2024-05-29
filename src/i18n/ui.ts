@@ -24,19 +24,20 @@ export const ui = {
     'media-detail.season': 'temporada',
     'media-detail.seasons': 'temporadas',
     'media-detail.synopsis': 'Sinopsis',
-    'media-detail-creator': 'Creada por',
-    'media-detail-director': 'Dirigida por',
-    'media-detail-actors': 'Reparto',
-    'media-detail-script': 'Guión',
-    'footer-zinx-title': 'Zinx',
-    'footer-zinx-description':
+    'media-detail.creator': 'Creada por',
+    'media-detail.director': 'Dirigida por',
+    'media-detail.actors': 'Reparto',
+    'media-detail.script': 'Guión',
+    'footer.zinx.title': 'Zinx',
+    'footer.zinx.description':
       'Ofrece una gran experiencia a través de la API The Movie Database(TMDb). Esta enfocada con fines educativos y aprendizaje.',
-    'footer-contact-title': 'Contacto',
-    'footer-contact-description':
+    'footer.contact.title': 'Contacto',
+    'footer.contact.description':
       'Para cualquier consulta contáctemos a través de nuestro correo: ale.torrubiano@gmail.com.',
-    'footer-about-title': 'Acerca de',
-    'footer-about-description':
+    'footer.about.title': 'Acerca de',
+    'footer.about.description':
       'En Zinx encontrarás las últimas novedades sobre tus películas y series favoritas.',
+    'footer.copyright': 'Copyright 2024',
   },
   en: {
     'nav.home': 'Home',
@@ -52,18 +53,18 @@ export const ui = {
     'media-detail.season': 'season',
     'media-detail.seasons': 'seasons',
     'media-detail.synopsis': 'Synopsis',
-    'media-detail-creator': 'Created by',
-    'media-detail-director': 'Directed by',
-    'media-detail-actors': 'Cast',
-    'media-detail-script': 'Script',
-    'footer-zinx-title': 'Zinx',
-    'footer-zinx-description':
+    'media-detail.creator': 'Created by',
+    'media-detail.director': 'Directed by',
+    'media-detail.actors': 'Cast',
+    'media-detail.script': 'Script',
+    'footer.zinx.title': 'Zinx',
+    'footer.zinx.description':
       'Offers a great experience through The Movie Database (TMDb) API. It is focused on educational purposes and learning.',
-    'footer-contact-title': 'Contact',
-    'footer-contact-description':
+    'footer.contact.title': 'Contact',
+    'footer.contact.description':
       'For any inquiries, contact us via email: ale.torrubiano@gmail.com.',
-    'footer-about-title': 'About',
-    'footer-about-description':
+    'footer.about.title': 'About',
+    'footer.about.description':
       'At Zinx, you will find the latest updates on your favorite movies and series.',
   },
 } as const

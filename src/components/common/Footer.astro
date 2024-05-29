@@ -1,13 +1,14 @@
 ---
 import { getLangFromUrl, useTranslations } from '@/i18n/utils'
+import GithubIcon from '../svg/GithubIcon.vue'
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 
 const footerSections = [
-  { title: t('footer-zinx-title'), description: t('footer-zinx-description') },
-  { title: t('footer-about-title'), description: t('footer-about-description') },
-  { title: t('footer-contact-title'), description: t('footer-contact-description') },
+  { title: t('footer.zinx.title'), description: t('footer.zinx.description') },
+  { title: t('footer.about.title'), description: t('footer.about.description') },
+  { title: t('footer.contact.title'), description: t('footer.contact.description') },
 ]
 ---
 
@@ -17,17 +18,23 @@ const footerSections = [
       footerSections.map((section) => (
         <section class="footer__section">
           <h4>{section.title}</h4>
-          <p class="footer__description">{section.description}</p>
+          <p class="footer__text">{section.description}</p>
         </section>
       ))
     }
   </div>
   <div class="footer__line"></div>
+  <div class="footer__bottom">
+    <p class="footer__text">&copy; {t('footer.copyright')}</p>
+    <a class="footer__link" href="https://github.com/torruuu/zinx" target="_blank">
+      <GithubIcon />
+    </a>
+  </div>
 </article>
 
 <style lang="scss">
   .footer {
-    background-image: linear-gradient(to top, rgba(255, 255, 255, 0.3), transparent);
+    background-image: linear-gradient(to top, rgba(100, 100, 100, 0.3), transparent);
     padding: map-get($map: $sizes, $key: s-general-padding);
     padding-top: 4rem;
     padding-bottom: 4rem;
@@ -74,7 +81,7 @@ const footerSections = [
         display: none;
       }
     }
-    &__description {
+    &__text {
       color: map-get($map: $colors, $key: c-gray);
       padding: 0.5rem 0 0;
       line-height: 1.5rem;
@@ -89,6 +96,21 @@ const footerSections = [
       max-width: 70rem;
       width: 100%;
       height: 0.01rem;
+      @include responsive(40rem) {
+        margin: 1rem 0;
+      }
+    }
+    &__bottom {
+      max-width: 70rem;
+      width: 100%;
+      @include flex($justify-content: space-between);
+    }
+    &__link {
+      display: block;
+      width: 1.5rem;
+      @include responsive(40rem) {
+        width: 1.1rem;
+      }
     }
   }
 </style>

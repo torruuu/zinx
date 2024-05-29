@@ -29,10 +29,10 @@ export const getFilteredCredits = (credits: Credits, lang: keyof typeof ui) => {
     crew,
     DEPARTMENTS.DIRECTING,
     5,
-    t('media-detail-director'),
+    t('media-detail.director'),
   )
-  const acting = findMembers(cast, DEPARTMENTS.ACTING, 5, t('media-detail-actors'))
-  const writing = findMembers(crew, DEPARTMENTS.WRITING, 5, t('media-detail-script'))
+  const acting = findMembers(cast, DEPARTMENTS.ACTING, 5, t('media-detail.actors'))
+  const writing = findMembers(crew, DEPARTMENTS.WRITING, 5, t('media-detail.script'))
 
   return [directing, acting, writing]
 }
