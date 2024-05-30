@@ -45,8 +45,12 @@ const sectionId = getSectionByRoute(Astro.url, lang)?.id
     <style is:global lang="scss">
       body {
         min-height: 100vh;
-        display: grid;
-        grid-template-rows: auto 1fr auto;
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1;
       }
     </style>
   </body>
