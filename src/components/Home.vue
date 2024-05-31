@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import MainBanner from '@/components/home/MainBanner.vue'
+import RegularSlider from '@/components/home/RegularSlider.vue'
+import { useTranslations } from '@/i18n/utils'
 import { $homeBlock, $homeMounted, $loadError, setHomeData } from '@/stores/data'
 import { onMounted, ref } from 'vue'
 import type { ui } from '@/types/index'
@@ -7,6 +9,8 @@ import type { ui } from '@/types/index'
 const props = defineProps<{
   lang: keyof typeof ui
 }>()
+
+const t = useTranslations(props.lang)
 
 if (
   Object.keys($homeBlock.get()).length === 0 ||
@@ -27,4 +31,10 @@ onMounted(() => {
 
 <template>
   <MainBanner v-if="trendingData" :lang="lang" :trending-media="trendingData" />
+  <RegularSlider
+    v-if="trendingData"
+    :lang="lang"
+    :title="t('movies.popular')"
+    :media="trendingData"
+  />
 </template>

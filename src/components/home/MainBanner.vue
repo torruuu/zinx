@@ -21,7 +21,7 @@ onMounted(async () => {
   <article class="main-banner">
     <BannerDescription v-if="currentMedia" :lang="lang" :currentMedia="currentMedia" />
     <BannerSlider
-      @current-media="(media) => (currentMedia = media)"
+      @current-media="(media: RegularMovie) => (currentMedia = media)"
       :lang="lang"
       :media="trendingMedia"
     />

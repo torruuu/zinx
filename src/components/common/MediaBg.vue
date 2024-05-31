@@ -55,7 +55,7 @@ onUnmounted(() => window.removeEventListener('resize', updateScreenWidth))
     left: 0;
     width: 100%;
     height: 75vh;
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 1), transparent);
     z-index: -1;
   }
   @media screen and (max-height: 28rem) {
