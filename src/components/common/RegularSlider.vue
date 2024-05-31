@@ -102,11 +102,14 @@ const checkButtons = (swiper: CustomEvent) => {
   &__slide {
     position: relative;
     aspect-ratio: 500 / 281;
-    width: 20rem;
+    width: 25rem;
     border: 0.1rem solid map-get($map: $colors, $key: c-black);
     border-radius: map-get($map: $sizes, $key: s-slide-radius);
     @include responsive(40rem) {
-      width: 16.5rem;
+      width: 20rem;
+    }
+    @include responsive(22.5rem) {
+      width: 15rem;
     }
     &:hover {
       border: 0.1rem solid map-get($map: $colors, $key: c-dark-gray);
