@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import MainBanner from '@/components/home/MainBanner.vue'
-import RegularSlider from '@/components/home/RegularSlider.vue'
+import RegularSlider from '@/components/common/RegularSlider.vue'
 import { useTranslations } from '@/i18n/utils'
 import { $homeBlock, $homeMounted, $loadError, setHomeData } from '@/stores/data'
 import { onMounted, ref } from 'vue'

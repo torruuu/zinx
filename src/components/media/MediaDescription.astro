@@ -52,9 +52,13 @@ const filteredCast = getFilteredCredits(mediaCredits, lang)
 
 <style lang="scss">
   .media-description {
-    padding: 3rem 0 3rem;
+    padding: map-get($map: $sizes, $key: s-general-padding);
+    padding-top: 3rem;
+    padding-bottom: 3rem;
     @include responsive() {
-      padding: 2rem 0 2rem;
+      padding: map-get($map: $sizes, $key: s-general-padding-mobile);
+      padding-top: 2rem;
+      padding-bottom: 2rem;
     }
     &__overview-title {
       padding: 0 0 1rem;

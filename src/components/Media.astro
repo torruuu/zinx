@@ -2,13 +2,19 @@
 import BackButton from '@/components/common/BackButton.vue'
 import MediaHeader from '@/components/media/MediaHeader.astro'
 import MediaDescription from '@/components/media/MediaDescription.astro'
+import RegularSlider from '@/components/common/RegularSlider.vue'
+import { getLangFromUrl, useTranslations } from '@/i18n/utils'
 import type { DetailedMovie, DetailedTv } from '@/types/index'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 
 interface Props {
   mediaData: DetailedMovie & DetailedTv
+  mediaType: 'movie' | 'tv'
 }
 
-const { mediaData } = Astro.props
+const { mediaData, mediaType } = Astro.props
 ---
 
 <article class="media-detail">
@@ -19,13 +25,15 @@ const { mediaData } = Astro.props
     mediaOverview={mediaData.overview}
     mediaCredits={mediaData.credits}
   />
-</article>
-
-<style lang="scss">
-  .media-detail {
-    padding: map-get($map: $sizes, $key: s-general-padding);
-    @include responsive() {
-      padding: map-get($map: $sizes, $key: s-general-padding-mobile);
-    }
+  {
+    mediaData.similar.results.length > 0 && (
+      <RegularSlider
+        lang={lang}
+        title={t('media-detail.similar')}
+        media={mediaData.similar.results}
+        type={mediaType}
+        client:only="vue"
+      />
+    )
   }
-</style>
+</article>

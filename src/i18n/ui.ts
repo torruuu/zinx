@@ -29,6 +29,7 @@ export const ui = {
     'media-detail.director': 'Dirigida por',
     'media-detail.actors': 'Reparto',
     'media-detail.script': 'Guión',
+    'media-detail.similar': 'Similar',
     'footer.zinx.title': 'Zinx',
     'footer.zinx.description':
       'Ofrece una gran experiencia a través de la API The Movie Database(TMDb). Esta enfocada con fines educativos y aprendizaje.',

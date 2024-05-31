@@ -15,5 +15,5 @@ if (!mediaData) return Astro.redirect(`/${lang}`)
 ---
 
 <Layout title={mediaData.name || mediaData.title}>
-  <Media mediaData={mediaData} />
+  <Media mediaData={mediaData} mediaType={requestData.type} />
 </Layout>

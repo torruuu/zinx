@@ -1,3 +1,4 @@
+import type { RegularMovie } from '@/types/RegularMovie'
 import type {
   BelongsToCollection,
   Credits,
@@ -34,4 +35,8 @@ export type DetailedMovie = {
   vote_average: number
   vote_count: number
   credits: Credits
+  similar: {
+    page: number
+    results: RegularMovie[]
+  }
 }

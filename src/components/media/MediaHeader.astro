@@ -68,11 +68,18 @@ const mediaAbout = concatStrings(
 <style lang="scss">
   .media-header {
     height: 100vh;
-    padding: 5rem 0 3rem;
+    padding: map-get($map: $sizes, $key: s-general-padding);
+    padding-top: 5rem;
+    padding-bottom: 3rem;
     @include flex($direction: column, $justify-content: flex-end);
     @include height-responsive() {
       height: auto;
       min-height: 100vh;
+    }
+    @include responsive() {
+      padding: map-get($map: $sizes, $key: s-general-padding-mobile);
+      padding-top: 5rem;
+      padding-bottom: 3rem;
     }
     &__content {
       width: 100%;

@@ -12,6 +12,7 @@ const goBack = () =>
 
 <style lang="scss" scoped>
 .back-button {
+  margin: map-get($map: $sizes, $key: s-general-padding-mobile);
   background-color: map-get($map: $colors, $key: c-black);
   position: fixed;
   top: 0;

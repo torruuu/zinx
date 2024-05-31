@@ -80,6 +80,8 @@ const checkButtons = (swiper: CustomEvent) => {
   width: 100%;
   @include responsive() {
     padding: map-get($map: $sizes, $key: s-general-padding-mobile);
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
   &__title {
     padding: map-get($map: $sizes, $key: s-general-padding);
