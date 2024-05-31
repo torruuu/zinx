@@ -14,13 +14,14 @@ const props = defineProps<{
   media: RegularMovie[]
 }>()
 
-const isBegin = ref(false)
+const isBegin = ref(true)
 const isEnd = ref(false)
 
 const imageApi = import.meta.env.PUBLIC_API_IMAGES
 const t = useTranslations(props.lang)
 
 const checkButtons = (swiper: CustomEvent) => {
+  if (window.innerWidth <= 1024) return
   isBegin.value = swiper.detail[0].isBeginning
   isEnd.value = swiper.detail[0].isEnd
 }
@@ -40,7 +41,8 @@ const checkButtons = (swiper: CustomEvent) => {
         navigation-next-el=".regular-slider__next-button"
         navigation-prev-el=".regular-slider__prev-button"
         @swiperbeforeinit="checkButtons"
-        @swiperprogress="checkButtons"
+        @swipertoedge="checkButtons"
+        @swiperfromedge="checkButtons"
         :spaceBetween="16"
         :slidesPerView="'auto'"
         :a11y="{
