@@ -12,6 +12,7 @@ const props = defineProps<{
   lang: keyof typeof ui
   title: string
   media: RegularMovie[]
+  type?: 'movie' | 'tv'
 }>()
 
 const isBegin = ref(true)
@@ -53,7 +54,7 @@ const checkButtons = (swiper: CustomEvent) => {
         <swiper-slide v-for="movie in media" class="regular-slider__slide">
           <a
             class="regular-slider__link"
-            :href="`/${lang}/media=${movie.id}-${movie.media_type}`"
+            :href="`/${lang}/media=${movie.id}-${type || movie.media_type}`"
           >
             <p class="regular-slider__slide-title">{{ movie.title || movie.name }}</p>
             <img

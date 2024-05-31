@@ -18,11 +18,13 @@ if (
 )
   await setHomeData(props.lang)
 const trendingData = ref()
+const popularMovies = ref()
 
 const MAX_WAIT_TIME = 5000
 
 onMounted(() => {
   trendingData.value = $homeBlock.get().trending
+  popularMovies.value = $homeBlock.get().popularMovies
   setTimeout(async () => {
     if (!$homeMounted.get()) $loadError.set(true)
   }, MAX_WAIT_TIME)
@@ -32,9 +34,10 @@ onMounted(() => {
 <template>
   <MainBanner v-if="trendingData" :lang="lang" :trending-media="trendingData" />
   <RegularSlider
-    v-if="trendingData"
+    v-if="popularMovies"
     :lang="lang"
     :title="t('movies.popular')"
-    :media="trendingData"
+    :media="popularMovies"
+    type="movie"
   />
 </template>
