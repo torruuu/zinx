@@ -3,7 +3,7 @@ import Layout from '@/layouts/Layout.astro'
 import Home from '@/components/MainSection.vue'
 import { getLangFromUrl, useTranslations } from '@/i18n/utils'
 import { $homeBlock, setHomeData } from '@/stores/data'
-import type { RegularSections } from '@/types'
+import type { RegularSliderMedia } from '@/types'
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
@@ -14,7 +14,8 @@ const trendingData = $homeBlock.get().trending
 const popularMovies = $homeBlock.get().popularMovies
 const popularTv = $homeBlock.get().popularTv
 
-const regularSections: RegularSections = [
+const mainSection: RegularSliderMedia = { title: t('trend.title'), media: trendingData }
+const regularSections: RegularSliderMedia[] = [
   { title: t('movies.popular'), media: popularMovies, type: 'movie' },
   { title: t('tv.popular'), media: popularTv, type: 'tv' },
 ]
@@ -24,7 +25,7 @@ const regularSections: RegularSections = [
   <Home
     lang={lang}
     sectionTitle="home"
-    mainSection={trendingData}
+    mainSection={mainSection}
     regularSections={regularSections}
     client:load
   />

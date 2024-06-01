@@ -3,11 +3,11 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import BannerSlider from '@/components/home/BannerSlider.vue'
 import BannerDescription from '@/components/home/BannerDescription.vue'
 import { $mainBannerMounted } from '@/stores/data'
-import type { RegularMedia, ui } from '@/types/index'
+import type { RegularSliderMedia, RegularMedia, ui } from '@/types/index'
 
 defineProps<{
   lang: keyof typeof ui
-  mainMedia: RegularMedia[]
+  mainMedia: RegularSliderMedia
 }>()
 
 const currentMedia = ref<RegularMedia | null>(null)
@@ -22,7 +22,9 @@ onUnmounted(() => $mainBannerMounted.set(false))
     <BannerSlider
       @current-media="(media: RegularMedia) => (currentMedia = media)"
       :lang="lang"
-      :media="mainMedia"
+      :title="mainMedia.title"
+      :media="mainMedia.media"
+      :type="mainMedia.type"
     />
   </article>
 </template>

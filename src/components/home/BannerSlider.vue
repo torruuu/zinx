@@ -12,7 +12,9 @@ const imageApi = import.meta.env.PUBLIC_API_IMAGES
 
 const props = defineProps<{
   lang: keyof typeof ui
+  title: string
   media: RegularMedia[]
+  type?: 'movie' | 'tv'
 }>()
 
 const emit = defineEmits<{
@@ -46,7 +48,7 @@ onUnmounted(() => window.removeEventListener('resize', updateScreenHeight))
 </script>
 <template>
   <section class="swiper-container">
-    <h2 class="swiper-container__title">{{ t('trend.title') }}</h2>
+    <h2 class="swiper-container__title">{{ title }}</h2>
     <div class="swiper-container__slider">
       <div class="swiper-container__arrow-box swiper-container__arrow-box--prev">
         <button class="swiper-container__prev-button">
@@ -71,7 +73,7 @@ onUnmounted(() => window.removeEventListener('resize', updateScreenHeight))
         <swiper-slide v-for="movie in media" class="swiper-container__slide">
           <a
             class="swiper-container__link"
-            :href="`/${lang}/media=${movie.id}-${movie.media_type}`"
+            :href="`/${lang}/media=${movie.id}-${type || movie.media_type}`"
           >
             <img
               class="swiper-container__image"

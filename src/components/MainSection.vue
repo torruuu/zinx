@@ -3,17 +3,17 @@ import MainBanner from '@/components/home/MainBanner.vue'
 import RegularSlider from '@/components/common/RegularSlider.vue'
 import { $mainSectionMounted, $loadError } from '@/stores/data'
 import { onMounted, onUnmounted, onBeforeUnmount, ref } from 'vue'
-import type { RegularMedia, RegularSections, ui } from '@/types/index'
+import type { RegularSliderMedia, ui } from '@/types/index'
 
 const props = defineProps<{
   lang: keyof typeof ui
   sectionTitle: string
-  mainSection: RegularMedia[]
-  regularSections: RegularSections
+  mainSection: RegularSliderMedia
+  regularSections: RegularSliderMedia[]
 }>()
 
-const mainSectionData = ref<RegularMedia[] | null>(null)
-const regularSectionsData = ref<RegularSections | null>(null)
+const mainSectionData = ref<RegularSliderMedia | null>(null)
+const regularSectionsData = ref<RegularSliderMedia[] | null>(null)
 
 const MAX_WAIT_TIME = 5000
 let timeoutId: number
