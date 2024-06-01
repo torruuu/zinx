@@ -18,3 +18,12 @@ export const getPopularMovies = async (language: string): Promise<RegularMovie[]
   )
   return results
 }
+
+export const getPopularTv = async (language: string): Promise<RegularMovie[]> => {
+  const { results } = await getDataApi<{ page: string; results: RegularMovie[] }>(
+    'tv/popular',
+    [],
+    language,
+  )
+  return results
+}
