@@ -9,6 +9,5 @@ export const getSpecificMedia = async (
   const params = [
     { name: 'append_to_response', value: 'credits%2Csimilarcredits%2Csimilar%2Cvideos' },
   ]
-  console.log(`${mediaType}/${mediaId}`)
   return getDataApi(`${mediaType}/${mediaId}`, params, language)
 }
