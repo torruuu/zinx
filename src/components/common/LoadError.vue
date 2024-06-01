@@ -19,7 +19,10 @@ onMounted(() => {
   watch(
     store,
     () => {
-      if (store.value) return (loadError.value = true)
+      if (store.value) {
+        document.documentElement.style.overflowY = 'hidden'
+        return (loadError.value = true)
+      }
     },
     { immediate: true },
   )

@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed } from 'vue'
 import { useGenres } from '@/i18n/utils'
 import BannerBg from '@/components/common/MediaBg.vue'
-import { $bannerDescriptionMounted } from '@/stores/data'
 import type { RegularMovie, ui } from '@/types/index'
 
 const props = defineProps<{
@@ -25,8 +24,6 @@ const genreNames = computed(() => {
     )
     .filter(Boolean)
 })
-
-onMounted(() => $bannerDescriptionMounted.set(true))
 </script>
 
 <template>

@@ -5,7 +5,6 @@ import PrevArrow from '@/components/svg/PrevArrow.vue'
 import { useTranslations } from '@/i18n/utils'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { breakpointsBig, breakpointsSmall } from '@/data/sliderBreakpoints'
-import { $bannerSliderMounted } from '@/stores/data'
 import type { RegularMovie, ui } from '@/types/index'
 
 register()
@@ -21,7 +20,7 @@ const emit = defineEmits<{
 }>()
 
 const t = useTranslations(props.lang)
-const screenHeight = ref()
+const screenHeight = ref(window.innerHeight)
 const breakpoints = ref()
 
 const updateScreenHeight = () => (screenHeight.value = window.innerHeight)
@@ -41,9 +40,7 @@ const checkButtons = (swiper: CustomEvent) => {
 }
 
 onMounted(() => {
-  screenHeight.value = window.innerHeight
   window.addEventListener('resize', updateScreenHeight)
-  $bannerSliderMounted.set(true)
 })
 onUnmounted(() => window.removeEventListener('resize', updateScreenHeight))
 </script>

@@ -18,18 +18,11 @@ export const setHomeData = async (lang: keyof typeof ui) => {
 
 // Controlamos el mounted de los componentes del banner de la Home
 export const $mainBannerMounted = atom<boolean>(false)
-export const $bannerSliderMounted = atom<boolean>(false)
-export const $bannerDescriptionMounted = atom<boolean>(false)
 export const $bannerBgMounted = atom<boolean>(false)
 
 export const $homeMounted = computed<boolean, WritableAtom<boolean>[]>(
-  [$mainBannerMounted, $bannerSliderMounted, $bannerDescriptionMounted, $bannerBgMounted],
+  [$mainBannerMounted, $bannerBgMounted],
   () => {
-    return (
-      $mainBannerMounted.get() &&
-      $bannerSliderMounted.get() &&
-      $bannerDescriptionMounted.get() &&
-      $bannerBgMounted.get()
-    )
+    return $mainBannerMounted.get() && $bannerBgMounted.get()
   },
 )

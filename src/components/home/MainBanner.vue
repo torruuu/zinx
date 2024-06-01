@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import BannerSlider from '@/components/home/BannerSlider.vue'
 import BannerDescription from '@/components/home/BannerDescription.vue'
 import { $mainBannerMounted } from '@/stores/data'
@@ -12,9 +12,8 @@ defineProps<{
 
 const currentMedia = ref<RegularMovie | null>(null)
 
-onMounted(async () => {
-  $mainBannerMounted.set(true)
-})
+onMounted(async () => $mainBannerMounted.set(true))
+onUnmounted(async () => $mainBannerMounted.set(false))
 </script>
 
 <template>
