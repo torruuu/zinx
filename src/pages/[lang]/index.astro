@@ -1,11 +1,29 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-import Home from '@/components/Home.vue'
-import { getLangFromUrl } from '@/i18n/utils'
+import Home from '@/components/MainSection.vue'
+import { getLangFromUrl, useTranslations } from '@/i18n/utils'
+import { $homeBlock, setHomeData } from '@/stores/data'
+import type { RegularSections } from '@/types'
 
 const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+
+if (Object.keys($homeBlock.get()).length === 0 || $homeBlock.get().language !== lang)
+  await setHomeData(lang)
+const trendingData = $homeBlock.get().trending
+const popularMovies = $homeBlock.get().popularMovies
+
+const regularSections: RegularSections = [
+  { title: t('movies.popular'), media: popularMovies, type: 'movie' },
+]
 ---
 
 <Layout>
-  <Home lang={lang} client:load />
+  <Home
+    lang={lang}
+    sectionTitle="home"
+    mainSection={trendingData}
+    regularSections={regularSections}
+    client:load
+  />
 </Layout>

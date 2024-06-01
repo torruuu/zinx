@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useStore } from '@nanostores/vue'
-import { $homeBlock, $homeMounted, $loadError } from '@/stores/data'
+import { $homeMounted, $loadError } from '@/stores/data'
 import { SECTION_IDS } from '@/composables/sections'
 import { onMounted, ref, watch, type Ref } from 'vue'
 
@@ -11,17 +11,15 @@ const props = defineProps<{
 const homeLoaded: Ref<boolean> = ref(false)
 const isHome: Ref<boolean> = ref(props.sectionId === SECTION_IDS.HOME)
 const homeStore = useStore($homeMounted)
-const homeBlock = useStore($homeBlock)
 
 const loadError: Ref<boolean> = ref(false)
 const errorStore = useStore($loadError)
 
 onMounted(() => {
   watch(
-    [homeStore, errorStore, homeBlock],
+    [homeStore, errorStore],
     () => {
-      if (homeStore.value && Object.keys(homeBlock.value).length !== 0)
-        return (homeLoaded.value = true)
+      if (homeStore.value) return (homeLoaded.value = true)
       if (errorStore.value) return (loadError.value = true)
     },
     { immediate: true },

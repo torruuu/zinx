@@ -12,8 +12,8 @@ defineProps<{
 
 const currentMedia = ref<RegularMovie | null>(null)
 
-onMounted(async () => $mainBannerMounted.set(true))
-onUnmounted(async () => $mainBannerMounted.set(false))
+onMounted(() => $mainBannerMounted.set(true))
+onUnmounted(() => $mainBannerMounted.set(false))
 </script>
 
 <template>

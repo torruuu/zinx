@@ -1,8 +1,8 @@
-import { getDataLocal } from '@/services/getDataApiLocal'
+import { getDataApi } from '@/services/getDataApi'
 import type { RegularMovie } from '@/types/index'
 
 export const getTrendingMedia = async (language: string): Promise<RegularMovie[]> =>
-  getDataLocal('trending', [], language)
+  getDataApi('trending/all/day', [], language)
 
 export const getPopularMovies = async (language: string): Promise<RegularMovie[]> =>
-  getDataLocal('popular-movies', [], language)
+  getDataApi('movie/popular', [], language)
