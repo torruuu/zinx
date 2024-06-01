@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import NextArrow from '@/components/svg/NextArrow.vue'
 import PrevArrow from '@/components/svg/PrevArrow.vue'
-import { ref } from 'vue'
+import { getCurrentInstance, ref } from 'vue'
 import { register } from 'swiper/element/bundle'
 import { useTranslations } from '@/i18n/utils'
 import type { RegularMedia, ui } from '@/types/index'
@@ -15,6 +15,8 @@ const props = defineProps<{
   type?: 'movie' | 'tv'
 }>()
 
+const instance = getCurrentInstance()
+const uuid = ref(instance?.uid)
 const isBegin = ref(true)
 const isEnd = ref(false)
 
@@ -33,14 +35,17 @@ const checkButtons = (swiper: CustomEvent) => {
     <h2 class="regular-slider__title">{{ title }}</h2>
     <div class="regular-slider__slider">
       <div class="regular-slider__arrow-box regular-slider__arrow-box--prev">
-        <button class="regular-slider__prev-button" :class="{ 'hide-button': isBegin }">
+        <button
+          class="regular-slider__prev-button"
+          :class="{ 'hide-button': isBegin, [`p-button-${uuid}`]: true }"
+        >
           <PrevArrow />
         </button>
       </div>
       <swiper-container
         class="regular-slider__swiper"
-        navigation-next-el=".regular-slider__next-button"
-        navigation-prev-el=".regular-slider__prev-button"
+        :navigation-prev-el="`.p-button-${uuid}`"
+        :navigation-next-el="`.n-button-${uuid}`"
         @swiperbeforeinit="checkButtons"
         @swipertoedge="checkButtons"
         @swiperfromedge="checkButtons"
@@ -66,7 +71,10 @@ const checkButtons = (swiper: CustomEvent) => {
         </swiper-slide>
       </swiper-container>
       <div class="regular-slider__arrow-box">
-        <button class="regular-slider__next-button" :class="{ 'hide-button': isEnd }">
+        <button
+          class="regular-slider__next-button"
+          :class="{ 'hide-button': isEnd, [`n-button-${uuid}`]: true }"
+        >
           <NextArrow />
         </button>
       </div>
