@@ -1,4 +1,4 @@
-import type { RegularMovie } from '@/types/RegularMovie'
+import type { RegularMedia } from '@/types/RegularMedia'
 import type {
   BelongsToCollection,
   Credits,
@@ -38,7 +38,7 @@ export type DetailedMovie = {
   credits: Credits
   similar: {
     page: number
-    results: RegularMovie[]
+    results: RegularMedia[]
   }
   videos: { results: Video[] }
 }

@@ -1,8 +1,8 @@
-import type { RegularMovie, ui } from '@/types'
+import type { RegularMedia, ui } from '@/types'
 
 export type HomeBlock = {
-  trending: RegularMovie[]
-  popularMovies: RegularMovie[]
-  popularTv: RegularMovie[]
+  trending: RegularMedia[]
+  popularMovies: RegularMedia[]
+  popularTv: RegularMedia[]
   language: keyof typeof ui
 }

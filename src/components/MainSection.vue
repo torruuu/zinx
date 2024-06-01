@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import MainBanner from '@/components/home/MainBanner.vue'
 import RegularSlider from '@/components/common/RegularSlider.vue'
-import { $homeMounted, $loadError } from '@/stores/data'
+import { $mainSectionMounted, $loadError } from '@/stores/data'
 import { onMounted, onUnmounted, onBeforeUnmount, ref } from 'vue'
-import type { RegularMovie, RegularSections, ui } from '@/types/index'
+import type { RegularMedia, RegularSections, ui } from '@/types/index'
 
 const props = defineProps<{
   lang: keyof typeof ui
   sectionTitle: string
-  mainSection: RegularMovie[]
+  mainSection: RegularMedia[]
   regularSections: RegularSections
 }>()
 
-const mainSectionData = ref<RegularMovie[] | null>(null)
+const mainSectionData = ref<RegularMedia[] | null>(null)
 const regularSectionsData = ref<RegularSections | null>(null)
 
 const MAX_WAIT_TIME = 5000
@@ -27,7 +27,7 @@ onMounted(() => {
   regularSectionsData.value = props.regularSections
 
   timeoutId = window.setTimeout(() => {
-    if (!$homeMounted.get()) $loadError.set(true)
+    if (!$mainSectionMounted.get()) $loadError.set(true)
   }, MAX_WAIT_TIME)
 
   const homeScroll = sessionStorage.getItem(`${props.sectionTitle}Scroll`)
@@ -47,7 +47,7 @@ onUnmounted(() => clearTimeout(timeoutId))
 
 <template>
   <template v-if="mainSectionData && regularSectionsData">
-    <MainBanner :lang="lang" :trending-media="mainSectionData" />
+    <MainBanner :lang="lang" :main-media="mainSectionData" />
     <RegularSlider
       v-for="regularSection in regularSectionsData"
       :lang="lang"

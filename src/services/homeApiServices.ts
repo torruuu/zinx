@@ -1,8 +1,8 @@
 import { getDataApi } from '@/services/getDataApi'
-import type { RegularMovie } from '@/types/index'
+import type { RegularMedia } from '@/types/index'
 
-export const getTrendingMedia = async (language: string): Promise<RegularMovie[]> => {
-  const { results } = await getDataApi<{ page: string; results: RegularMovie[] }>(
+export const getTrendingMedia = async (language: string): Promise<RegularMedia[]> => {
+  const { results } = await getDataApi<{ page: string; results: RegularMedia[] }>(
     'trending/all/day',
     [],
     language,
@@ -10,8 +10,8 @@ export const getTrendingMedia = async (language: string): Promise<RegularMovie[]
   return results
 }
 
-export const getPopularMovies = async (language: string): Promise<RegularMovie[]> => {
-  const { results } = await getDataApi<{ page: string; results: RegularMovie[] }>(
+export const getPopularMovies = async (language: string): Promise<RegularMedia[]> => {
+  const { results } = await getDataApi<{ page: string; results: RegularMedia[] }>(
     'movie/popular',
     [],
     language,
@@ -19,8 +19,8 @@ export const getPopularMovies = async (language: string): Promise<RegularMovie[]
   return results
 }
 
-export const getPopularTv = async (language: string): Promise<RegularMovie[]> => {
-  const { results } = await getDataApi<{ page: string; results: RegularMovie[] }>(
+export const getPopularTv = async (language: string): Promise<RegularMedia[]> => {
+  const { results } = await getDataApi<{ page: string; results: RegularMedia[] }>(
     'tv/popular',
     [],
     language,

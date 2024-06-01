@@ -5,18 +5,18 @@ import PrevArrow from '@/components/svg/PrevArrow.vue'
 import { useTranslations } from '@/i18n/utils'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { breakpointsBig, breakpointsSmall } from '@/data/sliderBreakpoints'
-import type { RegularMovie, ui } from '@/types/index'
+import type { RegularMedia, ui } from '@/types/index'
 
 register()
 const imageApi = import.meta.env.PUBLIC_API_IMAGES
 
 const props = defineProps<{
   lang: keyof typeof ui
-  media: RegularMovie[]
+  media: RegularMedia[]
 }>()
 
 const emit = defineEmits<{
-  currentMedia: [movie: RegularMovie]
+  currentMedia: [movie: RegularMedia]
 }>()
 
 const t = useTranslations(props.lang)

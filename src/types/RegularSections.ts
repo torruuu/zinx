@@ -1,7 +1,7 @@
-import type { RegularMovie } from '@/types/RegularMovie'
+import type { RegularMedia } from '@/types/RegularMedia'
 
 export type RegularSections = {
   title: string
-  media: RegularMovie[]
+  media: RegularMedia[]
   type?: 'movie' | 'tv'
 }[]

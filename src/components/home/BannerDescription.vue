@@ -2,11 +2,11 @@
 import { computed } from 'vue'
 import { useGenres } from '@/i18n/utils'
 import BannerBg from '@/components/common/MediaBg.vue'
-import type { RegularMovie, ui } from '@/types/index'
+import type { RegularMedia, ui } from '@/types/index'
 
 const props = defineProps<{
   lang: keyof typeof ui
-  currentMedia: RegularMovie
+  currentMedia: RegularMedia
 }>()
 
 const g = useGenres(props.lang)

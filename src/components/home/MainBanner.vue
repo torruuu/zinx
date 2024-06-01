@@ -3,14 +3,14 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import BannerSlider from '@/components/home/BannerSlider.vue'
 import BannerDescription from '@/components/home/BannerDescription.vue'
 import { $mainBannerMounted } from '@/stores/data'
-import type { RegularMovie, ui } from '@/types/index'
+import type { RegularMedia, ui } from '@/types/index'
 
 defineProps<{
   lang: keyof typeof ui
-  trendingMedia: RegularMovie[]
+  mainMedia: RegularMedia[]
 }>()
 
-const currentMedia = ref<RegularMovie | null>(null)
+const currentMedia = ref<RegularMedia | null>(null)
 
 onMounted(() => $mainBannerMounted.set(true))
 onUnmounted(() => $mainBannerMounted.set(false))
@@ -20,9 +20,9 @@ onUnmounted(() => $mainBannerMounted.set(false))
   <article class="main-banner">
     <BannerDescription v-if="currentMedia" :lang="lang" :currentMedia="currentMedia" />
     <BannerSlider
-      @current-media="(media: RegularMovie) => (currentMedia = media)"
+      @current-media="(media: RegularMedia) => (currentMedia = media)"
       :lang="lang"
-      :media="trendingMedia"
+      :media="mainMedia"
     />
   </article>
 </template>

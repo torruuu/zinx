@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useStore } from '@nanostores/vue'
-import { $homeMounted, $loadError } from '@/stores/data'
+import { $mainSectionMounted, $loadError } from '@/stores/data'
 import { SECTION_IDS } from '@/composables/sections'
 import { onMounted, ref, watch, type Ref } from 'vue'
 
@@ -10,7 +10,7 @@ const props = defineProps<{
 
 const homeLoaded: Ref<boolean> = ref(false)
 const isHome: Ref<boolean> = ref(props.sectionId === SECTION_IDS.HOME)
-const homeStore = useStore($homeMounted)
+const homeStore = useStore($mainSectionMounted)
 
 const loadError: Ref<boolean> = ref(false)
 const errorStore = useStore($loadError)
@@ -35,7 +35,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .loader-container {
-  position: absolute;
+  position: fixed;
   z-index: 25;
   top: 0;
   left: 0;

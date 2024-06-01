@@ -4,14 +4,14 @@ import PrevArrow from '@/components/svg/PrevArrow.vue'
 import { ref } from 'vue'
 import { register } from 'swiper/element/bundle'
 import { useTranslations } from '@/i18n/utils'
-import type { RegularMovie, ui } from '@/types/index'
+import type { RegularMedia, ui } from '@/types/index'
 
 register()
 
 const props = defineProps<{
   lang: keyof typeof ui
   title: string
-  media: RegularMovie[]
+  media: RegularMedia[]
   type?: 'movie' | 'tv'
 }>()
 

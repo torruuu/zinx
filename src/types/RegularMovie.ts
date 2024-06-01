@@ -1,4 +1,4 @@
-export type RegularMovie = {
+export type RegularMedia = {
   adult: boolean
   backdrop_path: string | null
   genre_ids: number[]

@@ -22,11 +22,11 @@ export const setHomeData = async (lang: keyof typeof ui) => {
   $homeBlock.setKey('language', lang)
 }
 
-// Controlamos el mounted de los componentes del banner de la Home
+// Controlamos el mounted de los componentes del banner del Main Section
 export const $mainBannerMounted = atom<boolean>(false)
 export const $bannerBgMounted = atom<boolean>(false)
 
-export const $homeMounted = computed<boolean, WritableAtom<boolean>[]>(
+export const $mainSectionMounted = computed<boolean, WritableAtom<boolean>[]>(
   [$mainBannerMounted, $bannerBgMounted],
   () => {
     return $mainBannerMounted.get() && $bannerBgMounted.get()
