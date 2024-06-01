@@ -19,7 +19,7 @@ const MAX_WAIT_TIME = 5000
 let timeoutId: number
 const scrollY = ref()
 const handleScroll = () => (scrollY.value = window.scrollY)
-const savehomeScrollition = () =>
+const saveScrollPosition = () =>
   sessionStorage.setItem(`${props.sectionTitle}Scroll`, scrollY.value)
 
 onMounted(() => {
@@ -36,11 +36,11 @@ onMounted(() => {
     sessionStorage.removeItem(`${props.sectionTitle}Scroll`)
   }
   window.addEventListener('scroll', handleScroll)
-  window.addEventListener('beforeunload', savehomeScrollition)
+  window.addEventListener('beforeunload', saveScrollPosition)
 })
 onBeforeUnmount(() => {
-  savehomeScrollition()
-  window.removeEventListener('beforeunload', savehomeScrollition)
+  saveScrollPosition()
+  window.removeEventListener('beforeunload', saveScrollPosition)
 })
 onUnmounted(() => clearTimeout(timeoutId))
 </script>

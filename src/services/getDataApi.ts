@@ -10,8 +10,8 @@ export const getDataApi = async <T>(
   if (!language) throw new Error('Language is not provided')
   return httpClient
     .get(service, params, language)
-    .then((data) => {
-      return data.results as T
+    .then((data: T) => {
+      return data
     })
     .catch(() => {
       $loadError.set(true)

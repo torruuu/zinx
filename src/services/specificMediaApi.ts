@@ -1,5 +1,4 @@
-import { httpClient } from '@/services/useFetch'
-import { $loadError } from '@/stores/data'
+import { getDataApi } from '@/services/getDataApi'
 import type { DetailedMovie, DetailedTv } from '@/types/index'
 
 export const getSpecificMedia = async (
@@ -7,21 +6,9 @@ export const getSpecificMedia = async (
   mediaId: string,
   mediaType: 'movie' | 'tv',
 ): Promise<DetailedMovie & DetailedTv> => {
-  if (!language) throw new Error('Language is not provided')
-  if (!mediaId) throw new Error('Media Id is not provided')
-  if (!mediaType) throw new Error('Media type is not provided')
-
   const params = [
     { name: 'append_to_response', value: 'credits%2Csimilarcredits%2Csimilar%2Cvideos' },
   ]
-
-  return httpClient
-    .get(`${mediaType}/${mediaId}`, params, language)
-    .then((data) => {
-      return data
-    })
-    .catch(() => {
-      $loadError.set(true)
-      return null
-    })
+  console.log(`${mediaType}/${mediaId}`)
+  return getDataApi(`${mediaType}/${mediaId}`, params, language)
 }
