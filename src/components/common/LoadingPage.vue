@@ -10,6 +10,8 @@ const props = defineProps<{
 
 const homeLoaded: Ref<boolean> = ref(false)
 const isHome: Ref<boolean> = ref(props.sectionId === SECTION_IDS.HOME)
+const isMovies: Ref<boolean> = ref(props.sectionId === SECTION_IDS.MOVIES)
+const isSeries: Ref<boolean> = ref(props.sectionId === SECTION_IDS.SERIES)
 const homeStore = useStore($mainSectionMounted)
 
 const loadError: Ref<boolean> = ref(false)
@@ -28,7 +30,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="!homeLoaded && isHome && !loadError" class="loader-container">
+  <div
+    v-if="!homeLoaded && (isHome || isMovies || isSeries) && !loadError"
+    class="loader-container"
+  >
     <span class="loader-container__loader"></span>
   </div>
 </template>
