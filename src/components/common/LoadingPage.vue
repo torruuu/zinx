@@ -38,7 +38,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .loader-container {
   position: absolute;
-  z-index: 20;
+  z-index: 25;
   top: 0;
   left: 0;
   background-color: map-get($map: $colors, $key: c-black);

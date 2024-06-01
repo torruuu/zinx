@@ -7,6 +7,7 @@ import {
   getYear,
   concatStrings,
 } from '@/composables/extractMediaData'
+import { getYoutubeUrl } from '@/composables/getYoutubeUrl'
 import { getLangFromUrl, useTranslations } from '@/i18n/utils'
 import type { DetailedMovie, DetailedTv } from '@/types/index'
 
@@ -25,6 +26,7 @@ const mediaDuration = mediaData.runtime
 const mediaAbout = concatStrings(
   ...[mediaDuration, getYear(mediaData.release_date || mediaData.first_air_date || '')],
 )
+const ytUrl = getYoutubeUrl(mediaData.videos.results, lang)
 ---
 
 <section class="media-header">
@@ -50,11 +52,18 @@ const mediaAbout = concatStrings(
           <span>{mediaAbout}</span>
         </div>
       </div>
-      <div class="media-header__play">
-        <PlayButton>
-          {t('button.trailer')}
-        </PlayButton>
-      </div>
+      {
+        ytUrl && (
+          <div class="media-header__play">
+            <PlayButton
+              title={t('button.trailer')}
+              url={ytUrl}
+              ytTitle={t('youtube.player')}
+              client:load
+            />
+          </div>
+        )
+      }
     </div>
     <div transition:name={`poster-${mediaData.id}`} class="media-header__poster">
       <img

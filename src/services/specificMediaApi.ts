@@ -11,7 +11,9 @@ export const getSpecificMedia = async (
   if (!mediaId) throw new Error('Media Id is not provided')
   if (!mediaType) throw new Error('Media type is not provided')
 
-  const params = [{ name: 'append_to_response', value: 'credits%2Csimilar' }]
+  const params = [
+    { name: 'append_to_response', value: 'credits%2Csimilarcredits%2Csimilar%2Cvideos' },
+  ]
 
   return httpClient
     .get(`${mediaType}/${mediaId}`, params, language)

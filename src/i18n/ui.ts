@@ -43,6 +43,7 @@ export const ui = {
     'footer.updates.description':
       'Siempre estamos trabajando para mejorar y añadir nuevas funcionalidades para ofrecerte la mejor experiencia posible.',
     'footer.copyright': 'Copyright 2024',
+    'youtube.player': 'Reproductor de video de YouTube',
   },
   en: {
     'nav.home': 'Home',
@@ -75,6 +76,7 @@ export const ui = {
     'footer.updates.title': 'Updates',
     'footer.updates.description':
       'We are always working to improve and add new features to provide you with the best possible experience.',
+    'youtube.player': 'YouTube video player',
   },
 } as const
 

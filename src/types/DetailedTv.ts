@@ -8,6 +8,7 @@ import type {
   ProductionCompany,
   Season,
   SpokenLanguage,
+  Video,
 } from '@/types/Subtypes'
 
 export type DetailedTv = {
@@ -48,4 +49,5 @@ export type DetailedTv = {
     page: number
     results: RegularMovie[]
   }
+  videos: { results: Video[] }
 }
