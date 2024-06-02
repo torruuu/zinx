@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import SearchSvg from '@/components/svg/SearchSvg.vue'
+import { SECTION_IDS } from '@/composables/sections'
+import { ref } from 'vue'
 import { useTranslations } from '@/i18n/utils'
 import type { ui } from '@/types'
 
@@ -8,16 +10,25 @@ const props = defineProps<{
 }>()
 
 const t = useTranslations(props.lang)
+const query = ref()
+
+const handleSearch = () => {
+  if (!query.value) return
+  const href = window.location.origin
+  window.location.href = `${href}/${props.lang}/${SECTION_IDS.SEARCH}?q=${query.value}`
+}
 </script>
 
 <template>
   <div class="nav-searcher">
     <div class="nav-searcher__searcher">
-      <button class="nav-searcher__svg"><SearchSvg /></button>
+      <button class="nav-searcher__svg" @click="handleSearch"><SearchSvg /></button>
       <input
         class="nav-searcher__input"
         type="text"
+        v-model="query"
         :placeholder="t('nav.searcher.placeholder')"
+        @keyup.enter="handleSearch"
       />
     </div>
   </div>

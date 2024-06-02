@@ -1,0 +1,17 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import { searchMedia } from '@/services/searchApiService'
+import { getLangFromUrl } from '@/i18n/utils'
+import { getQuery } from '@/composables/getQueryUrl'
+
+const lang = getLangFromUrl(Astro.url)
+const query = getQuery(Astro.url, 'q')
+
+if (!query) Astro.redirect(`/${lang}`)
+
+const results = await searchMedia(query, lang)
+---
+
+<Layout>
+  {results && <h2>HOLA</h2>}
+</Layout>

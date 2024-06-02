@@ -3,7 +3,7 @@ import { $loadError } from '@/stores/data'
 
 export const getDataApi = async <T>(
   service: string,
-  params: { name: string; value: string }[] = [],
+  params: { [key: string]: string }[] = [],
   language: string,
 ): Promise<T> => {
   if (!service) throw new Error('Service is not provided')

@@ -37,7 +37,7 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
       }
     </div>
     <div class="nav-container__searcher">
-      <Searcher lang={lang} />
+      <Searcher lang={lang} client:load />
     </div>
     <div class="nav-container__picker">
       <LanguagePicker lang={lang} currentSection={currentSection} client:load />

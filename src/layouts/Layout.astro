@@ -28,7 +28,9 @@ const sectionId = getSectionByRoute(Astro.url, lang)?.id
     <link rel="preconnect" href="https://image.tmdb.org" />
     <meta name="generator" content={Astro.generator} />
     <ViewTransitions />
-    <title>{`${title || titleProp} - Zinx`}</title>
+    <title>
+      {`${title || titleProp ? (title || titleProp) + ' - Zinx' : 'Zinx'}`}
+    </title>
   </head>
   <body>
     <header>

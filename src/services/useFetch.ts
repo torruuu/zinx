@@ -9,11 +9,7 @@ class HttpClient {
     return import.meta.env.API_TOKEN
   }
 
-  async get(
-    resource: string,
-    params: { name: string; value: string }[] = [],
-    lang: string,
-  ) {
+  async get(resource: string, params: { [key: string]: string }[] = [], lang: string) {
     try {
       if (!resource) throw new Error('Resource is not provided')
       if (!lang) throw new Error('Lang is not provided')

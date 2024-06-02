@@ -5,7 +5,7 @@ export const SECTION_IDS = {
   HOME: 'home',
   MOVIES: 'movies',
   SERIES: 'series',
-  EXPLORE: 'explore',
+  SEARCH: 'search',
 }
 
 export const getSections = (lang: keyof typeof ui) => {
