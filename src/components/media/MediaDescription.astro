@@ -29,7 +29,7 @@ const filteredCast = getFilteredCredits(mediaCredits, lang)
     {
       mediaCreatedBy?.length > 0 && (
         <article class="media-description__cast-article">
-          <h3 class="media-description__subtitle">{t('media-detail.creator')}</h3>
+          <h3 class="media-description__subtitle">{t('media-detail.creator')}:</h3>
           <p class="media-description__sub-description">
             {mediaCreatedBy.map((member) => member.name).join(', ')}
           </p>

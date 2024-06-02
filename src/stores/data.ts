@@ -9,8 +9,9 @@ import {
   getTopMovies,
   getTheatersMovies,
 } from '@/services/moviesApiServices'
+import { getTrendingTv, getTopTv, getComedyTv } from '@/services/seriesApiServices'
 import type { WritableAtom } from 'nanostores'
-import type { HomeBlock, MoviesBlock, ui } from '@/types'
+import type { HomeBlock, MoviesBlock, SeriesBlock, ui } from '@/types'
 
 export const $loadError = atom<boolean>(false)
 
@@ -29,6 +30,19 @@ export const setHomeData = async (lang: keyof typeof ui) => {
 
 // Cargar datos de Movies
 export const $moviesBlock = map<MoviesBlock>()
+
+export const setSeriesData = async (lang: keyof typeof ui) => {
+  const trendingTv = await getTrendingTv(lang)
+  const topTv = await getTopTv(lang)
+  const comedyTv = await getComedyTv(lang)
+  $seriesBlock.setKey('trending', trendingTv)
+  $seriesBlock.setKey('top', topTv)
+  $seriesBlock.setKey('comedy', comedyTv)
+  $seriesBlock.setKey('language', lang)
+}
+
+// Cargar datos de Series
+export const $seriesBlock = map<SeriesBlock>()
 
 export const setMoviesData = async (lang: keyof typeof ui) => {
   const trendingMovies = await getTrendingMovies(lang)
