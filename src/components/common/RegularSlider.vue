@@ -84,12 +84,12 @@ const checkButtons = (swiper: CustomEvent) => {
 
 <style lang="scss" scoped>
 .regular-slider {
-  padding: 3rem 0;
+  padding: 2rem 0;
   width: 100%;
   @include responsive() {
     padding: map-get($map: $sizes, $key: s-general-padding-mobile);
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
   }
   &__title {
     padding: map-get($map: $sizes, $key: s-general-padding);
@@ -110,14 +110,14 @@ const checkButtons = (swiper: CustomEvent) => {
   &__slide {
     position: relative;
     aspect-ratio: 500 / 281;
-    width: 25rem;
+    width: 22.5rem;
     border: 0.1rem solid map-get($map: $colors, $key: c-black);
     border-radius: map-get($map: $sizes, $key: s-slide-radius);
     @include responsive(42.5rem) {
-      width: 20rem;
+      width: 17.5rem;
     }
     @include responsive(22.5rem) {
-      width: 15rem;
+      width: 12.5rem;
     }
     &:hover {
       border: 0.1rem solid map-get($map: $colors, $key: c-dark-gray);
