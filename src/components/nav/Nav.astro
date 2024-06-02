@@ -9,7 +9,7 @@ import { getSections } from '@/composables/sections'
 const lang = getLangFromUrl(Astro.url)
 const sections = getSections(lang)
 
-const currentSection = Astro.url.pathname
+const currentSection = Astro.url
 const isCurrentSection = (section: string) => section === Astro.url.pathname
 ---
 

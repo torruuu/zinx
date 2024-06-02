@@ -8,7 +8,7 @@ import { languages, ui } from '@/i18n/ui'
 
 const props = defineProps<{
   lang: string
-  currentSection: string
+  currentSection: URL
 }>()
 
 const showLanguages = ref(false)

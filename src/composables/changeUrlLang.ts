@@ -1,6 +1,7 @@
-export const changeUrlLang = (url: string, newLang: string): string => {
-  const segments = url.split('/').filter(Boolean)
+export const changeUrlLang = (url: URL, newLang: string): string => {
+  const { pathname, search } = url
+  const segments = pathname.split('/').filter(Boolean)
   segments[0] = newLang
-  url = `/${segments.join('/')}`
-  return url.toString()
+  const result = `/${segments.join('/')}`
+  return `${result.toString()}${search}`
 }

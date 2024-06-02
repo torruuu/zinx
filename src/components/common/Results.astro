@@ -1,0 +1,28 @@
+---
+import MediaCard from '@/components/common/MediaCard.vue'
+import type { RegularMedia, ui } from '@/types'
+
+interface Props {
+  lang: keyof typeof ui
+  results: RegularMedia[]
+}
+
+const { lang, results } = Astro.props
+---
+
+<article class="results">
+  {results && results.map((media) => <MediaCard lang={lang} media={media} />)}
+</article>
+
+<style lang="scss">
+  .results {
+    padding: map-get($map: $sizes, $key: s-general-padding);
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: 1rem;
+    @include responsive() {
+      padding: map-get($map: $sizes, $key: s-general-padding-mobile);
+    }
+  }
+</style>

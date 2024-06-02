@@ -1,17 +1,38 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import Results from '@/components/common/Results.astro'
 import { searchMedia } from '@/services/searchApiService'
-import { getLangFromUrl } from '@/i18n/utils'
+import { getLangFromUrl, useTranslations } from '@/i18n/utils'
 import { getQuery } from '@/composables/getQueryUrl'
 
 const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 const query = getQuery(Astro.url, 'q')
 
-if (!query) Astro.redirect(`/${lang}`)
-
+if (!query) return Astro.redirect(`/${lang}`)
 const results = await searchMedia(query, lang)
 ---
 
 <Layout>
-  {results && <h2>HOLA</h2>}
+  <section class="results">
+    <h2 class="results__title">{t('title.results')}: {query}</h2>
+    <Results lang={lang} results={results} />
+  </section>
 </Layout>
+
+<style lang="scss">
+  .results {
+    padding: 6rem 0 4rem;
+    @include responsive(42.5rem) {
+      padding: 5rem 0 2rem;
+    }
+    &__title {
+      padding: map-get($map: $sizes, $key: s-general-padding);
+      padding-bottom: 2rem;
+      @include responsive() {
+        padding: map-get($map: $sizes, $key: s-general-padding-mobile);
+        padding-bottom: 1rem;
+      }
+    }
+  }
+</style>
