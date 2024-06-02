@@ -7,13 +7,21 @@ const DEPARTMENTS = {
   WRITING: 'Writing',
 }
 
+const removeDuplicates = (array: CastMember[]) => {
+  const nombresUnicos = new Set()
+  return array.filter(
+    (object) => !nombresUnicos.has(object.name) && nombresUnicos.add(object.name),
+  )
+}
+
 const findMembers = (
   members: CastMember[],
   department: string,
   limit: number,
   title: string,
 ) => {
-  const filteredMembers = members
+  const filteredDuplicates = removeDuplicates(members)
+  const filteredMembers = filteredDuplicates
     .filter((member) => member.known_for_department === department)
     .slice(0, limit)
     .map((member) => member.name)
