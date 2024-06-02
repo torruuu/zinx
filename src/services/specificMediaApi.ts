@@ -7,7 +7,10 @@ export const getSpecificMedia = async (
   mediaType: 'movie' | 'tv',
 ): Promise<DetailedMovie & DetailedTv> => {
   const params = [
-    { name: 'append_to_response', value: 'credits%2Csimilarcredits%2Csimilar%2Cvideos' },
+    {
+      name: 'append_to_response',
+      value: 'credits%2Csimilarcredits%2Crecommendations%2Cvideos',
+    },
   ]
   return getDataApi(`${mediaType}/${mediaId}`, params, language)
 }

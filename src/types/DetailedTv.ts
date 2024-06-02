@@ -45,7 +45,7 @@ export type DetailedTv = {
   vote_average: number
   vote_count: number
   credits: Credits
-  similar: {
+  recommendations: {
     page: number
     results: RegularMedia[]
   }

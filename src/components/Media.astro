@@ -26,11 +26,11 @@ const { mediaData, mediaType } = Astro.props
     mediaCredits={mediaData.credits}
   />
   {
-    mediaData.similar.results.length > 0 && (
+    mediaData.recommendations.results.length > 0 && (
       <RegularSlider
         lang={lang}
         title={t('media-detail.similar')}
-        media={mediaData.similar.results}
+        media={mediaData.recommendations.results}
         type={mediaType}
         client:only="vue"
       />

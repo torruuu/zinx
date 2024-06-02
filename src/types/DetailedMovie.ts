@@ -36,7 +36,7 @@ export type DetailedMovie = {
   vote_average: number
   vote_count: number
   credits: Credits
-  similar: {
+  recommendations: {
     page: number
     results: RegularMedia[]
   }
