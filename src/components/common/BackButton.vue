@@ -20,7 +20,7 @@ const goBack = () =>
   height: map-get($map: $sizes, $key: s-nav-mobile);
   width: map-get($map: $sizes, $key: s-nav-logo);
   display: none;
-  @include responsive(40rem) {
+  @include responsive(42.5rem) {
     @include flex();
   }
 }

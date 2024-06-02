@@ -61,11 +61,11 @@ const checkSameLang = async (e: Event, key: keyof typeof ui) => {
 .picker-container {
   height: 100%;
   @include flex();
-  @include responsive(40rem) {
+  @include responsive(42.5rem) {
     @include flex(
       $direction: column,
       $justify-content: flex-start,
-      $align-items: flex-end
+      $align-items: flex-start
     );
     gap: 1rem;
   }
@@ -87,7 +87,7 @@ const checkSameLang = async (e: Event, key: keyof typeof ui) => {
       @include flex();
       width: 1rem;
     }
-    @include responsive(40rem) {
+    @include responsive(42.5rem) {
       height: max-content;
     }
   }
@@ -106,7 +106,7 @@ const checkSameLang = async (e: Event, key: keyof typeof ui) => {
         color: map-get($map: $colors, $key: c-gray);
       }
     }
-    @include responsive(40rem) {
+    @include responsive(42.5rem) {
       position: static;
     }
   }

@@ -61,7 +61,7 @@ onMounted(() => {
   &__icon {
     width: 1rem;
   }
-  @include responsive(40rem) {
+  @include responsive(42.5rem) {
     background-color: map-get($map: $colors, $key: c-white);
     border: 0.1rem solid map-get($map: $colors, $key: c-white);
   }

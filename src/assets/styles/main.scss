@@ -110,6 +110,10 @@ label {
   appearance: none;
 }
 
+input:focus {
+  outline: none;
+}
+
 /* Evitamos problemas con los SVG */
 
 svg {

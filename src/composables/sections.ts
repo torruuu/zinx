@@ -14,7 +14,6 @@ export const getSections = (lang: keyof typeof ui) => {
     { title: t('nav.home'), route: `/${lang}`, id: SECTION_IDS.HOME },
     { title: t('nav.movies'), route: `/${lang}/movies`, id: SECTION_IDS.MOVIES },
     { title: t('nav.series'), route: `/${lang}/series`, id: SECTION_IDS.SERIES },
-    { title: t('nav.explore'), route: `/${lang}/explore`, id: SECTION_IDS.EXPLORE },
   ]
 }
 

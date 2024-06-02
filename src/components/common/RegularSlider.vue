@@ -113,7 +113,7 @@ const checkButtons = (swiper: CustomEvent) => {
     width: 25rem;
     border: 0.1rem solid map-get($map: $colors, $key: c-black);
     border-radius: map-get($map: $sizes, $key: s-slide-radius);
-    @include responsive(40rem) {
+    @include responsive(42.5rem) {
       width: 20rem;
     }
     @include responsive(22.5rem) {

@@ -10,7 +10,7 @@ export const ui = {
     'nav.home': 'Inicio',
     'nav.movies': 'Películas',
     'nav.series': 'Series',
-    'nav.explore': 'Explora',
+    'nav.searcher.placeholder': '¿Qué estás buscando?',
     'title.trend': 'En tendencia',
     'title.comedy': 'Comedia',
     'movies.popular': 'Películas populares',
@@ -55,7 +55,7 @@ export const ui = {
   en: {
     'nav.home': 'Home',
     'nav.movies': 'Movies',
-    'nav.explore': 'Explore',
+    'nav.searcher.placeholder': 'Search here',
     'title.trend': 'Trending',
     'title.comedy': 'Comedy',
     'movies.popular': 'Popular Movies',

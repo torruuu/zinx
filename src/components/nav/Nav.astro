@@ -1,6 +1,7 @@
 ---
 import LogoNav from '@/components/nav/LogoNav.astro'
 import LanguagePicker from '@/components/nav/LanguagePicker.vue'
+import Searcher from '@/components/nav/Searcher.vue'
 import NavBg from '@/components/nav/NavBg.vue'
 import { getLangFromUrl } from '@/i18n/utils'
 import { getSections } from '@/composables/sections'
@@ -35,6 +36,9 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
         ))
       }
     </div>
+    <div class="nav-container__searcher">
+      <Searcher lang={lang} />
+    </div>
     <div class="nav-container__picker">
       <LanguagePicker lang={lang} currentSection={currentSection} client:load />
     </div>
@@ -63,7 +67,7 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
     @include responsive() {
       padding: map-get($map: $sizes, $key: s-general-padding-mobile);
     }
-    @include responsive(40rem) {
+    @include responsive(42.5rem) {
       background-color: map-get($map: $colors, $key: c-black);
       height: map-get($map: $sizes, $key: s-nav-mobile);
       justify-content: space-between;
@@ -73,16 +77,17 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
       width: 100%;
       height: 100%;
       @include flex();
-      @include responsive(40rem) {
+      gap: 2.5rem;
+      @include responsive(42.5rem) {
         translate: 100%;
         padding: map-get($map: $sizes, $key: s-general-padding-mobile);
         padding-top: 5rem;
         padding-bottom: 5rem;
-        width: 12.5rem;
+        width: max-content;
         height: 100vh;
         background-color: map-get($map: $colors, $key: c-black);
-        @include flex($direction: column, $align-items: flex-end);
-        gap: 2.5rem;
+        @include flex($direction: column, $align-items: flex-start);
+        gap: 1.5rem;
         transition: translate map-get($map: $times, $key: t-hamburger);
         position: absolute;
         top: 0;
@@ -92,8 +97,8 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
     &__links {
       @include flex();
       gap: 1.2rem;
-      @include responsive(40rem) {
-        @include flex($direction: column, $align-items: flex-end);
+      @include responsive(42.5rem) {
+        @include flex($direction: column, $align-items: flex-start);
       }
     }
     &__link {
@@ -108,8 +113,16 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
       font-family: map-get($map: $fonts, $key: f-font-semiBold);
       cursor: default;
     }
-    &__picker {
+    &__searcher {
       flex-grow: 1;
+      height: 100%;
+      @include flex($justify-content: flex-end);
+      @include responsive(42.5rem) {
+        height: auto;
+        flex-grow: 0;
+      }
+    }
+    &__picker {
       height: 100%;
       @include flex($justify-content: flex-end);
     }
@@ -119,7 +132,7 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
       &:has(input:checked) ~ .nav-container__clickables {
         translate: 0;
       }
-      @include responsive(40rem) {
+      @include responsive(42.5rem) {
         display: block;
       }
     }
@@ -169,7 +182,7 @@ const isCurrentSection = (section: string) => section === Astro.url.pathname
   }
 
   .nav-bg {
-    @include responsive() {
+    @include responsive(42.5rem) {
       display: none;
     }
   }
