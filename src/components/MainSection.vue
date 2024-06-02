@@ -30,11 +30,9 @@ onMounted(() => {
     if (!$mainSectionMounted.get()) $loadError.set(true)
   }, MAX_WAIT_TIME)
 
-  const homeScroll = sessionStorage.getItem(`${props.sectionTitle}Scroll`)
-  if (homeScroll) {
-    setTimeout(() => window.scrollTo(0, parseInt(homeScroll)), 0)
-    sessionStorage.removeItem(`${props.sectionTitle}Scroll`)
-  }
+  const sectionScroll = sessionStorage.getItem(`${props.sectionTitle}Scroll`)
+  if (sectionScroll) setTimeout(() => window.scrollTo(0, parseInt(sectionScroll)), 0)
+  sessionStorage.clear()
   window.addEventListener('scroll', handleScroll)
   window.addEventListener('beforeunload', saveScrollPosition)
 })
