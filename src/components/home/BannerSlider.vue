@@ -21,6 +21,7 @@ const emit = defineEmits<{
   currentMedia: [movie: RegularMedia]
 }>()
 
+const filteredMedia = props.media.filter((media) => media.backdrop_path)
 const t = useTranslations(props.lang)
 const screenHeight = ref(window.innerHeight)
 const breakpoints = ref()
@@ -70,7 +71,7 @@ onUnmounted(() => window.removeEventListener('resize', updateScreenHeight))
           nextSlideMessage: t('slider.next'),
         }"
       >
-        <swiper-slide v-for="movie in media" class="swiper-container__slide">
+        <swiper-slide v-for="movie in filteredMedia" class="swiper-container__slide">
           <a
             class="swiper-container__link"
             :href="`/${lang}/media=${movie.id}-${type || movie.media_type}`"

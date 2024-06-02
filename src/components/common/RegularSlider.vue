@@ -16,6 +16,7 @@ const props = defineProps<{
   type?: 'movie' | 'tv'
 }>()
 
+const filteredMedia = props.media.filter((media) => media.backdrop_path)
 const instance = getCurrentInstance()
 const uuid = ref(instance?.uid)
 const isBegin = ref(true)
@@ -56,7 +57,7 @@ const checkButtons = (swiper: CustomEvent) => {
           nextSlideMessage: t('slider.next'),
         }"
       >
-        <swiper-slide v-for="movie in media" class="regular-slider__slide">
+        <swiper-slide v-for="movie in filteredMedia" class="regular-slider__slide">
           <MediaCard :lang="lang" :media="movie" :type="type || movie.media_type" />
         </swiper-slide>
       </swiper-container>
