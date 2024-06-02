@@ -3,7 +3,7 @@ export type RegularMedia = {
   backdrop_path: string | null
   genre_ids: number[]
   id: number
-  media_type: string
+  media_type: 'movie' | 'tv'
   name: string
   original_language: string
   original_title: string

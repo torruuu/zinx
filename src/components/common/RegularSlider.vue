@@ -5,6 +5,7 @@ import { getCurrentInstance, ref } from 'vue'
 import { register } from 'swiper/element/bundle'
 import { useTranslations } from '@/i18n/utils'
 import type { RegularMedia, ui } from '@/types/index'
+import MediaCard from './MediaCard.vue'
 
 register()
 
@@ -20,7 +21,6 @@ const uuid = ref(instance?.uid)
 const isBegin = ref(true)
 const isEnd = ref(false)
 
-const imageApi = import.meta.env.PUBLIC_API_IMAGES
 const t = useTranslations(props.lang)
 
 const checkButtons = (swiper: CustomEvent) => {
@@ -57,17 +57,7 @@ const checkButtons = (swiper: CustomEvent) => {
         }"
       >
         <swiper-slide v-for="movie in media" class="regular-slider__slide">
-          <a
-            class="regular-slider__link"
-            :href="`/${lang}/media=${movie.id}-${type || movie.media_type}`"
-          >
-            <p class="regular-slider__slide-title">{{ movie.title || movie.name }}</p>
-            <img
-              class="regular-slider__image"
-              :src="`${imageApi}w500${movie.backdrop_path}`"
-              :alt="movie.title || movie.name"
-            />
-          </a>
+          <MediaCard :lang="lang" :media="movie" :type="type || movie.media_type" />
         </swiper-slide>
       </swiper-container>
       <div class="regular-slider__arrow-box">
@@ -108,47 +98,13 @@ const checkButtons = (swiper: CustomEvent) => {
     min-width: 0;
   }
   &__slide {
-    position: relative;
-    aspect-ratio: 500 / 281;
     width: 22.5rem;
-    border: 0.1rem solid map-get($map: $colors, $key: c-black);
-    border-radius: map-get($map: $sizes, $key: s-slide-radius);
     @include responsive(42.5rem) {
       width: 17.5rem;
     }
     @include responsive(22.5rem) {
       width: 12.5rem;
     }
-    &:hover {
-      border: 0.1rem solid map-get($map: $colors, $key: c-dark-gray);
-    }
-    &::after {
-      content: '';
-      border-radius: map-get($map: $sizes, $key: s-slide-radius);
-      pointer-events: none;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 50%;
-      background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-      z-index: 1;
-    }
-  }
-  &__link {
-    @include flex();
-  }
-  &__slide-title {
-    pointer-events: none;
-    position: absolute;
-    bottom: 10%;
-    left: 5%;
-    z-index: 2;
-  }
-  &__image {
-    width: 100%;
-    border-radius: map-get($map: $sizes, $key: s-slide-radius);
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
   }
   &__arrow-box {
     min-width: map-get($map: $sizes, $key: s-width-arrows);
