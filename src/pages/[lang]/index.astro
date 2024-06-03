@@ -1,24 +1,15 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import Home from '@/components/MainSection.vue'
-import { getLangFromUrl, useTranslations } from '@/i18n/utils'
+import { getLangFromUrl } from '@/i18n/utils'
 import { $homeBlock, setHomeData } from '@/stores/data'
-import type { RegularSliderMedia } from '@/types'
 
 const lang = getLangFromUrl(Astro.url)
-const t = useTranslations(lang)
 
 if (Object.keys($homeBlock.get()).length === 0 || $homeBlock.get().language !== lang)
   await setHomeData(lang)
-const trendingData = $homeBlock.get().trending
-const popularMovies = $homeBlock.get().popularMovies
-const popularTv = $homeBlock.get().popularTv
-
-const mainSection: RegularSliderMedia = { title: t('title.trend'), media: trendingData }
-const regularSections: RegularSliderMedia[] = [
-  { title: t('movies.popular'), media: popularMovies, type: 'movie' },
-  { title: t('tv.popular'), media: popularTv, type: 'tv' },
-]
+const mainSection = $homeBlock.get().mainSection
+const regularSections = $homeBlock.get().regularSections
 ---
 
 <Layout>

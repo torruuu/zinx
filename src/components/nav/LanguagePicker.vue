@@ -44,7 +44,7 @@ const checkSameLang = async (e: Event, key: keyof typeof ui) => {
       <div class="picker-container__languages-list languages-list" v-if="showLanguages">
         <template v-for="(value, key) in languages" :key="key">
           <a
-            data-astro-history="replace"
+            data-astro-reload
             class="languages-list__link"
             :href="changeUrlLang(currentSection, key)"
             @click="checkSameLang($event, key)"

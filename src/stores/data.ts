@@ -1,4 +1,5 @@
 import { atom, computed, map } from 'nanostores'
+import { useTranslations } from '@/i18n/utils'
 import {
   getTrendingMedia,
   getPopularMovies,
@@ -19,12 +20,17 @@ export const $loadError = atom<boolean>(false)
 export const $homeBlock = map<HomeBlock>()
 
 export const setHomeData = async (lang: keyof typeof ui) => {
-  const trendingData = await getTrendingMedia(lang)
-  const popularMovies = await getPopularMovies(lang)
-  const popularTv = await getPopularTv(lang)
-  $homeBlock.setKey('trending', trendingData)
-  $homeBlock.setKey('popularMovies', popularMovies)
-  $homeBlock.setKey('popularTv', popularTv)
+  const [trendingData, popularMovies, popularTv] = await Promise.all([
+    getTrendingMedia(lang),
+    getPopularMovies(lang),
+    getPopularTv(lang),
+  ])
+  const t = useTranslations(lang)
+  $homeBlock.setKey('mainSection', { title: t('title.trend'), media: trendingData })
+  $homeBlock.setKey('regularSections', [
+    { title: t('movies.popular'), media: popularMovies, type: 'movie' },
+    { title: t('tv.popular'), media: popularTv, type: 'tv' },
+  ])
   $homeBlock.setKey('language', lang)
 }
 
