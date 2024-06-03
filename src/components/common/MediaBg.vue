@@ -24,7 +24,10 @@ onMounted(() => {
   window.addEventListener('resize', updateScreenWidth)
   $bannerBgMounted.set(true)
 })
-onUnmounted(() => window.removeEventListener('resize', updateScreenWidth))
+onUnmounted(() => {
+  window.removeEventListener('resize', updateScreenWidth)
+  $bannerBgMounted.set(false)
+})
 </script>
 
 <template>

@@ -1,29 +1,11 @@
-import { getDataApi } from '@/services/getDataApi'
-import type { RegularMedia } from '@/types/index'
+import { getService } from '@/services/getApiServices'
+import type { ui } from '@/types/index'
 
-export const getTrendingMedia = async (language: string): Promise<RegularMedia[]> => {
-  const { results } = await getDataApi<{ page: string; results: RegularMedia[] }>(
-    'trending/all/day',
-    [{ name: 'page', value: (Math.floor(Math.random() * 5) + 1).toString() }],
-    language,
-  )
-  return results
-}
+export const getTrendingMedia = (language: keyof typeof ui) =>
+  getService('trending/all/day', 'title.trend', language)
 
-export const getPopularMovies = async (language: string): Promise<RegularMedia[]> => {
-  const { results } = await getDataApi<{ page: string; results: RegularMedia[] }>(
-    'movie/popular',
-    [{ name: 'page', value: (Math.floor(Math.random() * 5) + 1).toString() }],
-    language,
-  )
-  return results
-}
+export const getPopularMovies = (language: keyof typeof ui) =>
+  getService('movie/popular', 'movies.popular', language, [], 'movie')
 
-export const getPopularTv = async (language: string): Promise<RegularMedia[]> => {
-  const { results } = await getDataApi<{ page: string; results: RegularMedia[] }>(
-    'tv/popular',
-    [{ name: 'page', value: (Math.floor(Math.random() * 5) + 1).toString() }],
-    language,
-  )
-  return results
-}
+export const getPopularTv = (language: keyof typeof ui) =>
+  getService('tv/popular', 'tv.popular', language, [], 'tv')

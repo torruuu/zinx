@@ -1,4 +1,4 @@
-import { getDataApi } from '@/services/getDataApi'
+import { getDataApi } from '@/services/getApiServices'
 import type { RegularMedia } from '@/types/index'
 
 export const searchMedia = async (
