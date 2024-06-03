@@ -2,6 +2,7 @@ import { httpClient } from '@/services/useFetch'
 import { $loadError } from '@/stores/data'
 import { useTranslations } from '@/i18n/utils'
 import { defaultLang } from '@/i18n/ui'
+import { shuffleArray } from '@/composables/shuffleArray'
 import type { RegularSliderMedia, RegularMedia, ui } from '@/types/index'
 
 type TitleKeys = keyof (typeof ui)[typeof defaultLang]
@@ -37,5 +38,5 @@ export const getService = async (
     [...params, { name: 'page', value: (Math.floor(Math.random() * 5) + 1).toString() }],
     language,
   )
-  return { title: t(titleKey), media: results, type }
+  return { title: t(titleKey), media: shuffleArray(results), type }
 }

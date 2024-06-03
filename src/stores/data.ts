@@ -4,13 +4,25 @@ import {
   getTrendingMedia,
   getPopularMovies,
   getPopularTv,
-} from '@/services/homeApiServices'
-import {
   getTrendingMovies,
   getTopMovies,
   getTheatersMovies,
-} from '@/services/moviesApiServices'
-import { getTrendingTv, getTopTv, getComedyTv } from '@/services/seriesApiServices'
+  getActionMovies,
+  getCrimeMovies,
+  getDramaMovies,
+  getHistoryMovies,
+  getHorrorMovies,
+  getMisteryMovies,
+  getSciFiMovies,
+  getWarMovies,
+  getTrendingTv,
+  getTopTv,
+  getAnimationTv,
+  getComedyTv,
+  getDocumentaryTv,
+  getFamilyTv,
+  getSoapTv,
+} from '@/services/allApiServices'
 import type { WritableAtom } from 'nanostores'
 import type { MainPage, ui } from '@/types'
 
@@ -24,6 +36,12 @@ export const setHomeData = async (lang: keyof typeof ui) => {
     getTrendingMedia(lang),
     getPopularMovies(lang),
     getPopularTv(lang),
+    getActionMovies(lang),
+    getHistoryMovies(lang),
+    getSciFiMovies(lang),
+    getDocumentaryTv(lang),
+    getAnimationTv(lang),
+    getSoapTv(lang),
   ])
   $homeBlock.setKey('mainSection', mainSection)
   $homeBlock.setKey('regularSections', shuffleArray(regularSections))
@@ -38,6 +56,10 @@ export const setSeriesData = async (lang: keyof typeof ui) => {
     getTopTv(lang),
     getTrendingTv(lang),
     getComedyTv(lang),
+    getFamilyTv(lang),
+    getDocumentaryTv(lang),
+    getAnimationTv(lang),
+    getSoapTv(lang),
   ])
   $seriesBlock.setKey('mainSection', mainSection)
   $seriesBlock.setKey('regularSections', shuffleArray(regularSections))
@@ -52,6 +74,14 @@ export const setMoviesData = async (lang: keyof typeof ui) => {
     getTrendingMovies(lang),
     getTopMovies(lang),
     getTheatersMovies(lang),
+    getCrimeMovies(lang),
+    getHorrorMovies(lang),
+    getDramaMovies(lang),
+    getMisteryMovies(lang),
+    getWarMovies(lang),
+    getHistoryMovies(lang),
+    getSciFiMovies(lang),
+    getActionMovies(lang),
   ])
 
   $moviesBlock.setKey('mainSection', trending)

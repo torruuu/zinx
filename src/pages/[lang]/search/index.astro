@@ -4,7 +4,7 @@ import Results from '@/components/common/Results.astro'
 import { searchMedia } from '@/services/searchApiService'
 import { getLangFromUrl, useTranslations } from '@/i18n/utils'
 import { getQuery } from '@/composables/getQueryUrl'
-import { getTrendingMedia } from '@/services/homeApiServices'
+import { getTrendingMedia } from '@/services/allApiServices'
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
