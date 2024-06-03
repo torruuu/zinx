@@ -1,4 +1,4 @@
-import { getDataApi } from '@/services/getDataApi'
+import { getDataApi } from '@/services/getApiServices'
 import type { DetailedMovie, DetailedTv } from '@/types/index'
 
 export const getSpecificMedia = async (

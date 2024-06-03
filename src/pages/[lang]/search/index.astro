@@ -4,6 +4,7 @@ import Results from '@/components/common/Results.astro'
 import { searchMedia } from '@/services/searchApiService'
 import { getLangFromUrl, useTranslations } from '@/i18n/utils'
 import { getQuery } from '@/composables/getQueryUrl'
+import { getTrendingMedia } from '@/services/allApiServices'
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
@@ -11,12 +12,14 @@ const query = getQuery(Astro.url, 'q')
 
 if (!query) return Astro.redirect(`/${lang}`)
 const results = await searchMedia(query, lang)
+
+const mediaNotFound = await getTrendingMedia(lang)
 ---
 
 <Layout>
   <section class="results">
     <h2 class="results__title">{t('title.results')}: {query}</h2>
-    <Results lang={lang} results={results} />
+    <Results lang={lang} results={results} mediaNotFound={mediaNotFound} />
   </section>
 </Layout>
 

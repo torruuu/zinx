@@ -1,28 +1,15 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import MainSection from '@/components/MainSection.vue'
-import { getLangFromUrl, useTranslations } from '@/i18n/utils'
 import { $seriesBlock, setSeriesData } from '@/stores/data'
-import type { RegularSliderMedia } from '@/types'
+import { getLangFromUrl } from '@/i18n/utils'
 
 const lang = getLangFromUrl(Astro.url)
-const t = useTranslations(lang)
 
 if (Object.keys($seriesBlock.get()).length === 0 || $seriesBlock.get().language !== lang)
   await setSeriesData(lang)
-const trendingTv = $seriesBlock.get().trending
-const topTv = $seriesBlock.get().top
-const comedyTv = $seriesBlock.get().comedy
-
-const mainSection: RegularSliderMedia = {
-  title: t('tv.top'),
-  media: topTv,
-  type: 'tv',
-}
-const regularSections: RegularSliderMedia[] = [
-  { title: t('title.comedy'), media: comedyTv, type: 'tv' },
-  { title: t('tv.trend'), media: trendingTv, type: 'tv' },
-]
+const mainSection = $seriesBlock.get().mainSection
+const regularSections = $seriesBlock.get().regularSections
 ---
 
 <Layout>
