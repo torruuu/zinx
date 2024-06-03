@@ -1,4 +1,5 @@
 import { atom, computed, map } from 'nanostores'
+import { shuffleArray } from '@/composables/shuffleArray'
 import {
   getTrendingMedia,
   getPopularMovies,
@@ -25,7 +26,7 @@ export const setHomeData = async (lang: keyof typeof ui) => {
     getPopularTv(lang),
   ])
   $homeBlock.setKey('mainSection', mainSection)
-  $homeBlock.setKey('regularSections', regularSections)
+  $homeBlock.setKey('regularSections', shuffleArray(regularSections))
   $homeBlock.setKey('language', lang)
 }
 
@@ -39,7 +40,7 @@ export const setSeriesData = async (lang: keyof typeof ui) => {
     getComedyTv(lang),
   ])
   $seriesBlock.setKey('mainSection', mainSection)
-  $seriesBlock.setKey('regularSections', regularSections)
+  $seriesBlock.setKey('regularSections', shuffleArray(regularSections))
   $seriesBlock.setKey('language', lang)
 }
 
@@ -54,7 +55,7 @@ export const setMoviesData = async (lang: keyof typeof ui) => {
   ])
 
   $moviesBlock.setKey('mainSection', trending)
-  $moviesBlock.setKey('regularSections', regularSections)
+  $moviesBlock.setKey('regularSections', shuffleArray(regularSections))
   $moviesBlock.setKey('language', lang)
 }
 
