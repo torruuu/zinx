@@ -1,28 +1,64 @@
 ---
 import MediaCard from '@/components/common/MediaCard.vue'
-import type { RegularMedia, ui } from '@/types'
+import { useTranslations } from '@/i18n/utils'
+import type { RegularMedia, RegularSliderMedia, ui } from '@/types'
+import RegularSlider from './RegularSlider.vue'
 
 interface Props {
   lang: keyof typeof ui
   results: RegularMedia[]
+  mediaNotFound: RegularSliderMedia
 }
 
-const { lang, results } = Astro.props
+const { lang, results, mediaNotFound } = Astro.props
+const t = useTranslations(lang)
 ---
 
 <article class="results">
-  {results && results.map((media) => <MediaCard lang={lang} media={media} />)}
+  {
+    results.length > 0 ? (
+      <div class="results__grid">
+        {results.map((media) => (
+          <MediaCard lang={lang} media={media} />
+        ))}
+      </div>
+    ) : (
+      <div class="results__notfound">
+        <h2 class="results__notfound-title">{t('notfound.title')}...</h2>
+        <RegularSlider
+          lang={lang}
+          title={mediaNotFound.title}
+          media={mediaNotFound.media}
+          client:only="vue"
+        />
+      </div>
+    )
+  }
 </article>
 
 <style lang="scss">
   .results {
-    padding: map-get($map: $sizes, $key: s-general-padding);
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-    gap: 1rem;
-    @include responsive() {
-      padding: map-get($map: $sizes, $key: s-general-padding-mobile);
+    &__grid {
+      padding: map-get($map: $sizes, $key: s-general-padding);
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+      gap: 1rem;
+      @include responsive() {
+        padding: map-get($map: $sizes, $key: s-general-padding-mobile);
+      }
+    }
+    &__notfound {
+      grid-column: 1 / -1;
+    }
+    &__notfound-title {
+      font-family: map-get($map: $fonts, $key: f-font-semiBold);
+      padding: map-get($map: $sizes, $key: s-general-padding);
+      padding-bottom: 8rem;
+      @include responsive() {
+        padding: map-get($map: $sizes, $key: s-general-padding-mobile);
+        padding-bottom: 4rem;
+      }
     }
   }
 </style>

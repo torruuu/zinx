@@ -52,6 +52,7 @@ export const ui = {
       'Siempre estamos trabajando para mejorar y añadir nuevas funcionalidades para ofrecerte la mejor experiencia posible.',
     'footer.copyright': 'Copyright 2024',
     'youtube.player': 'Reproductor de video de YouTube',
+    'notfound.title': 'No se encontraron resultados coincidentes',
   },
   en: {
     'nav.home': 'Home',
@@ -92,6 +93,7 @@ export const ui = {
     'footer.updates.description':
       'We are always working to improve and add new features to provide you with the best possible experience.',
     'youtube.player': 'YouTube video player',
+    'notfound.title': 'No matching results found',
   },
 } as const
 
