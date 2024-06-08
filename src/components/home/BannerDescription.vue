@@ -51,13 +51,10 @@ const genreNames = computed(() => {
 
 <style lang="scss" scoped>
 .banner-description {
+  height: 100%;
   padding: map-get($map: $sizes, $key: s-general-padding);
   padding-bottom: 9vh;
-  @include flex(
-    $direction: column,
-    $justify-content: flex-start,
-    $align-items: flex-start
-  );
+  @include flex(column, flex-end, flex-start);
   gap: 0.8rem;
   @include responsive() {
     padding: map-get($map: $sizes, $key: s-general-padding-mobile);
